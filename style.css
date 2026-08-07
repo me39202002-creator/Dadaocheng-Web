@@ -1,0 +1,181 @@
+:root {
+    --primary-bg: #8A3324; /* 深紅棕色 (用於底線、標籤選取狀態) */
+    --main-bg: #FAF6F0;    /* 網頁整體米白底色 */
+    --footer-bg: #F0F2E9;
+    --accent-color: #C05C4D;
+    --text-dark: #333333;
+    --text-gray: #666666;
+    --tag-bg: #F8E8E6;     /* 淺粉紅 (用於導覽列Active、卡片小標籤) */
+    --tag-text: #A63F32;   /* 深紅 (用於導覽列Active文字、卡片小標籤文字) */
+    --border-color: #E6E1D6;
+    --icon-color: #C28C53; /* 卡片內的棕色圖示 */
+    --green-tag-bg: #EAF2EA;
+    --green-tag-text: #4A7B4A;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    background-color: var(--main-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* --- 頂部導覽列 (美化後) --- */
+.header-container {
+    background-color: var(--main-bg); 
+    color: var(--text-dark);
+    padding: 0 5%;
+    border-bottom: 6px solid var(--primary-bg); /* 底部粗紅棕色線條 */
+    
+    /* 以下是新增的「置頂」語法 */
+    position: sticky; /* 讓元素在捲動時黏住 */
+    top: 0;           /* 黏在距離頂部 0px 的位置 */
+    z-index: 1000;    /* 確保導覽列會蓋在其他內容的上方，不會被卡片或圖片遮擋 */
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    font-size: 0.95rem;
+}
+
+.logo-area { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+}
+
+.logo-icon {
+    background-color: #C28C53; 
+    color: white;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-text .title {
+    font-weight: bold;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+}
+
+.logo-text .subtitle {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+.nav-links { display: flex; gap: 10px; }
+.nav-links a { padding: 8px 16px; border-radius: 6px; transition: all 0.2s; color: var(--text-gray); font-weight: 500; }
+.nav-links a:hover { background-color: rgba(0,0,0,0.05); }
+.nav-links a.active { background-color: var(--tag-bg); color: var(--tag-text); font-weight: bold; }
+
+.language-select { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-gray); }
+.language-select select { background: white; color: var(--text-dark); border: 1px solid #CCC; padding: 6px 10px; border-radius: 4px; outline: none; cursor: pointer; font-family: inherit; }
+
+/* --- 共用 Layout --- */
+.main-container { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
+.page-title { font-size: 1.6rem; color: var(--primary-bg); margin-bottom: 10px; font-weight: bold; }
+.page-subtitle { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 40px; }
+
+/* --- 頁面 1: 特色店家 --- */
+.filter-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+.filter-tag { background-color: #F0EDE5; border: none; padding: 8px 18px; border-radius: 20px; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; color: var(--text-gray); font-weight: 500; }
+.filter-tag:hover { background-color: #E6E1D6; }
+.filter-tag.active { background-color: var(--primary-bg); color: white; }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px; }
+.shop-card { background-color: white; border-radius: 10px; padding: 24px; border: 1px solid var(--border-color); display: flex; flex-direction: column; }
+.shop-tag { background-color: var(--tag-bg); color: var(--tag-text); font-size: 0.75rem; padding: 4px 10px; border-radius: 12px; align-self: flex-start; margin-bottom: 15px; font-weight: bold; }
+.shop-card h3 { font-size: 1.25rem; margin-bottom: 12px; color: #222; }
+.shop-card p.desc { color: var(--text-gray); font-size: 0.95rem; flex-grow: 1; margin-bottom: 25px; }
+.card-info { font-size: 0.9rem; color: var(--text-gray); display: flex; flex-direction: column; gap: 10px; }
+.card-info i { color: var(--icon-color); width: 18px; text-align: center; margin-right: 6px; font-size: 1rem; }
+
+.pagination { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 20px; }
+.page-numbers { display: flex; gap: 8px; align-items: center; }
+.page-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 4px; background-color: white; border: 1px solid var(--border-color); cursor: pointer; font-size: 0.9rem; }
+.page-btn.active { background-color: var(--accent-color); color: white; border-color: var(--accent-color); }
+.page-info { font-size: 0.85rem; color: var(--text-gray); }
+
+/* --- 頁面 2: APP推薦 --- */
+.category-section { margin-bottom: 40px; }
+.category-title { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; color: var(--primary-bg); margin-bottom: 20px; font-weight: bold; }
+.category-title i { background: var(--tag-bg); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--accent-color); font-size: 1rem; }
+.app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 20px; }
+.app-card { background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; display: flex; gap: 15px; }
+.app-logo { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: bold; flex-shrink: 0; }
+.bg-red { background-color: #B94B38; } .bg-orange { background-color: #D2762A; } .bg-green { background-color: #6A8E43; } .bg-brown { background-color: #9C6743; }
+.app-info { flex-grow: 1; }
+.app-head { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+.app-name { font-weight: bold; font-size: 1.05rem; }
+.app-tag { background: var(--green-tag-bg); color: var(--green-tag-text); font-size: 0.75rem; padding: 3px 8px; border-radius: 12px; }
+.app-desc { color: var(--text-gray); font-size: 0.85rem; margin-bottom: 15px; min-height: 40px; }
+.app-btns { display: flex; gap: 10px; }
+.store-btn { background: var(--primary-bg); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+
+/* ATM 指南區塊 */
+.guide-section { background: white; padding: 30px; border-radius: 10px; border: 1px solid var(--border-color); margin-top: 50px; }
+.guide-section h3 { margin-bottom: 10px; font-size: 1.2rem; }
+.guide-section > p { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 20px; }
+.warning-banner { background: #FFF0F0; border: 1px solid #F5C6C6; padding: 15px; border-radius: 8px; display: flex; gap: 10px; color: #A63F32; font-size: 0.85rem; margin-bottom: 25px; line-height: 1.5; }
+.warning-banner i { font-size: 1.1rem; }
+.warning-banner strong { font-weight: bold; color: #8A2015; }
+.info-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.info-card { background: var(--main-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); }
+.info-card h4 { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; color: var(--primary-bg); font-size: 1rem; }
+.info-card h4 i { color: var(--accent-color); }
+.info-card p, .info-card li { font-size: 0.85rem; color: var(--text-gray); margin-bottom: 8px; }
+.info-card ul { padding-left: 20px; }
+
+/* --- 頁面 3: 緊急聯絡 --- */
+.emergency-grid { display: grid; grid-template-columns: 1fr 400px; gap: 20px; margin-bottom: 20px; }
+.em-box { background: white; border: 1px solid var(--border-color); border-radius: 10px; padding: 30px; }
+.em-box.pink-tint { background: #FFF9F9; border-color: #F8E8E6; }
+.em-box-title { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; color: var(--primary-bg); margin-bottom: 25px; font-weight: bold; }
+.em-box-title i { color: var(--accent-color); font-size: 1.2rem; }
+.hotline-item { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #EAE3D9; }
+.hotline-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.hotline-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.hotline-name { font-weight: bold; color: #333; }
+.hotline-num { background: #D28E3A; color: white; padding: 4px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; gap: 5px; }
+.hotline-num.red { background: #C55A4E; }
+.em-desc { font-size: 0.85rem; color: var(--text-gray); }
+.hospital-name { font-weight: bold; font-size: 1.05rem; margin: 15px 0 5px; }
+.hospital-addr { font-size: 0.85rem; color: var(--text-gray); display: flex; align-items: flex-start; gap: 5px; margin: 10px 0; }
+.police-section { background: white; border: 1px solid var(--border-color); border-radius: 10px; padding: 30px; }
+.police-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+.police-card { background: var(--main-bg); padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); }
+.police-card h4 { margin-bottom: 8px; color: #333; }
+
+/* --- 共用 Footer --- */
+.footer { background-color: var(--footer-bg); padding: 50px 5% 20px; border-top: 1px solid #DFE3D5; margin-top: 40px;}
+.footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: 0 auto 40px; gap: 30px; }
+.footer-col h4 { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+.footer-col p { font-size: 0.85rem; color: var(--text-gray); }
+.feedback-section { text-align: center; max-width: 600px; margin: 0 auto 40px; }
+.feedback-form { background-color: white; padding: 5px; border-radius: 8px; display: flex; flex-direction: column; border: 1px solid var(--border-color); }
+.feedback-form textarea { border: none; resize: none; padding: 15px; min-height: 80px; outline: none; }
+.form-footer { display: flex; justify-content: flex-end; padding: 10px 15px; border-top: 1px solid var(--border-color); }
+.submit-btn { background-color: var(--accent-color); color: white; border: none; padding: 8px 24px; border-radius: 20px; cursor: pointer; }
+.copyright { text-align: center; font-size: 0.8rem; color: #999; padding-top: 20px; border-top: 1px solid #DFE3D5; }
+
+/* RWD 響應式 */
+@media (max-width: 900px) { .emergency-grid { grid-template-columns: 1fr; } .police-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .top-nav { flex-direction: column; gap: 20px; } .logo-text { align-items: center; } .footer-top { flex-direction: column; } }

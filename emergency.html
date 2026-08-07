@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>緊急聯絡與醫療協助 - 大稻埕特色店家</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header-container">
+        <div class="top-nav">
+            <div class="logo-area">
+                <div class="logo-icon">D</div>
+                <div class="logo-text">
+                    <div class="title" data-i18n="site-title">大稻埕特色店家</div>
+                    <div class="subtitle">Dadaocheng Guide</div>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" data-i18n="nav-shops">特色店家</a>
+                <a href="apps.html" data-i18n="nav-apps">必備APP推薦</a>
+                <a href="emergency.html" class="active" data-i18n="nav-emergency">緊急協助</a>
+            </nav>
+            <div class="language-select">
+                Language : 
+                <select id="lang-select">
+                    <option value="zh">繁體中文</option>
+                    <option value="en">English</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <h1 class="page-title" data-i18n="em-page-title">緊急聯絡與醫療協助</h1>
+        <p class="page-subtitle" data-i18n="em-page-sub">台灣是非常安全的旅遊國家，但若遇到突發的身體不適或遺失物品，請不要慌張，以下資源可以隨時提供多國語言的協助：</p>
+
+        <div class="emergency-grid">
+            <div class="em-box">
+                <h2 class="em-box-title"><i class="fa-solid fa-phone-volume"></i> <span data-i18n="em-hotlines">24 小時免費求助熱線</span></h2>
+                
+                <div class="hotline-item">
+                    <div class="hotline-header">
+                        <span class="hotline-name" data-i18n="line-foreign">外國人在臺生活諮詢熱線</span>
+                        <span class="hotline-num"><i class="fa-solid fa-phone"></i> 1990</span>
+                    </div>
+                    <p class="em-desc" data-i18n="desc-foreign">提供中、英、日等 7 國語言服務。無論是簽證問題、遺失護照、生活求助或遭遇緊急狀況，都可以撥打此專線尋求指引。</p>
+                </div>
+                
+                <div class="hotline-item">
+                    <div class="hotline-header">
+                        <span class="hotline-name" data-i18n="line-police">緊急報警與救護</span>
+                        <span class="hotline-num red"><i class="fa-solid fa-phone"></i> 110 / 119</span>
+                    </div>
+                    <p class="em-desc" data-i18n="desc-police">報警: 110 | 救護車與消防: 119。接通後若無法用中文溝通，可說出 'English' 要求英文協助。</p>
+                </div>
+            </div>
+
+            <div class="em-box pink-tint">
+                <h2 class="em-box-title"><i class="fa-solid fa-square-h"></i> <span data-i18n="em-medical">鄰近雙語醫療資源</span></h2>
+                <div class="hospital-name" data-i18n="hosp-name">臺北市立聯合醫院 中興院區</div>
+                <div class="hospital-addr"><i class="fa-solid fa-location-dot" style="color: #A09E9A;"></i> <span data-i18n="hosp-addr">台北市大同區鄭州路 145 號</span></div>
+                <p class="em-desc" style="font-size: 0.8rem; margin-top: 15px;" data-i18n="hosp-desc">為公立大型綜合醫院，設有急診室 (Emergency Room)，醫師與護理人員皆具備基礎至進階的英語溝通能力。</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="copyright">© 2026 Dadaocheng Guide. All rights reserved.</div>
+    </footer>
+
+    <!-- 多語系翻譯腳本 -->
+    <script>
+        const i18n = {
+            "zh": {
+                "site-title": "大稻埕特色店家", "nav-shops": "特色店家", "nav-apps": "必備APP推薦", "nav-emergency": "緊急協助",
+                "em-page-title": "緊急聯絡與醫療協助", 
+                "em-page-sub": "台灣是非常安全的旅遊國家，但若遇到突發的身體不適或遺失物品，請不要慌張，以下資源可以隨時提供多國語言的協助：",
+                "em-hotlines": "24 小時免費求助熱線", "line-foreign": "外國人在臺生活諮詢熱線",
+                "desc-foreign": "提供中、英、日等 7 國語言服務。無論是簽證問題、遺失護照、生活求助或遭遇緊急狀況，都可以撥打此專線尋求指引。",
+                "line-police": "緊急報警與救護", "desc-police": "報警: 110 | 救護車與消防: 119。接通後若無法用中文溝通，可說出 'English' 要求英文協助。",
+                "em-medical": "鄰近雙語醫療資源", "hosp-name": "臺北市立聯合醫院 中興院區", "hosp-addr": "台北市大同區鄭州路 145 號",
+                "hosp-desc": "為公立大型綜合醫院，設有急診室，醫師與護理人員皆具備英語溝通能力。"
+            },
+            "en": {
+                "site-title": "Dadaocheng Featured Shops", "nav-shops": "Featured Shops", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help",
+                "em-page-title": "Emergency & Medical Assistance", 
+                "em-page-sub": "Taiwan is a very safe country, but if you encounter sudden illness or lost items, don't panic. These resources provide multilingual help:",
+                "em-hotlines": "24H Free Helplines", "line-foreign": "Foreigners in Taiwan Hotline",
+                "desc-foreign": "Provides services in 7 languages. Call this hotline for visa issues, lost passports, or emergencies.",
+                "line-police": "Police & Ambulance", "desc-police": "Police: 110 | Ambulance & Fire: 119. Say 'English' if you cannot speak Chinese.",
+                "em-medical": "Bilingual Medical Resources", "hosp-name": "Taipei City Hospital Zhongxing Branch", "hosp-addr": "No. 145, Zhengzhou Rd, Datong District",
+                "hosp-desc": "A large public hospital with an Emergency Room. Doctors and nurses have basic to advanced English skills."
+            },
+            "ja": {
+                "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート",
+                "em-page-title": "緊急連絡先と医療支援", 
+                "em-page-sub": "台湾は非常に安全な旅行先ですが、急病や紛失物があった場合でも慌てないでください。以下のリソースで多言語のサポートが受けられます：",
+                "em-hotlines": "24時間無料ヘルプライン", "line-foreign": "台湾在住外国人相談ホットライン",
+                "desc-foreign": "日本語を含む7カ国語で対応。ビザの問題、パスポートの紛失、緊急事態についてはこちらにお電話ください。",
+                "line-police": "警察・救急車", "desc-police": "警察: 110 | 救急・消防: 119。中国語が話せない場合は「イングリッシュ」または「ジャパニーズ」とお伝えください。",
+                "em-medical": "バイリンガル医療機関", "hosp-name": "台北市立連合病院 中興院区", "hosp-addr": "台北市大同区鄭州路145号",
+                "hosp-desc": "救急外来（ER）を備えた大規模公立病院。医師と看護師は英語でのコミュニケーションが可能です。"
+            },
+            "ko": {
+                "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원",
+                "em-page-title": "긴급 연락처 및 의료 지원", 
+                "em-page-sub": "대만은 매우 안전한 국가이지만, 갑작스러운 질병이나 물품 분실 시 당황하지 마세요. 다음 리소스에서 다국어 지원을 제공합니다:",
+                "em-hotlines": "24시간 무료 헬프라인", "line-foreign": "외국인 생활 상담 핫라인",
+                "desc-foreign": "7개 국어 서비스 제공. 비자 문제, 여권 분실 또는 긴급 상황 시 이 핫라인으로 전화하세요.",
+                "line-police": "경찰 및 구급차", "desc-police": "경찰: 110 | 구급차 및 소방: 119. 중국어를 할 수 없다면 '잉글리쉬'라고 말하여 도움을 요청하세요.",
+                "em-medical": "이중 언어 의료 자원", "hosp-name": "타이베이 시립 연합 병원 중싱 지점", "hosp-addr": "타이베이시 다통구 정저우로 145번지",
+                "hosp-desc": "응급실을 갖춘 대형 공립 병원입니다. 의사와 간호사는 기본 이상의 영어 소통 능력을 갖추고 있습니다."
+            }
+        };
+
+        document.getElementById('lang-select').addEventListener('change', function() {
+            const lang = this.value;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang] && i18n[lang][key]) {
+                    el.innerText = i18n[lang][key];
+                }
+            });
+        });
+    </script>
+</body>
+</html>
