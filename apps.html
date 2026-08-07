@@ -14,6 +14,13 @@
         .store-btn:hover {
             opacity: 0.9; /* 加入滑鼠懸停效果 */
         }
+        
+        /* 放大 APP 圖示 1.5 倍 */
+        .app-logo {
+            width: 75px !important;  /* 強制放大寬度 */
+            height: 75px !important; /* 強制放大高度 */
+            flex-shrink: 0;          /* 防止圖示被右側文字擠壓變形 */
+        }
     </style>
 </head>
 <body>
@@ -53,7 +60,9 @@
             <h2 class="category-title"><i class="fa-solid fa-map"></i> <span data-i18n="cat-map">地圖與綜合導航</span></h2>
             <div class="app-grid">
                 <div class="app-card">
-                    <div class="app-logo bg-red">G</div>
+                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
+                        <img src="Google.webp" alt="Google Maps" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                    </div>
                     <div class="app-info">
                         <div class="app-head">
                             <span class="app-name">Google Maps</span>
@@ -78,7 +87,9 @@
             <h2 class="category-title"><i class="fa-solid fa-train-subway"></i> <span data-i18n="cat-transit">大眾運輸與火車</span></h2>
             <div class="app-grid">
                 <div class="app-card">
-                    <div class="app-logo bg-red">B+</div>
+                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
+                        <img src="Bus+.webp" alt="Bus+" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                    </div>
                     <div class="app-info">
                         <div class="app-head"><span class="app-name">Bus+</span><span class="app-tag" data-i18n="tag-bus">公車動態</span></div>
                         <p class="app-desc" data-i18n="desc-bus">全台公車動態即時查詢，等公車必備神器，介面乾淨好用。</p>
@@ -93,7 +104,9 @@
                     </div>
                 </div>
                 <div class="app-card">
-                    <div class="app-logo bg-red">捷</div>
+                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
+                        <img src="MetroMan.webp" alt="台北捷運通" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                    </div>
                     <div class="app-info">
                         <div class="app-head"><span class="app-name" data-i18n="app-mrt">台北捷運通</span><span class="app-tag" data-i18n="tag-mrt">捷運路線</span></div>
                         <p class="app-desc" data-i18n="desc-mrt">提供台北捷運路線圖、票價查詢及首末班車時間，在複雜的車站內不怕迷路。</p>
@@ -108,7 +121,9 @@
                     </div>
                 </div>
                 <div class="app-card">
-                    <div class="app-logo bg-red">鐵</div>
+                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
+                        <img src="台鐵e訂通.webp" alt="台鐵e訂票" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                    </div>
                     <div class="app-info">
                         <div class="app-head"><span class="app-name" data-i18n="app-tra">台鐵e訂票</span><span class="app-tag" data-i18n="tag-train">火車訂票</span></div>
                         <p class="app-desc" data-i18n="desc-tra">台灣鐵路官方APP，提供查詢時刻表、線上訂票，並可開啟手機電子車票進出站。</p>
@@ -123,7 +138,9 @@
                     </div>
                 </div>
                 <div class="app-card">
-                    <div class="app-logo bg-orange">T</div>
+                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
+                        <img src="台灣高鐵 T Express.webp" alt="T Express" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                    </div>
                     <div class="app-info">
                         <div class="app-head"><span class="app-name">T Express</span><span class="app-tag" data-i18n="tag-hsr">高鐵訂票</span></div>
                         <p class="app-desc" data-i18n="desc-hsr">台灣高鐵官方APP，手機直接買票，進站只要刷手機條碼，跨縣市移動最方便。</p>
@@ -145,7 +162,9 @@
             <h2 class="category-title"><i class="fa-solid fa-car"></i> <span data-i18n="cat-ride">叫車與單車租借</span></h2>
             <div class="app-grid">
                 <div class="app-card">
-                    <div class="app-logo bg-brown">U</div>
+                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
+                        <img src="Uber.webp" alt="Uber" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                    </div>
                     <div class="app-info">
                         <div class="app-head"><span class="app-name">Uber</span><span class="app-tag" data-i18n="tag-uber">叫車載客</span></div>
                         <p class="app-desc" data-i18n="desc-uber">在台灣的系統與國外完全相同，綁定信用卡付款，不怕語言不通或被繞路。</p>
@@ -160,7 +179,9 @@
                     </div>
                 </div>
                 <div class="app-card">
-                    <div class="app-logo bg-orange">Y</div>
+                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
+                        <img src="YouBike.webp" alt="YouBike 2.0" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                    </div>
                     <div class="app-info">
                         <div class="app-head"><span class="app-name">YouBike 2.0</span><span class="app-tag" data-i18n="tag-bike">共享單車</span></div>
                         <p class="app-desc" data-i18n="desc-bike">全球馳名的微型單車租借系統好騎無比，在大稻埕小巷弄穿梭的絕佳交通工具。</p>
