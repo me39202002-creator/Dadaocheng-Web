@@ -187,14 +187,35 @@
             }
         };
 
-        document.getElementById('lang-select').addEventListener('change', function() {
-            const lang = this.value;
+        // 1. 取得下拉選單元素
+        const langSelect = document.getElementById('lang-select');
+
+        // 2. 建立一個切換語言的專屬功能
+        function changeLanguage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (i18n[lang] && i18n[lang][key]) {
                     el.innerHTML = i18n[lang][key]; 
                 }
             });
+            if (langSelect) {
+                langSelect.value = lang;
+            }
+            // 記憶語言選擇
+            localStorage.setItem('dadaocheng_lang', lang);
+        }
+
+        // 3. 當使用者手動切換下拉選單時，執行切換並記憶
+        if (langSelect) {
+            langSelect.addEventListener('change', function() {
+                changeLanguage(this.value);
+            });
+        }
+
+        // 4. 每次網頁一載入，就去檢查有沒有存過的語言
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('dadaocheng_lang') || 'zh';
+            changeLanguage(savedLang);
         });
     </script>
 </body>
