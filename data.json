@@ -2026,5 +2026,31 @@
     "User Rating Count": 282,
     "": "",
     "Test": ""
+  },
+  {
+    "ID": 80,
+    "Category": "coffee",
+    "Title (ZH)": "琢磨咖啡 coffee",
+    "Title (EN)": "Ponder Coffee",
+    "Title (JA)": "琢磨珈琲 Ponder Coffee",
+    "Title (KO)": "폰더 커피 (Ponder Coffee)",
+    "Address (ZH)": "103臺北市大同區歸綏街265號",
+    "Address (EN)": "No. 265, Guisui St., Datong Dist., Taipei City 103, Taiwan",
+    "Address (JA)": "103 台湾台北市大同区帰綏街265号",
+    "Address (KO)": "대만 타이베이시 다퉁구 구이수이제 265호 (우편번호: 103)",
+    "Hours (ZH)": "每日 08:00–18:00",
+    "Hours (EN)": "Daily 08:00–18:00",
+    "Hours (JA)": "毎日 08:00–18:00",
+    "Hours (KO)": "매일 08:00–18:00",
+    "Description (ZH)": "藏身歸綏街的質感閣樓咖啡館。擁有特色螺旋樓梯與和室窗台，主打手沖精品咖啡、特調飲品並附贈在地綠豆糕，氛圍溫馨恬靜。",
+    "Description (EN)": "A cozy attic café on Guisui Street with a spiral staircase and tatami window seats, serving specialty pour-over coffee and local mung bean cakes.",
+    "Description (JA)": "帰綏街に佇むおしゃれな屋根裏カフェ。螺旋階段と和室の窓際席が特徴で、こだわりハンドドリップと緑豆落雁を楽しめます。",
+    "Description (KO)": "구이수이제에 위치한 아늑한 다락방 카페. 나선형 계단과 다다미 창가 좌석이 매력적이며, 핸드드립 커피와 대만 전통 녹두 다식을 선보입니다.",
+    "UpdateTime": "2026-08-17T01:15:00.000Z",
+    "Place ID": "ChIJAZyrjsapQjQRi70yW6zdWBE",
+    "Rating": 4.6,
+    "User Rating Count": 1143,
+    "": "",
+    "Test": ""
   }
 ]
