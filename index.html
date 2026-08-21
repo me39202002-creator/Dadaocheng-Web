@@ -14,8 +14,17 @@
             transition: color 0.2s ease;
         }
         .map-link:hover {
-            color: var(--primary-bg); /* 滑鼠移過去變成深紅棕色 */
+            color: var(--primary-bg);
             text-decoration: underline;
+        }
+        
+        /* 🌟 新增：專屬 Logo 圖片的樣式設定 */
+        .site-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain; /* 確保建築物圖案不會被裁切變形 */
+            margin-right: 12px;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -24,8 +33,9 @@
     <!-- Header -->
     <header class="header-container">
         <div class="top-nav">
-            <div class="logo-area">
-                <div class="logo-icon">D</div>
+            <div class="logo-area" style="display: flex; align-items: center;">
+                <!-- 🌟 替換成真實的 Logo 圖片 -->
+                <img src="images/Dadaocheng-Web.webp" alt="大稻埕特色店家 Logo" class="site-logo">
                 <div class="logo-text">
                     <div class="title" data-i18n="site-title">大稻埕特色店家</div>
                     <div class="subtitle">Dadaocheng Guide</div>
@@ -81,7 +91,11 @@
     <footer class="footer">
         <div class="footer-top">
             <div class="footer-col">
-                <h4><div class="logo-icon">D</div> <span data-i18n="site-title">大稻埕特色店家</span></h4>
+                <!-- 🌟 Footer 也替換成真實的 Logo 圖片 -->
+                <h4 style="display: flex; align-items: center; gap: 8px;">
+                    <img src="images/Dadaocheng-Web.webp" alt="Logo" style="width: 100px; height: 100px; object-fit: contain; border-radius: 4px;"> 
+                    <span data-i18n="site-title">大稻埕特色店家</span>
+                </h4>
                 <p data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
             </div>
             <div class="footer-col">
@@ -101,7 +115,7 @@
         <!-- 💡 將字體放大並加深顏色 -->
         <div class="copyright">
             © 2026 Dadaocheng Guide. All rights reserved.<br>
-            <span style="font-size: 1.1em; color: #555; margin-top: 8px; display: inline-block;">
+            <span style="font-size: 1em; color: #555; margin-top: 8px; display: inline-block;">
                 <i class="fa-solid fa-clock-rotate-left"></i> <span data-i18n="update-label">店家資料最後更新：</span><span id="update-time">讀取中...</span>
             </span>
         </div>
@@ -212,14 +226,13 @@
                 });
             });
 
-            // 💡 新增功能：背景自動抓取 data.json 最後更新時間
+            // 背景自動抓取 data.json 最後更新時間
             fetch('data.json', { method: 'HEAD' })
                 .then(response => {
                     const lastModified = response.headers.get('Last-Modified');
                     const timeEl = document.getElementById('update-time');
                     if (lastModified && timeEl) {
                         const date = new Date(lastModified);
-                        // 格式化為 YYYY/MM/DD HH:MM
                         const formatted = date.getFullYear() + '/' + 
                                           String(date.getMonth() + 1).padStart(2, '0') + '/' + 
                                           String(date.getDate()).padStart(2, '0') + ' ' + 

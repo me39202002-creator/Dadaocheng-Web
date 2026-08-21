@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
@@ -22,6 +21,16 @@
             height: 75px !important; /* 強制放大高度 */
             flex-shrink: 0;          /* 防止圖示被右側文字擠壓變形 */
         }
+
+        /* 新增：地址連結的樣式與滑鼠懸停效果 */
+        .map-link {
+            color: #8B4513; /* 深紅棕色 */
+            text-decoration: underline;
+            transition: opacity 0.2s ease;
+        }
+        .map-link:hover {
+            opacity: 0.7;
+        }
     </style>
 </head>
 <body>
@@ -29,7 +38,7 @@
     <header class="header-container">
         <div class="top-nav">
             <div class="logo-area">
-                <div class="logo-icon">D</div>
+                <img src="images/Dadaocheng-Web.webp" alt="大稻埕特色店家 Logo" style="width: 50px; height: 50px; object-fit: contain; margin-right: 12px; border-radius: 8px;">
                 <div class="logo-text">
                     <div class="title" data-i18n="site-title">大稻埕特色店家</div>
                     <div class="subtitle">Dadaocheng Guide</div>
@@ -218,23 +227,58 @@
                     <h4><i class="fa-solid fa-money-bill-wave"></i> <span data-i18n="atm-title">24小時便利商店跨國提款</span></h4>
                     <p data-i18n="atm-desc">台灣的便利商店密集度極高，是外國旅客領取現金最方便的管道。</p>
                     <ul>
-                        <li data-i18n="atm-li1">哪裡可以領？尋找 7-ELEVEN (內建中國信託 ATM) 或 全家便利商店 (內建台新或國泰世華 ATM)。大稻埕周邊步行5分鐘內皆有便利商店。</li>
-                        <li data-i18n="atm-li2">支援卡片：機台上若貼有 Visa, Mastercard, PLUS, Cirrus, UnionPay (銀聯) 等標誌，即可使用國外提款卡領取新台幣(TWD)。</li>
+                        <li data-i18n="atm-li1" style="margin-bottom: 8px;">哪裡可以領？尋找 7-ELEVEN (內建中國信託 ATM) 或 全家便利商店 (內建台新或國泰世華 ATM)。大稻埕周邊步行5分鐘內皆有便利商店。</li>
+                        <li data-i18n="atm-li2" style="margin-bottom: 8px;">支援卡片：機台上若貼有 Visa, Mastercard, PLUS, Cirrus, UnionPay (銀聯) 等標誌，即可使用國外提款卡領取新台幣(TWD)。</li>
                         <li data-i18n="atm-li3">手續費：台灣本地銀行通常會收每筆約 NT$100 的設備手續費（您的發卡銀行可能還會收取跨國手續費，建議一次領取足夠金額）。</li>
                     </ul>
                 </div>
+                
+                <!-- 💡 更新的實體銀行換匯卡片 -->
                 <div class="info-card">
                     <h4><i class="fa-solid fa-building-columns"></i> <span data-i18n="bank-title">實體銀行換匯</span></h4>
-                    <p data-i18n="bank-desc">如果您手邊持有外幣現鈔（如美金、日圓、歐元）需要兌換成新台幣，前往銀行就有提供外匯業務的實體銀行。</p>
-                    <ul>
-                        <li data-i18n="bank-li1">第一銀行 (First Bank) 大稻埕分行：台北市大同區迪化街一段 63 號（迪化街主街上）。</li>
-                        <li data-i18n="bank-li2">營業時間：平日（週一至週五）09:00 - 15:30，週末與國定假日休息。</li>
+                    <p data-i18n="bank-desc" style="margin-bottom: 12px;">如果您手邊持有外幣現鈔（如美金、日圓、歐元）需要兌換成新台幣，前往銀行就有提供外匯業務的實體銀行。</p>
+                    <ul style="padding-left: 18px;">
+                        <li data-i18n="bank-li1" style="margin-bottom: 10px;"></li>
+                        <li data-i18n="bank-li4" style="margin-bottom: 10px;"></li>
+                        <li data-i18n="bank-li2" style="margin-bottom: 10px;">營業時間：平日（週一至週五）09:00 - 15:30，週末與國定假日休息。</li>
                         <li data-i18n="bank-li3">注意事項：在台灣的銀行辦理任何換匯業務，都規定必須出示護照正本 (Passport)。實際匯率與手續費，依各分行現場公告為主。</li>
                     </ul>
                 </div>
+
                 <div class="info-card">
                     <h4><i class="fa-solid fa-lightbulb"></i> <span data-i18n="kiosk-title">旅客專屬：自動外幣兌換機</span></h4>
                     <p data-i18n="kiosk-desc">為了因應大稻埕龐大的觀光人潮，如果您急需小額現金又逢銀行下班時間，可以尋找自動兌幣機（例如：新光銀行 會有外幣兌換機）。部分據點設置專屬台灣與外國旅客可操作的兌換機，支援美金、日幣等主流幣種直接兌換新台幣，填補晚間逛街無處換匯的空窗。</p>
+                </div>
+
+                <div class="info-card" style="grid-column: 1 / -1; background-color: #fffaf0; border: 1px solid #ffe0b2;">
+                    <h4 style="color: var(--primary-bg); font-size: 1.2rem; margin-bottom: 15px;">
+                        <i class="fa-solid fa-money-bill-transfer"></i> <span data-i18n="guide-cash-title">簡單明瞭的外幣現鈔換台幣指南</span>
+                    </h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                        <div>
+                            <h5 data-i18n="guide-step1-title" style="color: #555; margin-bottom: 10px; font-size: 1.05rem;">1. 換匯流程</h5>
+                            <ul style="padding-left: 20px; font-size: 0.95rem;">
+                                <li data-i18n="guide-step1-1" style="margin-bottom: 8px;"><strong>準備物品：</strong>帶好「外幣現鈔」與「身分證」（外籍人士帶護照或居留證）。</li>
+                                <li data-i18n="guide-step1-2" style="margin-bottom: 8px;"><strong>選擇地點：</strong>前往有外匯業務的銀行或郵局。</li>
+                                <li data-i18n="guide-step1-3"><strong>臨櫃辦理：</strong>抽號碼牌 ➔ 告訴行員要「外幣換台幣」 ➔ 填寫外匯買賣水單 ➔ 行員驗明鈔票真偽與計算金額 ➔ 領取台幣現金。</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 data-i18n="guide-step2-title" style="color: #555; margin-bottom: 10px; font-size: 1.05rem;">2. 手續費怎麼算？</h5>
+                            <ul style="padding-left: 20px; font-size: 0.95rem;">
+                                <li data-i18n="guide-step2-1" style="margin-bottom: 8px;"><strong>完全免費：</strong>市區的一般「臺灣銀行」、「兆豐銀行」或指定「郵局」（郵局只收美金、日圓、港幣、歐元、人民幣）。</li>
+                                <li data-i18n="guide-step2-2"><strong>要收手續費的情況：</strong>機場櫃檯（約 100 元）、一般民營銀行（約 100～300 元）、特殊舊版或破損鈔票。</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 data-i18n="guide-step3-title" style="color: #555; margin-bottom: 10px; font-size: 1.05rem;">3. 三大注意事項</h5>
+                            <ul style="padding-left: 20px; font-size: 0.95rem;">
+                                <li data-i18n="guide-step3-1" style="margin-bottom: 8px;"><strong>銀行不收硬幣：</strong>台灣所有銀行和郵局只收紙鈔，外國硬幣無法兌換。</li>
+                                <li data-i18n="guide-step3-2" style="margin-bottom: 8px;"><strong>鈔票不能太破舊：</strong>有破洞、明顯污漬、塗鴉或撕裂修補過，銀行可能拒收或加收處理費。</li>
+                                <li data-i18n="guide-step3-3"><strong>匯率看「現金買入」：</strong>請對照匯率看板的「現金買入」欄位，代表銀行用現金向你買進外幣的價格。</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -243,7 +287,8 @@
     <footer class="footer">
         <div class="footer-top">
             <div class="footer-col">
-                <h4><div class="logo-icon">D</div> <span data-i18n="site-title">大稻埕特色店家</span></h4>
+                <h4 style="display: flex; align-items: center; gap: 8px;">
+    <img src="images/Dadaocheng-Web.webp" alt="Logo" style="width: 100px; height: 100px; object-fit: contain; border-radius: 4px;"><span data-i18n="site-title">大稻埕特色店家</span></h4>
                 <p data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
             </div>
             <div class="footer-col">
@@ -260,7 +305,12 @@
                 </a>
             </div>
         </div>
-        <div class="copyright">© 2026 Dadaocheng Guide. All rights reserved.</div>
+        <div class="copyright">
+            © 2026 Dadaocheng Guide. All rights reserved.<br>
+            <span style="font-size: 1em; color: #555; margin-top: 8px; display: inline-block;">
+                <i class="fa-solid fa-clock-rotate-left"></i> <span data-i18n="update-label">店家資料最後更新：</span><span id="update-time">讀取中...</span>
+            </span>
+        </div>
     </footer>
 
     <!-- 多語系翻譯腳本 -->
@@ -284,14 +334,30 @@
                 "atm-li2": "支援卡片：機台上若貼有 Visa, Mastercard, PLUS, Cirrus, UnionPay (銀聯) 等標誌，即可使用國外提款卡領取新台幣(TWD)。",
                 "atm-li3": "手續費：台灣本地銀行通常會收每筆約 NT$100 的設備手續費（您的發卡銀行可能還會收取跨國手續費，建議一次領取足夠金額）。",
                 "bank-title": "實體銀行換匯", "bank-desc": "如果您手邊持有外幣現鈔（如美金、日圓、歐元）需要兌換成新台幣，前往銀行就有提供外匯業務的實體銀行。",
-                "bank-li1": "第一銀行 (First Bank) 大稻埕分行：台北市大同區迪化街一段 63 號（迪化街主街上）。",
+                
+                "bank-li1": "<strong>第一銀行 大稻埕分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 台北市大同區迪化街一段 63 號</a>（迪化街主街上）。",
+                "bank-li4": "<strong>臺灣銀行 延平分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 台北市大同區南京西路 163 號</a>（換匯免手續費）。",
+                
                 "bank-li2": "營業時間：平日（週一至週五）09:00 - 15:30，週末與國定假日休息。",
                 "bank-li3": "注意事項：在台灣的銀行辦理任何換匯業務，都規定必須出示護照正本 (Passport)。實際匯率與手續費，依各分行現場公告為主。",
                 "kiosk-title": "旅客專屬：自動外幣兌換機", "kiosk-desc": "為了因應大稻埕龐大的觀光人潮，如果您急需小額現金又逢銀行下班時間，可以尋找自動兌幣機（例如：新光銀行 會有外幣兌換機）。部分據點設置專屬台灣與外國旅客可操作的兌換機，支援美金、日幣等主流幣種直接兌換新台幣，填補晚間逛街無處換匯的空窗。",
+                
+                "guide-cash-title": "簡單明瞭的外幣現鈔換台幣指南",
+                "guide-step1-title": "1. 換匯流程",
+                "guide-step1-1": "<strong>準備物品：</strong>帶好「外幣現鈔」與「身分證」（外籍人士帶護照或居留證）。",
+                "guide-step1-2": "<strong>選擇地點：</strong>前往有外匯業務的銀行或郵局。",
+                "guide-step1-3": "<strong>臨櫃辦理：</strong>抽號碼牌 ➔ 告訴行員要「外幣換台幣」 ➔ 填寫外匯買賣水單 ➔ 行員驗明鈔票真偽與計算金額 ➔ 領取台幣現金。",
+                "guide-step2-title": "2. 手續費怎麼算？",
+                "guide-step2-1": "<strong>完全免費：</strong>市區的一般「臺灣銀行」、「兆豐銀行」或指定「郵局」（郵局只收美金、日圓、港幣、歐元、人民幣）。",
+                "guide-step2-2": "<strong>要收手續費的情況：</strong>機場櫃檯（約 100 元）、一般民營銀行（約 100～300 元）、特殊舊版或破損鈔票。",
+                "guide-step3-title": "3. 三大注意事項",
+                "guide-step3-1": "<strong>銀行不收硬幣：</strong>台灣所有銀行和郵局只收紙鈔，外國硬幣無法兌換。",
+                "guide-step3-2": "<strong>鈔票不能太破舊：</strong>有破洞、明顯污漬、塗鴉或撕裂修補過，銀行可能拒收或加收處理費。",
+                "guide-step3-3": "<strong>匯率看「現金買入」：</strong>請對照匯率看板的「現金買入」欄位，代表銀行用現金向你買進外幣的價格。",
 
                 "footer-desc1": "本指南由社群共編，持續更新中。", "footer-desc2": "所有店家資訊僅供參考，請以實際營業狀況為準。",
                 "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。",
-                "feedback-btn": "前往填寫表單"
+                "feedback-btn": "前往填寫表單", "update-label": "店家資料最後更新："
             },
             "en": {
                 "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help",
@@ -311,14 +377,30 @@
                 "atm-li2": "Supported Cards: Look for Visa, Mastercard, PLUS, Cirrus, or UnionPay logos on the machine to withdraw NTD using your foreign card.",
                 "atm-li3": "Fees: Local banks usually charge a ~NT$100 machine fee per withdrawal (your home bank may also charge foreign transaction fees, so withdrawing larger amounts at once is recommended).",
                 "bank-title": "Bank Currency Exchange", "bank-desc": "If you have foreign cash (e.g., USD, JPY, EUR) and need NTD, you can exchange it at physical bank branches.",
-                "bank-li1": "First Bank Dadaocheng Branch: No. 63, Sec. 1, Dihua St. (on the main street).",
+                
+                "bank-li1": "<strong>First Bank Dadaocheng Branch:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> No. 63, Sec. 1, Dihua St.</a> (On the main street).",
+                "bank-li4": "<strong>Bank of Taiwan Yanping Branch:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> No. 163, Nanjing W. Rd.</a> (No exchange fee).",
+                
                 "bank-li2": "Hours: Weekdays (Mon-Fri) 09:00 - 15:30. Closed on weekends and public holidays.",
                 "bank-li3": "Note: You MUST present your original Passport to exchange currency in Taiwan. Exchange rates and fees depend on the branch's daily announcements.",
                 "kiosk-title": "Foreign Currency Exchange Kiosks", "kiosk-desc": "If you need a small amount of cash outside bank hours, look for automated exchange kiosks (e.g., Shin Kong Bank ATMs). Some locations offer machines supporting major currencies like USD and JPY, filling the gap for evening shoppers.",
 
+                "guide-cash-title": "Simple Guide to Exchanging Foreign Cash",
+                "guide-step1-title": "1. Exchange Process",
+                "guide-step1-1": "<strong>What to bring:</strong> Foreign cash and ID (Passport or ARC for foreigners).",
+                "guide-step1-2": "<strong>Where to go:</strong> Banks or Post Offices handling foreign exchange.",
+                "guide-step1-3": "<strong>At the counter:</strong> Take a number ➔ Tell the teller 'exchange foreign currency to NTD' ➔ Fill out the form ➔ Teller verifies and calculates ➔ Receive NTD.",
+                "guide-step2-title": "2. How are fees calculated?",
+                "guide-step2-1": "<strong>Free of charge:</strong> Bank of Taiwan, Mega Bank, or designated Post Offices (Post Office only accepts USD, JPY, HKD, EUR, CNY).",
+                "guide-step2-2": "<strong>Fees apply:</strong> Airport counters (~NT$100), private banks (NT$100~300), or old/damaged banknotes.",
+                "guide-step3-title": "3. Three Major Precautions",
+                "guide-step3-1": "<strong>No coins accepted:</strong> Banks and post offices in Taiwan only accept paper bills.",
+                "guide-step3-2": "<strong>Condition of banknotes:</strong> Torn, heavily stained, drawn on, or taped bills may be rejected or incur high processing fees.",
+                "guide-step3-3": "<strong>Check 'Cash Buying' Rate:</strong> Look at the 'Cash Buying' column on the exchange rate board, which is the price the bank buys your foreign cash.",
+
                 "footer-desc1": "This guide is co-edited by the community and continuously updated.", "footer-desc2": "Store information is for reference only.",
                 "feedback-title": "Suggestions for Improvement", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!",
-                "feedback-btn": "Fill out Feedback Form"
+                "feedback-btn": "Fill out Feedback Form", "update-label": "Data Last Updated: "
             },
             "ja": {
                 "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート",
@@ -338,14 +420,30 @@
                 "atm-li2": "対応カード：Visa、Mastercard、PLUS、Cirrus、UnionPay（銀聯）などのマークがあるATMで、海外のキャッシュカードでNTDを引き出せます。",
                 "atm-li3": "手数料：台湾の銀行で1回につき約NT$100の手数料がかかります（ご利用の銀行でも海外手数料が発生する場合があります。一度に十分な額を引き出すことをお勧めします）。",
                 "bank-title": "銀行での外貨両替", "bank-desc": "外貨の現金（米ドル、日本円、ユーロなど）をお持ちで台湾ドルに両替したい場合は、外為業務を行う銀行へお越しください。",
-                "bank-li1": "第一銀行 大稲埕支店：台北市大同区迪化街一段63号（迪化街のメインストリート）。",
+                
+                "bank-li1": "<strong>第一銀行 大稲埕支店：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 台北市大同区迪化街一段63号</a>（メインストリート沿い）。",
+                "bank-li4": "<strong>台湾銀行 延平支店：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 台北市大同区南京西路163号</a>（両替手数料無料）。",
+                
                 "bank-li2": "営業時間：平日（月〜金）09:00 - 15:30。週末および祝日は休業。",
                 "bank-li3": "注意事項：台湾の銀行で両替をする際は、必ずパスポートの原本が必要です。実際のレートや手数料は各店舗の掲示に従います。",
                 "kiosk-title": "自動外貨両替機", "kiosk-desc": "銀行の営業時間外に少額の現金が必要な場合は、自動両替機（例：新光銀行の機械など）を探してみてください。米ドルや日本円などの主要通貨に対応しており、夜間の散策時に便利です。",
 
+                "guide-cash-title": "外貨現金の台湾ドル両替ガイド",
+                "guide-step1-title": "1. 両替の手順",
+                "guide-step1-1": "<strong>必要なもの：</strong> 外貨の現金と身分証明書（外国人はパスポートまたは居留証）。",
+                "guide-step1-2": "<strong>場所：</strong> 外国為替業務を行っている銀行または郵便局。",
+                "guide-step1-3": "<strong>窓口にて：</strong> 整理券を取る ➔ 「台湾ドルに両替したい」と伝える ➔ 申込書に記入 ➔ 担当者が紙幣を確認・計算 ➔ 台湾ドルの現金を受け取る。",
+                "guide-step2-title": "2. 手数料について",
+                "guide-step2-1": "<strong>手数料無料：</strong> 市内の「台湾銀行」、「兆豊銀行」、または指定の「郵便局」（郵便局は米ドル、日本円、香港ドル、ユーロ、人民元のみ）。",
+                "guide-step2-2": "<strong>手数料がかかる場合：</strong> 空港の窓口（約100元）、一般の民間銀行（100〜300元）、旧紙幣や破損した紙幣。",
+                "guide-step3-title": "3. 3つの重要な注意事項",
+                "guide-step3-1": "<strong>硬貨は不可：</strong> 台湾のすべての銀行・郵便局は紙幣のみ受け付けます。外国の硬貨は両替できません。",
+                "guide-step3-2": "<strong>紙幣の状態：</strong> 破れ、目立つ汚れ、落書き、テープでの補修がある場合、両替を拒否されるか、高い処理手数料を請求されることがあります。",
+                "guide-step3-3": "<strong>レートは「Cash Buying（現金買入）」を確認：</strong> 銀行のレート表を見る際は、「現金買入」の欄を確認してください。",
+
                 "footer-desc1": "このガイドはコミュニティによって共同編集・更新されています。", "footer-desc2": "店舗情報は参考用です。実際の営業状況をご確認ください。",
                 "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見が、大稲埕をより良くする原動力です！",
-                "feedback-btn": "フォームに記入する"
+                "feedback-btn": "フォームに記入する", "update-label": "データ最終更新："
             },
             "ko": {
                 "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원",
@@ -365,14 +463,30 @@
                 "atm-li2": "지원 카드: Visa, Mastercard, PLUS, Cirrus, UnionPay 등 마크가 있는 ATM에서 해외 카드로 대만 달러(NTD)를 인출할 수 있습니다.",
                 "atm-li3": "수수료: 대만 은행에서 건당 약 NT$100의 수수료를 부과합니다 (해당 카드사에서 별도의 해외 수수료를 부과할 수 있으므로 한 번에 충분한 금액을 인출하는 것을 권장합니다).",
                 "bank-title": "은행 환전", "bank-desc": "외화 현금(미국 달러, 일본 엔, 유로 등)을 대만 달러로 환전해야 한다면 외환 업무를 취급하는 은행을 방문하세요.",
-                "bank-li1": "제일은행(First Bank) 다다오청 지점: 타이베이시 다퉁구 디화제 1단 정저우로 1단 63호 (메인 거리 위치).",
+                
+                "bank-li1": "<strong>제일은행(First Bank) 다다오청 지점:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 타이베이시 다퉁구 디화제 1단 63호</a> (메인 거리 위치).",
+                "bank-li4": "<strong>대만은행(Bank of Taiwan) 옌핑 지점:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 타이베이시 다퉁구 난징서로 163호</a> (수수료 면제).",
+                
                 "bank-li2": "영업시간: 평일(월~금) 09:00 - 15:30. 주말 및 공휴일 휴무.",
                 "bank-li3": "주의사항: 대만 은행에서 환전 시 반드시 여권 원본을 제시해야 합니다. 실제 환율 및 수수료는 지점 안내에 따릅니다.",
                 "kiosk-title": "자동 외화 환전기", "kiosk-desc": "은행 영업시간 외에 소액 현금이 필요하다면 자동 환전기(예: 신광은행 환전기)를 찾아보세요. 미국 달러, 일본 엔 등 주요 통화를 지원하여 야간 쇼핑 시 유용합니다.",
 
+                "guide-cash-title": "외화 현금 대만 달러 환전 가이드",
+                "guide-step1-title": "1. 환전 절차",
+                "guide-step1-1": "<strong>준비물:</strong> 외화 현금 및 신분증 (외국인은 여권 또는 거류증).",
+                "guide-step1-2": "<strong>장소:</strong> 외환 업무를 취급하는 은행 또는 우체국.",
+                "guide-step1-3": "<strong>창구 업무:</strong> 번호표 뽑기 ➔ 은행원에게 '대만 달러로 환전' 요청 ➔ 환전 신청서 작성 ➔ 위폐 감별 및 금액 계산 ➔ 대만 달러 현금 수령.",
+                "guide-step2-title": "2. 수수료 계산",
+                "guide-step2-1": "<strong>수수료 무료:</strong> 시내의 '대만은행(Bank of Taiwan)', '메가은행(Mega Bank)' 또는 지정 '우체국' (우체국은 USD, JPY, HKD, EUR, CNY만 가능).",
+                "guide-step2-2": "<strong>수수료 발생:</strong> 공항 창구 (약 100위안), 일반 민간 은행 (100~300위안), 구권 또는 훼손된 지폐.",
+                "guide-step3-title": "3. 3가지 주요 주의사항",
+                "guide-step3-1": "<strong>동전 환전 불가:</strong> 대만의 모든 은행과 우체국은 지폐만 취급하며, 외국 동전은 환전할 수 없습니다.",
+                "guide-step3-2": "<strong>지폐 상태:</strong> 구멍, 심한 얼룩, 낙서, 찢어짐 등 훼손된 지폐는 거절되거나 높은 처리 수수료가 부과될 수 있습니다.",
+                "guide-step3-3": "<strong>환율은 '현찰 살 때(Cash Buying)' 확인:</strong> 환율 전광판에서 은행이 고객의 외화를 매입하는 기준인 '현찰 살 때' 란을 확인하세요.",
+
                 "footer-desc1": "이 가이드는 커뮤니티가 공동으로 편집하며 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다. 실제 영업 상황을 확인해 주세요.",
                 "feedback-title": "개선 제안", "feedback-sub": "여러분의 의견은 다다오청을 발전시키는 원동력입니다! 제안을 환영합니다.",
-                "feedback-btn": "피드백 양식 작성하기"
+                "feedback-btn": "피드백 양식 작성하기", "update-label": "데이터 마지막 업데이트: "
             }
         };
 
@@ -381,18 +495,16 @@
 
         // 2. 建立一個切換語言的專屬功能
         function changeLanguage(lang) {
-            // 替換所有帶有 data-i18n 標籤的文字
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (i18n[lang] && i18n[lang][key]) {
                     el.innerHTML = i18n[lang][key]; 
                 }
             });
-            // 讓右上角的下拉選單也顯示正確的語言
             if (langSelect) {
                 langSelect.value = lang;
             }
-            // ⭐️ 關鍵：將選擇的語言存入瀏覽器的 localStorage 中
+            // 記憶語言選擇
             localStorage.setItem('dadaocheng_lang', lang);
         }
 
@@ -403,11 +515,32 @@
             });
         }
 
-        // 4. ⭐️ 關鍵：每次網頁一載入，就去檢查有沒有存過的語言
+        // 4. 每次網頁一載入，就去檢查有沒有存過的語言
         document.addEventListener('DOMContentLoaded', () => {
-            // 讀取記憶，如果之前沒選過，就預設使用繁體中文 ('zh')
             const savedLang = localStorage.getItem('dadaocheng_lang') || 'zh';
             changeLanguage(savedLang);
+
+            // 背景自動抓取 data.json 最後更新時間
+            fetch('data.json', { method: 'HEAD' })
+                .then(response => {
+                    const lastModified = response.headers.get('Last-Modified');
+                    const timeEl = document.getElementById('update-time');
+                    if (lastModified && timeEl) {
+                        const date = new Date(lastModified);
+                        const formatted = date.getFullYear() + '/' + 
+                                          String(date.getMonth() + 1).padStart(2, '0') + '/' + 
+                                          String(date.getDate()).padStart(2, '0') + ' ' + 
+                                          String(date.getHours()).padStart(2, '0') + ':' + 
+                                          String(date.getMinutes()).padStart(2, '0');
+                        timeEl.innerText = formatted;
+                    } else if (timeEl) {
+                        timeEl.innerText = '近期';
+                    }
+                })
+                .catch(() => {
+                    const timeEl = document.getElementById('update-time');
+                    if (timeEl) timeEl.innerText = '未知';
+                });
         });
     </script>
 </body>
