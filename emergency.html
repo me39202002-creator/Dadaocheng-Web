@@ -1,32 +1,85 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>緊急聯絡與醫療協助 - 大稻埕特色店家</title>
+    <title>緊急聯絡與醫療協助 - 大稻埕特色店家 Dadaocheng Guide</title>
+    <!-- SEO 與社群分享 Meta 標籤優化 -->
+    <meta name="description" content="台灣大稻埕旅遊的緊急聯絡資源，包含 24 小時免費外語求助熱線、報警救護電話，以及鄰近的雙語醫療醫院資訊。">
+
     <link rel="icon" href="images/Dadaocheng-Web.webp" type="image/webp">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+
+    <!-- 引入 Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 設定 Tailwind Config (日系草稿風色彩與排版系統) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8A3324',
+                        paper: '#FAF6F0',
+                        ink: '#333333',
+                        'ink-light': '#666666',
+                        accent: '#C05C4D',
+                        'tag-bg': '#F8E8E6',
+                        'tag-text': '#A63F32',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', '"Microsoft JhengHei"', 'sans-serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+            body { @apply bg-paper text-ink font-sans antialiased flex flex-col min-h-screen; }
+        }
+    </style>
 </head>
-<body>
-    <header class="header-container">
-        <div class="top-nav">
-            <div class="logo-area">
-                <img src="images/Dadaocheng-Web.webp" alt="大稻埕特色店家 Logo" style="width: 50px; height: 50px; object-fit: contain; margin-right: 12px; border-radius: 8px;">
-                <div class="logo-text">
-                    <div class="title" data-i18n="site-title">大稻埕特色店家</div>
-                    <div class="subtitle">Dadaocheng Guide</div>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- 頂部導覽列 (Active 狀態切換至「緊急協助」) -->
+    <header
+        class="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b-4 border-primary shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+
+            <div class="flex items-center gap-3">
+                <img src="images/Dadaocheng-Web.webp" alt="大稻埕特色店家 Logo" width="50" height="50"
+                    class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200" loading="lazy">
+                <div class="flex flex-col leading-tight">
+                    <div class="font-serif font-bold text-lg text-ink" data-i18n="site-title">大稻埕特色店家</div>
+                    <div class="text-xs text-ink-light tracking-wider">Dadaocheng Guide</div>
                 </div>
             </div>
-            <nav class="nav-links">
-                <a href="index.html" data-i18n="nav-shops">特色店家</a>
-                <a href="history.html" data-i18n="nav-history">大稻埕的歷史</a>
-                <a href="apps.html" data-i18n="nav-apps">必備APP推薦</a>
-                <a href="emergency.html" class="active" data-i18n="nav-emergency">緊急協助</a>
+
+            <nav class="flex flex-wrap justify-center gap-2 text-sm font-medium">
+                <a href="index.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-shops">特色店家</a>
+                <a href="history.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-history">大稻埕的歷史</a>
+                <a href="apps.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-apps">必備APP推薦</a>
+                <!-- Active 樣式 -->
+                <a href="emergency.html"
+                    class="px-4 py-2 rounded-md bg-tag-bg text-tag-text font-bold transition-colors shadow-sm"
+                    data-i18n="nav-emergency">緊急協助</a>
             </nav>
-            <div class="language-select">
-                Language : 
-                <select id="lang-select">
+
+            <div class="flex items-center gap-2 text-sm text-ink-light">
+                <i class="fa-solid fa-globe text-accent"></i>
+                <select id="lang-select"
+                    class="bg-white border border-gray-300 text-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-shadow">
                     <option value="zh">繁體中文</option>
                     <option value="en">English</option>
                     <option value="ja">日本語</option>
@@ -36,150 +89,207 @@
         </div>
     </header>
 
-    <main class="main-container">
-        <h1 class="page-title" data-i18n="em-page-title">緊急聯絡與醫療協助</h1>
-        <p class="page-subtitle" data-i18n="em-page-sub">台灣是非常安全的旅遊國家，但若遇到突發的身體不適或遺失物品，請不要慌張，以下資源可以隨時提供多國語言的協助：</p>
+    <!-- 主要內容區塊 -->
+    <main class="flex-grow max-w-7xl mx-auto px-5 py-12 w-full">
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-primary mb-4" data-i18n="em-page-title">緊急聯絡與醫療協助</h1>
+        <p class="text-ink-light leading-relaxed mb-12 text-lg max-w-3xl" data-i18n="em-page-sub">
+            台灣是非常安全的旅遊國家，但若遇到突發的身體不適或遺失物品，請不要慌張，以下資源可以隨時提供多國語言的協助：</p>
 
-        <div class="emergency-grid">
-            <div class="em-box">
-                <h2 class="em-box-title"><i class="fa-solid fa-phone-volume"></i> <span data-i18n="em-hotlines">24 小時免費求助熱線</span></h2>
-                
-                <div class="hotline-item">
-                    <div class="hotline-header">
-                        <span class="hotline-name" data-i18n="line-foreign">外國人在臺生活諮詢熱線</span>
-                        <span class="hotline-num"><i class="fa-solid fa-phone"></i> 1990</span>
-                    </div>
-                    <p class="em-desc" data-i18n="desc-foreign">提供中、英、日等 7 國語言服務。無論是簽證問題、遺失護照、生活求助或遭遇緊急狀況，都可以撥打此專線尋求指引。</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- 24 小時免費求助熱線 -->
+            <div
+                class="bg-white p-8 rounded-2xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-tag-bg to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
                 </div>
-                
-                <div class="hotline-item">
-                    <div class="hotline-header">
-                        <span class="hotline-name" data-i18n="line-police">緊急報警與救護</span>
-                        <span class="hotline-num red"><i class="fa-solid fa-phone"></i> 110 / 119</span>
+
+                <h2 class="text-2xl font-serif font-bold text-ink mb-8 flex items-center gap-3 relative z-10">
+                    <span
+                        class="bg-tag-bg text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i
+                            class="fa-solid fa-phone-volume"></i></span>
+                    <span data-i18n="em-hotlines">24 小時免費求助熱線</span>
+                </h2>
+
+                <!-- 外國人熱線 -->
+                <div class="mb-8 pb-8 border-b border-ink/10 relative z-10">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 gap-3">
+                        <span class="font-bold text-lg text-ink" data-i18n="line-foreign">外國人在臺生活諮詢熱線</span>
+                        <a href="tel:1990"
+                            class="bg-[#D28E3A] hover:bg-[#b57a32] text-white px-5 py-1.5 rounded-full text-sm font-bold flex items-center gap-2 transition-colors shadow-sm transform hover:scale-105">
+                            <i class="fa-solid fa-phone"></i> 1990
+                        </a>
                     </div>
-                    <p class="em-desc" data-i18n="desc-police">報警: 110 | 救護車與消防: 119。接通後若無法用中文溝通，可說出 'English' 要求英文協助。</p>
+                    <p class="text-sm text-ink-light leading-relaxed" data-i18n="desc-foreign">提供中、英、日等 7
+                        國語言服務。無論是簽證問題、遺失護照、生活求助或遭遇緊急狀況，都可以撥打此專線尋求指引。</p>
+                </div>
+
+                <!-- 報警與救護 -->
+                <div class="relative z-10">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 gap-3">
+                        <span class="font-bold text-lg text-ink" data-i18n="line-police">緊急報警與救護</span>
+                        <div class="flex gap-2">
+                            <a href="tel:110"
+                                class="bg-[#C55A4E] hover:bg-primary text-white px-4 py-1.5 rounded-full text-sm font-bold flex items-center gap-2 transition-colors shadow-sm transform hover:scale-105">
+                                <i class="fa-solid fa-phone"></i> 110
+                            </a>
+                            <a href="tel:119"
+                                class="bg-[#C55A4E] hover:bg-primary text-white px-4 py-1.5 rounded-full text-sm font-bold flex items-center gap-2 transition-colors shadow-sm transform hover:scale-105">
+                                <i class="fa-solid fa-phone"></i> 119
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-sm text-ink-light leading-relaxed" data-i18n="desc-police">報警: 110 | 救護車與消防:
+                        119。接通後若無法用中文溝通，可說出 'English' 要求英文協助。</p>
                 </div>
             </div>
 
-            <div class="em-box pink-tint">
-                <h2 class="em-box-title"><i class="fa-solid fa-square-h"></i> <span data-i18n="em-medical">鄰近雙語醫療資源</span></h2>
-                <div class="hospital-name" data-i18n="hosp-name">臺北市立聯合醫院 中興院區</div>
-                <div class="hospital-addr"><i class="fa-solid fa-location-dot" style="color: #A09E9A;"></i> <span data-i18n="hosp-addr">台北市大同區鄭州路 145 號</span></div>
-                <p class="em-desc" style="font-size: 0.8rem; margin-top: 15px;" data-i18n="hosp-desc">為公立大型綜合醫院，設有急診室 (Emergency Room)，醫師與護理人員皆具備基礎至進階的英語溝通能力。</p>
+            <!-- 鄰近醫療資源 -->
+            <div
+                class="bg-[#FFF9F9] p-8 rounded-2xl border-2 border-accent/20 hover:border-accent/50 shadow-[4px_4px_0px_0px_rgba(197,90,78,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(197,90,78,0.3)] transition-all duration-300 flex flex-col relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
+                </div>
+
+                <h2 class="text-2xl font-serif font-bold text-primary mb-8 flex items-center gap-3 relative z-10">
+                    <span
+                        class="bg-white text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20 shadow-sm"><i
+                            class="fa-solid fa-square-h"></i></span>
+                    <span data-i18n="em-medical">鄰近雙語醫療資源</span>
+                </h2>
+
+                <div class="relative z-10 bg-white p-6 rounded-xl border border-ink/5 shadow-sm">
+                    <div class="font-bold text-xl text-ink mb-3" data-i18n="hosp-name">臺北市立聯合醫院 中興院區</div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=臺北市立聯合醫院中興院區" target="_blank"
+                        rel="noopener noreferrer"
+                        class="group/link flex items-start gap-2 text-sm text-ink-light hover:text-primary transition-colors mb-4">
+                        <i
+                            class="fa-solid fa-location-dot text-[#A09E9A] mt-1 group-hover/link:text-accent group-hover/link:animate-bounce"></i>
+                        <span class="underline decoration-ink/20 underline-offset-4 group-hover/link:decoration-primary"
+                            data-i18n="hosp-addr">台北市大同區鄭州路 145 號</span>
+                    </a>
+                    <p class="text-sm text-ink-light leading-relaxed border-t border-ink/10 pt-4" data-i18n="hosp-desc">
+                        為公立大型綜合醫院，設有急診室 (Emergency Room)，醫師與護理人員皆具備基礎至進階的英語溝通能力。</p>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-col">
-                <img src="images/Dadaocheng-Web.webp" alt="Logo" style="width: 100px; height: 100px; object-fit: contain; border-radius: 4px;"><span data-i18n="site-title">大稻埕特色店家</span></h4>
-                <p data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
+    <!-- 獨立刊物風頁尾 (全站同步) -->
+    <footer class="mt-auto border-t-4 border-primary bg-paper pb-8 pt-16 relative overflow-hidden">
+        <div
+            class="absolute -top-32 -right-20 w-96 h-96 bg-tag-bg rounded-full opacity-40 blur-3xl pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-12 relative z-10">
+            <div class="flex flex-col items-start gap-5">
+                <h4 class="flex items-center gap-4 text-xl font-serif font-bold text-ink">
+                    <img src="images/Dadaocheng-Web.webp" alt="Logo" width="64" height="64"
+                        class="w-16 h-16 object-contain rounded-xl border-2 border-ink/10 shadow-sm" loading="lazy">
+                    <span data-i18n="site-title">大稻埕特色店家</span>
+                </h4>
+                <p class="text-ink-light text-sm tracking-wide" data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
             </div>
-            <div class="footer-col">
-                <h4>Dadaocheng Guide</h4>
-                <p data-i18n="footer-desc2">所有店家資訊僅供參考，請以實際營業狀況為準。</p>
+
+            <div class="flex flex-col md:items-end gap-3 text-left md:text-right">
+                <h4 class="text-lg font-bold text-ink tracking-wider font-serif">Dadaocheng Guide</h4>
+                <p class="text-ink-light text-sm mb-2" data-i18n="footer-desc2">所有店家資訊僅供參考，請以實際營業狀況為準。</p>
+
+                <div
+                    class="bg-white/70 backdrop-blur-sm border-2 border-ink/10 p-5 rounded-xl shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] w-full md:w-80 text-left mt-2 relative group hover:border-ink/30 transition-colors">
+                    <h4 class="text-ink font-bold mb-2 flex items-center gap-2">
+                        <i
+                            class="fa-solid fa-pen-nib text-accent transform group-hover:rotate-12 transition-transform"></i>
+                        <span data-i18n="feedback-title">改善地方建議</span>
+                    </h4>
+                    <p class="text-ink-light text-xs mb-5 leading-relaxed" data-i18n="feedback-sub">
+                        您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。</p>
+                    <a href="https://forms.gle/4DoTH5v3u52vj2FU9" target="_blank" rel="noopener noreferrer"
+                        class="inline-block bg-ink text-white text-sm font-bold px-6 py-2.5 rounded-full hover:bg-primary transition-colors shadow-md w-full text-center"
+                        data-i18n="feedback-btn">
+                        前往填寫表單
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="feedback-section">
-            <h4 style="margin-bottom: 8px;" data-i18n="feedback-title">改善地方建議</h4>
-            <p data-i18n="feedback-sub">您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。</p>
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="https://forms.gle/4DoTH5v3u52vj2FU9" target="_blank" rel="noopener noreferrer" class="submit-btn" style="text-decoration: none; display: inline-block;" data-i18n="feedback-btn">
-                    前往填寫表單
-                </a>
-            </div>
+
+        <div
+            class="max-w-7xl mx-auto px-5 mt-16 pt-8 border-t border-ink/15 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-ink-light relative z-10">
+            <div class="tracking-widest">© 2026 Dadaocheng Guide. All rights reserved.</div>
         </div>
-        <div class="copyright">© 2026 Dadaocheng Guide. All rights reserved.</div>
     </footer>
 
-    <!-- 多語系翻譯腳本 -->
+    <!-- 多語系切換腳本 -->
     <script>
         const i18n = {
             "zh": {
                 "site-title": "大稻埕特色店家", "nav-shops": "特色店家", "nav-history": "大稻埕的歷史", "nav-apps": "必備APP推薦", "nav-emergency": "緊急協助",
-                "em-page-title": "緊急聯絡與醫療協助", 
+                "em-page-title": "緊急聯絡與醫療協助",
                 "em-page-sub": "台灣是非常安全的旅遊國家，但若遇到突發的身體不適或遺失物品，請不要慌張，以下資源可以隨時提供多國語言的協助：",
                 "em-hotlines": "24 小時免費求助熱線", "line-foreign": "外國人在臺生活諮詢熱線",
                 "desc-foreign": "提供中、英、日等 7 國語言服務。無論是簽證問題、遺失護照、生活求助或遭遇緊急狀況，都可以撥打此專線尋求指引。",
                 "line-police": "緊急報警與救護", "desc-police": "報警: 110 | 救護車與消防: 119。接通後若無法用中文溝通，可說出 'English' 要求英文協助。",
                 "em-medical": "鄰近雙語醫療資源", "hosp-name": "臺北市立聯合醫院 中興院區", "hosp-addr": "台北市大同區鄭州路 145 號",
-                "hosp-desc": "為公立大型綜合醫院，設有急診室，醫師與護理人員皆具備英語溝通能力。",
+                "hosp-desc": "為公立大型綜合醫院，設有急診室 (Emergency Room)，醫師與護理人員皆具備基礎至進階的英語溝通能力。",
                 "footer-desc1": "本指南由社群共編，持續更新中。", "footer-desc2": "所有店家資訊僅供參考，請以實際營業狀況為準。",
-                "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。",
-                "feedback-btn": "前往填寫表單"
+                "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。", "feedback-btn": "前往填寫表單"
             },
             "en": {
-                "site-title": "Dadaocheng Featured Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help",
-                "em-page-title": "Emergency & Medical Assistance", 
+                "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help",
+                "em-page-title": "Emergency & Medical Assistance",
                 "em-page-sub": "Taiwan is a very safe country, but if you encounter sudden illness or lost items, don't panic. These resources provide multilingual help:",
                 "em-hotlines": "24H Free Helplines", "line-foreign": "Foreigners in Taiwan Hotline",
                 "desc-foreign": "Provides services in 7 languages. Call this hotline for visa issues, lost passports, or emergencies.",
                 "line-police": "Police & Ambulance", "desc-police": "Police: 110 | Ambulance & Fire: 119. Say 'English' if you cannot speak Chinese.",
                 "em-medical": "Bilingual Medical Resources", "hosp-name": "Taipei City Hospital Zhongxing Branch", "hosp-addr": "No. 145, Zhengzhou Rd, Datong District",
                 "hosp-desc": "A large public hospital with an Emergency Room. Doctors and nurses have basic to advanced English skills.",
-                "footer-desc1": "This guide is co-edited by the community and continuously updated.", "footer-desc2": "Store information is for reference only.",
-                "feedback-title": "Suggestions for Improvement", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!",
-                "feedback-btn": "Fill out Feedback Form"
+                "footer-desc1": "This guide is co-edited by the community.", "footer-desc2": "Store information is for reference only.",
+                "feedback-title": "Suggestions", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!", "feedback-btn": "Feedback Form"
             },
             "ja": {
                 "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート",
-                "em-page-title": "緊急連絡先と医療支援", 
-                "em-page-sub": "台湾は非常に安全な旅行先ですが、急病や紛失物があった場合でも慌てないでください。以下のリソースで多言語のサポートが受けられます：",
+                "em-page-title": "緊急連絡先と医療支援",
+                "em-page-sub": "台湾は安全な旅行先ですが、急病や紛失物があった場合でも慌てないでください。多言語のサポートが受けられます：",
                 "em-hotlines": "24時間無料ヘルプライン", "line-foreign": "台湾在住外国人相談ホットライン",
                 "desc-foreign": "日本語を含む7カ国語で対応。ビザの問題、パスポートの紛失、緊急事態についてはこちらにお電話ください。",
-                "line-police": "警察・救急車", "desc-police": "警察: 110 | 救急・消防: 119。中国語が話せない場合は「イングリッシュ」または「ジャパニーズ」とお伝えください。",
+                "line-police": "警察・救急車", "desc-police": "警察: 110 | 救急・消防: 119。中国語が話せない場合は「ジャパニーズ」とお伝えください。",
                 "em-medical": "バイリンガル医療機関", "hosp-name": "台北市立連合病院 中興院区", "hosp-addr": "台北市大同区鄭州路145号",
                 "hosp-desc": "救急外来（ER）を備えた大規模公立病院。医師と看護師は英語でのコミュニケーションが可能です。",
-                "footer-desc1": "このガイドはコミュニティによって共同編集・更新されています。", "footer-desc2": "店舗情報は参考用です。実際の営業状況をご確認ください。",
-                "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見が、大稲埕をより良くする原動力です！",
-                "feedback-btn": "フォームに記入する"
+                "footer-desc1": "このガイドはコミュニティによって更新されています。", "footer-desc2": "店舗情報は参考用です。",
+                "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見をお待ちしております！", "feedback-btn": "フォームに記入"
             },
             "ko": {
                 "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원",
-                "em-page-title": "긴급 연락처 및 의료 지원", 
-                "em-page-sub": "대만은 매우 안전한 국가이지만, 갑작스러운 질병이나 물품 분실 시 당황하지 마세요. 다음 리소스에서 다국어 지원을 제공합니다:",
+                "em-page-title": "긴급 연락처 및 의료 지원",
+                "em-page-sub": "대만은 매우 안전한 국가입니다. 갑작스러운 질병이나 물품 분실 시 당황하지 마세요. 다국어 지원을 제공합니다:",
                 "em-hotlines": "24시간 무료 헬프라인", "line-foreign": "외국인 생활 상담 핫라인",
-                "desc-foreign": "7개 국어 서비스 제공. 비자 문제, 여권 분실 또는 긴급 상황 시 이 핫라인으로 전화하세요.",
+                "desc-foreign": "7개 국어 서비스 제공. 여권 분실 또는 긴급 상황 시 이 핫라인으로 전화하세요.",
                 "line-police": "경찰 및 구급차", "desc-police": "경찰: 110 | 구급차 및 소방: 119. 중국어를 할 수 없다면 '잉글리쉬'라고 말하여 도움을 요청하세요.",
                 "em-medical": "이중 언어 의료 자원", "hosp-name": "타이베이 시립 연합 병원 중싱 지점", "hosp-addr": "타이베이시 다통구 정저우로 145번지",
-                "hosp-desc": "응급실을 갖춘 대형 공립 병원입니다. 의사와 간호사는 기본 이상의 영어 소통 능력을 갖추고 있습니다.",
-                "footer-desc1": "이 가이드는 커뮤니티가 공동으로 편집하며 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다. 실제 영업 상황을 확인해 주세요.",
-                "feedback-title": "개선 제안", "feedback-sub": "여러분의 의견은 다다오청을 발전시키는 원동력입니다! 제안을 환영합니다.",
-                "feedback-btn": "피드백 양식 작성하기"
+                "hosp-desc": "응급실을 갖춘 대형 공립 병원입니다. 의료진은 기본 이상의 영어 소통 능력을 갖추고 있습니다.",
+                "footer-desc1": "이 가이드는 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다.",
+                "feedback-title": "개선 제안", "feedback-sub": "제안을 환영합니다.", "feedback-btn": "피드백 작성"
             }
         };
 
-        // 1. 取得下拉選單元素
-        const langSelect = document.getElementById('lang-select');
-
-        // 2. 建立一個切換語言的專屬功能
         function changeLanguage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (i18n[lang] && i18n[lang][key]) {
-                    el.innerHTML = i18n[lang][key]; 
-                }
+                if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
             });
-            if (langSelect) {
-                langSelect.value = lang;
-            }
-            // 記憶語言選擇
+            const langSelect = document.getElementById('lang-select');
+            if (langSelect) langSelect.value = lang;
             localStorage.setItem('dadaocheng_lang', lang);
         }
 
-        // 3. 當使用者手動切換下拉選單時，執行切換並記憶
-        if (langSelect) {
-            langSelect.addEventListener('change', function() {
-                changeLanguage(this.value);
-            });
-        }
-
-        // 4. 每次網頁一載入，就去檢查有沒有存過的語言
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('dadaocheng_lang') || 'zh';
             changeLanguage(savedLang);
+
+            document.getElementById('lang-select').addEventListener('change', (e) => {
+                changeLanguage(e.target.value);
+            });
         });
     </script>
 </body>
+
 </html>

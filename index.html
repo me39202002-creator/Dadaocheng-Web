@@ -1,56 +1,90 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>特色店家 - 大稻埕特色店家 Dadaocheng Guide</title>
+    <title>特色店家 - 大稻埕特色 Dadaocheng Guide</title>
+    <!-- SEO 與社群分享 Meta 標籤優化 -->
+    <meta name="description" content="探索大稻埕特色店家，提供在地咖啡、茶館、傳統糕餅與文創選物等多語系導覽指南。">
+    <meta property="og:title" content="大稻埕特色店家 Dadaocheng Guide">
+    <meta property="og:description" content="探索大稻埕特色店家，提供在地咖啡、茶館、傳統糕餅與文創選物等多語系導覽指南。">
+    <meta property="og:image" content="images/Dadaocheng-Web.webp">
+
     <link rel="icon" href="images/Dadaocheng-Web.webp" type="image/webp">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* 新增：地址連結的滑鼠懸停效果 */
-        .map-link {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.2s ease;
+
+    <!-- 引入 Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 設定 Tailwind Config (日系草稿風色彩與排版系統) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8A3324',     /* 深紅棕色 */
+                        paper: '#FAF6F0',       /* 畫紙米白底色 */
+                        ink: '#333333',         /* 墨水深灰 */
+                        'ink-light': '#666666', /* 淺墨灰 */
+                        accent: '#C05C4D',      /* 點綴紅 */
+                        'tag-bg': '#F8E8E6',    /* 標籤淺粉底 */
+                        'tag-text': '#A63F32',  /* 標籤深紅字 */
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', '"Microsoft JhengHei"', 'sans-serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                    }
+                }
+            }
         }
-        .map-link:hover {
-            color: var(--primary-bg);
-            text-decoration: underline;
-        }
-        
-        /* 🌟 新增：專屬 Logo 圖片的樣式設定 */
-        .site-logo {
-            width: 50px;
-            height: 50px;
-            object-fit: contain; /* 確保建築物圖案不會被裁切變形 */
-            margin-right: 12px;
-            border-radius: 8px;
+    </script>
+
+    <!-- 自訂基礎 CSS -->
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-paper text-ink font-sans antialiased;
+            }
         }
     </style>
 </head>
-<body>
 
-    <!-- Header -->
-    <header class="header-container">
-        <div class="top-nav">
-            <div class="logo-area" style="display: flex; align-items: center;">
-                <!-- 🌟 替換成真實的 Logo 圖片 -->
-                <img src="images/Dadaocheng-Web.webp" alt="大稻埕特色店家 Logo" class="site-logo">
-                <div class="logo-text">
-                    <div class="title" data-i18n="site-title">大稻埕特色店家</div>
-                    <div class="subtitle">Dadaocheng Guide</div>
+<body class="flex flex-col min-h-screen">
+
+    <!-- 頂部導覽列 (置頂毛玻璃效果) -->
+    <header
+        class="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b-4 border-primary shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+
+            <div class="flex items-center gap-3">
+                <img src="images/Dadaocheng-Web.webp" alt="大稻埕特色店家 Logo" width="50" height="50"
+                    class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200" loading="lazy">
+                <div class="flex flex-col leading-tight">
+                    <div class="font-serif font-bold text-lg text-ink" data-i18n="site-title">大稻埕特色店家</div>
+                    <div class="text-xs text-ink-light tracking-wider">Dadaocheng Guide</div>
                 </div>
             </div>
-            <nav class="nav-links">
-                <a href="index.html" class="active" data-i18n="nav-shops">特色店家</a>
-                <a href="history.html" data-i18n="nav-history">大稻埕的歷史</a>
-                <a href="apps.html" data-i18n="nav-apps">必備APP推薦</a>
-                <a href="emergency.html" data-i18n="nav-emergency">緊急協助</a>
+
+            <nav class="flex flex-wrap justify-center gap-2 text-sm font-medium">
+                <a href="index.html"
+                    class="px-4 py-2 rounded-md bg-tag-bg text-tag-text font-bold transition-colors shadow-sm"
+                    data-i18n="nav-shops">特色店家</a>
+                <a href="history.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-history">大稻埕的歷史</a>
+                <a href="apps.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-apps">必備APP推薦</a>
+                <a href="emergency.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-emergency">緊急協助</a>
             </nav>
-            <div class="language-select">
-                Language : 
-                <select id="lang-select">
+
+            <div class="flex items-center gap-2 text-sm text-ink-light">
+                <i class="fa-solid fa-globe text-accent"></i>
+                <select id="lang-select"
+                    class="bg-white border border-gray-300 text-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-shadow">
                     <option value="zh">繁體中文</option>
                     <option value="en">English</option>
                     <option value="ja">日本語</option>
@@ -60,77 +94,115 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="main-container">
+    <!-- 主要內容區塊 -->
+    <main class="flex-grow max-w-7xl mx-auto px-5 py-10 w-full">
         <!-- 標籤分類 -->
-        <div class="filter-tags" id="filter-container">
-            <button class="filter-tag active" data-category="all" data-i18n="cat-all">全部</button>
-            <button class="filter-tag" data-category="coffee" data-i18n="cat-coffee">咖啡</button>
-            <button class="filter-tag" data-category="tea" data-i18n="cat-tea">茶館</button>
-            <button class="filter-tag" data-category="restaurant" data-i18n="cat-rest">餐廳</button>
-            <button class="filter-tag" data-category="craft" data-i18n="cat-craft">文創選物</button>
-            <button class="filter-tag" data-category="pastry" data-i18n="cat-pastry">傳統糕餅</button>
-            <button class="filter-tag" data-category="medicine" data-i18n="cat-med">中藥行</button>
-            <button class="filter-tag" data-category="snack" data-i18n="cat-snack">小吃飲品</button>
-            <button class="filter-tag" data-category="bar" data-i18n="cat-bar">酒吧</button>
-            <button class="filter-tag" data-category="culture" data-i18n="cat-culture">文化</button>
+        <div class="flex flex-wrap gap-3 mb-10" id="filter-container">
+            <button
+                class="filter-tag active px-5 py-2 rounded-full border-2 border-ink text-ink bg-tag-bg font-bold transition-all duration-200"
+                data-category="all" data-i18n="cat-all">全部</button>
+            <button
+                class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light hover:border-ink/50 transition-all duration-200 font-medium"
+                data-category="coffee" data-i18n="cat-coffee">咖啡</button>
+            <button
+                class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light hover:border-ink/50 transition-all duration-200 font-medium"
+                data-category="tea" data-i18n="cat-tea">茶館</button>
+            <button
+                class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light hover:border-ink/50 transition-all duration-200 font-medium"
+                data-category="restaurant" data-i18n="cat-rest">餐廳</button>
+            <button
+                class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light hover:border-ink/50 transition-all duration-200 font-medium"
+                data-category="craft" data-i18n="cat-craft">文創選物</button>
+            <button
+                class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light hover:border-ink/50 transition-all duration-200 font-medium"
+                data-category="pastry" data-i18n="cat-pastry">傳統糕餅</button>
+            <button
+                class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light hover:border-ink/50 transition-all duration-200 font-medium"
+                data-category="medicine" data-i18n="cat-med">中藥行</button>
+            <button
+                class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light hover:border-ink/50 transition-all duration-200 font-medium"
+                data-category="snack" data-i18n="cat-snack">小吃飲品</button>
+            <button
+                class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light hover:border-ink/50 transition-all duration-200 font-medium"
+                data-category="bar" data-i18n="cat-bar">酒吧</button>
+            <button
+                class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light hover:border-ink/50 transition-all duration-200 font-medium"
+                data-category="culture" data-i18n="cat-culture">文化</button>
         </div>
 
         <!-- 卡片列表 (由 JS 動態生成) -->
-        <div class="card-grid" id="card-grid">
-            <!-- 讀取中提示 -->
-            <p style="grid-column: 1/-1; text-align: center; color: #666;">資料載入中，請稍候...</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10" id="card-grid">
+            <p class="col-span-full text-center text-ink-light">資料載入中，請稍候...</p>
         </div>
 
         <!-- 分頁 -->
-        <div class="pagination">
-            <div class="page-numbers" id="pagination-numbers"></div>
-            <div class="page-info" id="page-info">總共第 0 到 0 筆，共 0 筆</div>
+        <div class="flex flex-col items-center gap-2 mt-8">
+            <div id="pagination-numbers"></div>
+            <div id="page-info"></div>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-col">
-                <!-- 🌟 Footer 也替換成真實的 Logo 圖片 -->
-                <h4 style="display: flex; align-items: center; gap: 8px;">
-                    <img src="images/Dadaocheng-Web.webp" alt="Logo" style="width: 100px; height: 100px; object-fit: contain; border-radius: 4px;"> 
+    <!-- 獨立刊物風頁尾 -->
+    <footer class="mt-auto border-t-4 border-primary bg-paper pb-8 pt-16 relative overflow-hidden">
+        <div
+            class="absolute -top-32 -right-20 w-96 h-96 bg-tag-bg rounded-full opacity-40 blur-3xl pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-12 relative z-10">
+            <div class="flex flex-col items-start gap-5">
+                <h4 class="flex items-center gap-4 text-xl font-serif font-bold text-ink">
+                    <img src="images/Dadaocheng-Web.webp" alt="Logo" width="64" height="64"
+                        class="w-16 h-16 object-contain rounded-xl border-2 border-ink/10 shadow-sm" loading="lazy">
                     <span data-i18n="site-title">大稻埕特色店家</span>
                 </h4>
-                <p data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
+                <p class="text-ink-light text-sm tracking-wide" data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
             </div>
-            <div class="footer-col">
-                <h4>Dadaocheng Guide</h4>
-                <p data-i18n="footer-desc2">所有店家資訊僅供參考，請以實際營業狀況為準。</p>
+
+            <div class="flex flex-col md:items-end gap-3 text-left md:text-right">
+                <h4 class="text-lg font-bold text-ink tracking-wider font-serif">Dadaocheng Guide</h4>
+                <p class="text-ink-light text-sm mb-2" data-i18n="footer-desc2">所有店家資訊僅供參考，請以實際營業狀況為準。</p>
+
+                <div
+                    class="bg-white/70 backdrop-blur-sm border-2 border-ink/10 p-5 rounded-xl shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] w-full md:w-80 text-left mt-2 relative group hover:border-ink/30 transition-colors">
+                    <h4 class="text-ink font-bold mb-2 flex items-center gap-2">
+                        <i
+                            class="fa-solid fa-pen-nib text-accent transform group-hover:rotate-12 transition-transform"></i>
+                        <span data-i18n="feedback-title">改善地方建議</span>
+                    </h4>
+                    <p class="text-ink-light text-xs mb-5 leading-relaxed" data-i18n="feedback-sub">
+                        您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。</p>
+                    <a href="https://forms.gle/4DoTH5v3u52vj2FU9" target="_blank" rel="noopener noreferrer"
+                        class="inline-block bg-ink text-white text-sm font-bold px-6 py-2.5 rounded-full hover:bg-primary transition-colors shadow-md w-full text-center"
+                        data-i18n="feedback-btn">
+                        前往填寫表單
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="feedback-section">
-            <h4 style="margin-bottom: 8px;" data-i18n="feedback-title">改善地方建議</h4>
-            <p data-i18n="feedback-sub">您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。</p>
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="https://forms.gle/4DoTH5v3u52vj2FU9" target="_blank" rel="noopener noreferrer" class="submit-btn" style="text-decoration: none; display: inline-block;" data-i18n="feedback-btn">
-                    前往填寫表單
-                </a>
+
+        <div
+            class="max-w-7xl mx-auto px-5 mt-16 pt-8 border-t border-ink/15 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-ink-light relative z-10">
+            <div class="tracking-widest">© 2026 Dadaocheng Guide. All rights reserved.</div>
+            <div class="flex items-center gap-2 bg-white/60 px-4 py-1.5 rounded-full border border-ink/10 shadow-sm">
+                <i class="fa-solid fa-clock-rotate-left text-accent"></i>
+                <span data-i18n="update-label">店家資料最後更新：</span>
+                <span id="update-time" class="text-ink font-bold tracking-wide">讀取中...</span>
             </div>
-        </div>
-        <!-- 💡 將字體放大並加深顏色 -->
-        <div class="copyright">
-            © 2026 Dadaocheng Guide. All rights reserved.<br>
-            <span style="font-size: 1em; color: #555; margin-top: 8px; display: inline-block;">
-                <i class="fa-solid fa-clock-rotate-left"></i> <span data-i18n="update-label">店家資料最後更新：</span><span id="update-time">讀取中...</span>
-            </span>
         </div>
     </footer>
 
+    <!-- 邏輯腳本 -->
     <script>
-        // 1. 宣告空陣列，用來存放從 JSON 抓回來的資料
         let shopData = [];
+        let currentLang = 'zh';
+        let currentCategory = 'all';
+        let currentPage = 1;
+        const cardsPerPage = 9;
 
-        // 2. 多語系翻譯字典 (加入了 update-label)
         const i18n = {
             "zh": {
                 "site-title": "大稻埕特色店家", "nav-shops": "特色店家", "nav-history": "大稻埕的歷史", "nav-apps": "必備APP推薦", "nav-emergency": "緊急協助",
-                "cat-all": "全部", "cat-coffee": "咖啡", "cat-tea": "茶館", "cat-rest": "餐廳", "cat-craft": "文創選物", 
+                "cat-all": "全部", "cat-coffee": "咖啡", "cat-tea": "茶館", "cat-rest": "餐廳", "cat-craft": "文創選物",
                 "cat-pastry": "傳統糕餅", "cat-med": "中藥行", "cat-snack": "小吃飲品", "cat-bar": "酒吧", "cat-culture": "文化",
                 "footer-desc1": "本指南由社群共編，持續更新中。", "footer-desc2": "所有店家資訊僅供參考，請以實際營業狀況為準。",
                 "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。",
@@ -142,10 +214,10 @@
             },
             "en": {
                 "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help",
-                "cat-all": "All", "cat-coffee": "Coffee", "cat-tea": "Tea House", "cat-rest": "Restaurant", "cat-craft": "Crafts & Design", 
-                "cat-pastry": "Traditional Pastry", "cat-med": "Chinese Medicine", "cat-snack": "Snacks & Drinks", "cat-bar": "Bar", "cat-culture": "Culture",
-                "footer-desc1": "This guide is co-edited by the community and continuously updated.", "footer-desc2": "Store information is for reference only. Please check actual operating conditions.",
-                "feedback-title": "Suggestions for Improvement", "feedback-sub": "Your feedback drives Dadaocheng forward! We welcome your suggestions.",
+                "cat-all": "All", "cat-coffee": "Coffee", "cat-tea": "Tea House", "cat-rest": "Restaurant", "cat-craft": "Crafts",
+                "cat-pastry": "Pastry", "cat-med": "Medicine", "cat-snack": "Snacks", "cat-bar": "Bar", "cat-culture": "Culture",
+                "footer-desc1": "This guide is co-edited by the community and continuously updated.", "footer-desc2": "Store information is for reference only.",
+                "feedback-title": "Suggestions for Improvement", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!",
                 "feedback-btn": "Fill out Feedback Form",
                 "update-label": "Data Last Updated: ",
                 "tag-coffee": "Coffee", "tag-tea": "Tea House", "tag-restaurant": "Restaurant", "tag-craft": "Crafts",
@@ -154,9 +226,9 @@
             },
             "ja": {
                 "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート",
-                "cat-all": "すべて", "cat-coffee": "カフェ", "cat-tea": "茶館", "cat-rest": "レストラン", "cat-craft": "文化クリエイティブ", 
-                "cat-pastry": "伝統菓子", "cat-med": "漢方薬局", "cat-snack": "軽食・ドリンク", "cat-bar": "バー", "cat-culture": "文化",
-                "footer-desc1": "このガイドはコミュニティによって共同編集・更新されています。", "footer-desc2": "店舗情報は参考用です。実際の営業状況をご確認ください。",
+                "cat-all": "すべて", "cat-coffee": "カフェ", "cat-tea": "茶館", "cat-rest": "レストラン", "cat-craft": "文化",
+                "cat-pastry": "伝統菓子", "cat-med": "漢方薬局", "cat-snack": "軽食", "cat-bar": "バー", "cat-culture": "文化",
+                "footer-desc1": "このガイドはコミュニティによって共同編集・更新されています。", "footer-desc2": "店舗情報は参考用です。",
                 "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見が、大稲埕をより良くする原動力です！",
                 "feedback-btn": "フォームに記入する",
                 "update-label": "データ最終更新：",
@@ -166,10 +238,10 @@
             },
             "ko": {
                 "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원",
-                "cat-all": "전체", "cat-coffee": "카페", "cat-tea": "찻집", "cat-rest": "레스토랑", "cat-craft": "문화 창작", 
-                "cat-pastry": "전통 과자", "cat-med": "한약방", "cat-snack": "스낵 및 음료", "cat-bar": "바", "cat-culture": "문화",
-                "footer-desc1": "이 가이드는 커뮤니티가 공동으로 편집하며 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다. 실제 영업 상황을 확인해 주세요.",
-                "feedback-title": "개선 제안", "feedback-sub": "여러분의 의견은 다다오청을 발전시키는 원동력입니다! 제안을 환영합니다.",
+                "cat-all": "전체", "cat-coffee": "카페", "cat-tea": "찻집", "cat-rest": "레스토랑", "cat-craft": "문화 창작",
+                "cat-pastry": "전통 과자", "cat-med": "한약방", "cat-snack": "스낵", "cat-bar": "바", "cat-culture": "문화",
+                "footer-desc1": "이 가이드는 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다.",
+                "feedback-title": "개선 제안", "feedback-sub": "제안을 환영합니다.",
                 "feedback-btn": "피드백 양식 작성하기",
                 "update-label": "데이터 마지막 업데이트: ",
                 "tag-coffee": "카페", "tag-tea": "찻집", "tag-restaurant": "레스토랑", "tag-craft": "문화 창작",
@@ -178,36 +250,18 @@
             }
         };
 
-        // 3. 變數狀態設定
-        let currentLang = 'zh';
-        let currentCategory = 'all';
-        let currentPage = 1;
-        const cardsPerPage = 9;
-
-        // 4. 切換語言並記憶至 localStorage 的函式
         function changeLanguage(lang) {
             currentLang = lang;
-            
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (i18n[lang] && i18n[lang][key]) {
-                    el.innerHTML = i18n[lang][key]; 
-                }
+                if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
             });
-            
             const langSelect = document.getElementById('lang-select');
-            if (langSelect) {
-                langSelect.value = lang;
-            }
-            
+            if (langSelect) langSelect.value = lang;
             localStorage.setItem('dadaocheng_lang', lang);
-            
-            if (shopData.length > 0) {
-                renderCards();
-            }
+            if (shopData.length > 0) renderCards();
         }
 
-        // 5. 初始化與事件監聽
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('dadaocheng_lang') || 'zh';
             changeLanguage(savedLang);
@@ -216,33 +270,37 @@
                 changeLanguage(e.target.value);
             });
 
-            const filterBtns = document.querySelectorAll('.filter-tag');
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    currentCategory = e.target.getAttribute('data-category');
-                    currentPage = 1; 
+            // 事件委派：處理標籤點擊
+            const filterContainer = document.getElementById('filter-container');
+            if (filterContainer) {
+                filterContainer.addEventListener('click', (e) => {
+                    const clickedBtn = e.target.closest('.filter-tag');
+                    if (!clickedBtn) return;
+
+                    const allBtns = filterContainer.querySelectorAll('.filter-tag');
+                    allBtns.forEach(btn => {
+                        btn.classList.remove('border-ink', 'text-ink', 'bg-tag-bg', 'font-bold');
+                        btn.classList.add('border-transparent', 'text-ink-light', 'font-medium');
+                    });
+
+                    clickedBtn.classList.remove('border-transparent', 'text-ink-light', 'font-medium');
+                    clickedBtn.classList.add('border-ink', 'text-ink', 'bg-tag-bg', 'font-bold');
+
+                    currentCategory = clickedBtn.getAttribute('data-category');
+                    currentPage = 1;
                     renderCards();
                 });
-            });
+            }
 
-            // 背景自動抓取 data.json 最後更新時間
+            // 抓取最後更新時間
             fetch('data.json', { method: 'HEAD' })
                 .then(response => {
                     const lastModified = response.headers.get('Last-Modified');
                     const timeEl = document.getElementById('update-time');
                     if (lastModified && timeEl) {
                         const date = new Date(lastModified);
-                        const formatted = date.getFullYear() + '/' + 
-                                          String(date.getMonth() + 1).padStart(2, '0') + '/' + 
-                                          String(date.getDate()).padStart(2, '0') + ' ' + 
-                                          String(date.getHours()).padStart(2, '0') + ':' + 
-                                          String(date.getMinutes()).padStart(2, '0');
-                        timeEl.innerText = formatted;
-                    } else if (timeEl) {
-                        timeEl.innerText = '近期';
-                    }
+                        timeEl.innerText = `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+                    } else if (timeEl) timeEl.innerText = '近期';
                 })
                 .catch(() => {
                     const timeEl = document.getElementById('update-time');
@@ -250,38 +308,29 @@
                 });
         });
 
-        // 6. 從 data.json 抓取資料
+        // 讀取 JSON 資料[cite: 2, 5]
         fetch('data.json')
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('無法讀取檔案，請確認伺服器狀態');
-                }
+                if (!response.ok) throw new Error('無法讀取檔案');
                 return response.json();
             })
             .then(data => {
-                shopData = data; 
-                renderCards();   
+                shopData = data;
+                renderCards();
             })
             .catch(error => {
                 console.error('獲取 JSON 失敗:', error);
-                document.getElementById('card-grid').innerHTML = 
-                    `<p style="grid-column: 1/-1; text-align: center; color: red;">
-                        資料讀取失敗！<br>
-                        瀏覽器安全限制，直接點擊 HTML 檔案無法讀取外部 JSON。<br>
-                        請使用 <b>VS Code 的 Live Server</b> 或其他本機伺服器來開啟這個網頁。
-                    </p>`;
+                document.getElementById('card-grid').innerHTML =
+                    `<p class="col-span-full text-center text-red-500 font-bold p-10 border-2 border-red-200 rounded-xl bg-red-50">資料讀取失敗！請確認是否使用本機伺服器 (Live Server) 開啟。</p>`;
             });
 
-        // 7. 渲染卡片
         function renderCards() {
             const cardGrid = document.getElementById('card-grid');
-            
+
             let filteredData = shopData;
             if (currentCategory !== 'all') {
                 filteredData = shopData.filter(item => {
-                    if (currentCategory === 'snack') {
-                        return item.Category === 'snack' || item.Category === 'dessert';
-                    }
+                    if (currentCategory === 'snack') return item.Category === 'snack' || item.Category === 'dessert';
                     return item.Category === currentCategory;
                 });
             }
@@ -292,79 +341,79 @@
             const endIndex = startIndex + cardsPerPage;
             const paginatedData = filteredData.slice(startIndex, endIndex);
 
-            cardGrid.innerHTML = '';
+            const langKey = currentLang.toUpperCase();
 
-            const langKey = currentLang.toUpperCase(); 
-            paginatedData.forEach(item => {
+            // 批次渲染卡片 HTML
+            const cardsHtml = paginatedData.map(item => {
                 const title = item[`Title (${langKey})`] || item[`Title (ZH)`];
                 const address = item[`Address (${langKey})`] || item[`Address (ZH)`];
                 const hours = item[`Hours (${langKey})`] || item[`Hours (ZH)`];
                 const desc = item[`Description (${langKey})`] || item[`Description (ZH)`];
                 const tagText = i18n[currentLang][`tag-${item.Category}`] || item.Category;
-
                 const searchKeyword = encodeURIComponent(item['Title (ZH)'] + ' ' + item['Address (ZH)']);
                 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchKeyword}`;
 
-                const cardHtml = `
-                    <div class="shop-card">
-                        <span class="shop-tag">${tagText}</span>
-                        <h3>${title}</h3>
-                        <p class="desc">${desc}</p>
-                        <div class="card-info">
-                            <div>
-                                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="map-link">
-                                    <i class="fa-solid fa-location-dot"></i> ${address}
-                                </a>
+                return `
+                    <div class="group relative bg-white p-7 rounded-xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col hover:-translate-y-1 overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-tag-bg to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"></div>
+                        <span class="bg-tag-bg text-tag-text text-xs font-bold px-3 py-1 rounded-sm self-start mb-5 relative z-10 border border-tag-text/20 tracking-widest">${tagText}</span>
+                        <h3 class="text-2xl font-serif font-bold text-ink mb-3 relative z-10 group-hover:text-primary transition-colors">${title}</h3>
+                        <p class="text-ink-light text-sm flex-grow mb-6 relative z-10 leading-relaxed">${desc}</p>
+                        <div class="text-sm text-ink flex flex-col gap-3 mt-auto relative z-10 border-t border-ink/10 pt-5">
+                            <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="group/link flex items-start gap-2 hover:text-primary transition-colors">
+                                <i class="fa-solid fa-location-dot text-accent mt-1 group-hover/link:animate-bounce"></i> 
+                                <span class="underline decoration-ink/20 underline-offset-4 group-hover/link:decoration-primary leading-tight">${address}</span>
+                            </a>
+                            <div class="flex items-center gap-2 text-ink-light">
+                                <i class="fa-regular fa-clock text-accent"></i> ${hours}
                             </div>
-                            <div><i class="fa-regular fa-clock"></i> ${hours}</div>
                         </div>
                     </div>
                 `;
-                cardGrid.insertAdjacentHTML('beforeend', cardHtml);
-            });
+            }).join('');
 
+            cardGrid.innerHTML = cardsHtml;
             updatePagination(totalItems, totalPages);
         }
 
-        // 8. 更新分頁UI
         function updatePagination(totalItems, totalPages) {
             const paginationNumbers = document.getElementById('pagination-numbers');
             const pageInfo = document.getElementById('page-info');
             paginationNumbers.innerHTML = '';
+            paginationNumbers.className = "flex gap-2 items-center justify-center";
 
             if (totalItems === 0) {
                 pageInfo.innerText = i18n[currentLang]['page-text'].replace('{start}', 0).replace('{end}', 0).replace('{total}', 0);
                 return;
             }
 
-            const prevBtn = document.createElement('div');
-            prevBtn.className = 'page-btn';
-            prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left" style="font-size: 0.8em;"></i>';
-            prevBtn.onclick = () => { if(currentPage > 1) { currentPage--; renderCards(); }};
-            paginationNumbers.appendChild(prevBtn);
+            const createBtn = (content, disabled, onClick, isActive = false) => {
+                const btn = document.createElement('button');
+                btn.className = `w-10 h-10 flex items-center justify-center border-2 rounded-sm font-bold transition-all duration-200 ${disabled ? 'border-ink-light/20 text-ink-light/30 cursor-not-allowed' :
+                        isActive ? 'border-ink bg-tag-bg text-tag-text shadow-[2px_2px_0px_0px_rgba(51,51,51,1)] translate-y-[2px]' :
+                            'border-ink/20 text-ink-light hover:border-ink hover:text-ink hover:shadow-[2px_2px_0px_0px_rgba(51,51,51,0.5)]'
+                    }`;
+                btn.innerHTML = content;
+                btn.disabled = disabled;
+                if (!disabled) btn.onclick = onClick;
+                return btn;
+            };
 
+            paginationNumbers.appendChild(createBtn('<i class="fa-solid fa-chevron-left"></i>', currentPage === 1, () => { currentPage--; renderCards(); }));
             for (let i = 1; i <= totalPages; i++) {
-                const pageBtn = document.createElement('div');
-                pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-                pageBtn.innerText = i;
-                pageBtn.onclick = () => { currentPage = i; renderCards(); };
-                paginationNumbers.appendChild(pageBtn);
+                paginationNumbers.appendChild(createBtn(i, false, () => { currentPage = i; renderCards(); }, i === currentPage));
             }
-
-            const nextBtn = document.createElement('div');
-            nextBtn.className = 'page-btn';
-            nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right" style="font-size: 0.8em;"></i>';
-            nextBtn.onclick = () => { if(currentPage < totalPages) { currentPage++; renderCards(); }};
-            paginationNumbers.appendChild(nextBtn);
+            paginationNumbers.appendChild(createBtn('<i class="fa-solid fa-chevron-right"></i>', currentPage === totalPages, () => { currentPage++; renderCards(); }));
 
             const startStr = (currentPage - 1) * cardsPerPage + 1;
             const endStr = Math.min(currentPage * cardsPerPage, totalItems);
-            let infoText = i18n[currentLang]['page-text']
+            pageInfo.className = "text-ink-light text-sm font-medium mt-4 tracking-wide";
+            pageInfo.innerText = i18n[currentLang]['page-text']
                 .replace('{start}', startStr)
                 .replace('{end}', endStr)
                 .replace('{total}', totalItems);
-            pageInfo.innerText = infoText;
         }
     </script>
 </body>
+
 </html>

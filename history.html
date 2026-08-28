@@ -1,60 +1,85 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大稻埕的歷史 - 大稻埕特色店家</title>
+    <title>大稻埕的歷史 - 大稻埕特 Dadaocheng Guide</title>
+    <!-- SEO 優化 -->
+    <meta name="description" content="從曬穀場到國際商港，探索台北大稻埕最迷人的歷史軌跡與文化思潮。">
+
     <link rel="icon" href="images/Dadaocheng-Web.webp" type="image/webp">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* 針對歷史頁面時間軸與卡片微調 */
-        .history-section {
-            margin-top: 20px;
+
+    <!-- 引入 Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 設定 Tailwind Config (日系草稿風色彩與排版系統) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8A3324',
+                        paper: '#FAF6F0',
+                        ink: '#333333',
+                        'ink-light': '#666666',
+                        accent: '#C05C4D',
+                        'tag-bg': '#F8E8E6',
+                        'tag-text': '#A63F32',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', '"Microsoft JhengHei"', 'sans-serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                    }
+                }
+            }
         }
-        .history-card {
-            background-color: var(--card-bg, #fff);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 6px solid var(--primary-bg, #8B4513);
-        }
-        .history-card h3 {
-            color: var(--primary-bg, #8B4513);
-            margin-bottom: 12px;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .history-card p {
-            line-height: 1.8;
-            color: var(--text-dark, #333);
-            font-size: 1.05rem;
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+            body { @apply bg-paper text-ink font-sans antialiased flex flex-col min-h-screen; }
         }
     </style>
 </head>
-<body>
-    <!-- 頂部導覽列 -->
-    <header class="header-container">
-        <div class="top-nav">
-            <div class="logo-area">
-                <img src="images/Dadaocheng-Web.webp" alt="大稻埕特色店家 Logo" style="width: 50px; height: 50px; object-fit: contain; margin-right: 12px; border-radius: 8px;">
-                <div class="logo-text">
-                    <div class="title" data-i18n="site-title">大稻埕特色店家</div>
-                    <div class="subtitle">Dadaocheng Guide</div>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- 頂部導覽列 (Active 狀態已切換至「大稻埕的歷史」) -->
+    <header
+        class="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b-4 border-primary shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+
+            <div class="flex items-center gap-3">
+                <img src="images/Dadaocheng-Web.webp" alt="大稻埕特色店家 Logo" width="50" height="50"
+                    class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200" loading="lazy">
+                <div class="flex flex-col leading-tight">
+                    <div class="font-serif font-bold text-lg text-ink" data-i18n="site-title">大稻埕特色店家</div>
+                    <div class="text-xs text-ink-light tracking-wider">Dadaocheng Guide</div>
                 </div>
             </div>
-            <nav class="nav-links">
-                <a href="index.html" data-i18n="nav-shops">特色店家</a>
-                <a href="history.html" class="active" data-i18n="nav-history">大稻埕的歷史</a>
-                <a href="apps.html" data-i18n="nav-apps">必備APP推薦</a>
-                <a href="emergency.html" data-i18n="nav-emergency">緊急協助</a>
+
+            <nav class="flex flex-wrap justify-center gap-2 text-sm font-medium">
+                <a href="index.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-shops">特色店家</a>
+                <!-- Active 樣式 -->
+                <a href="history.html"
+                    class="px-4 py-2 rounded-md bg-tag-bg text-tag-text font-bold transition-colors shadow-sm"
+                    data-i18n="nav-history">大稻埕的歷史</a>
+                <a href="apps.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-apps">必備APP推薦</a>
+                <a href="emergency.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-emergency">緊急協助</a>
             </nav>
-            <div class="language-select">
-                Language : 
-                <select id="lang-select">
+
+            <div class="flex items-center gap-2 text-sm text-ink-light">
+                <i class="fa-solid fa-globe text-accent"></i>
+                <select id="lang-select"
+                    class="bg-white border border-gray-300 text-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-shadow">
                     <option value="zh">繁體中文</option>
                     <option value="en">English</option>
                     <option value="ja">日本語</option>
@@ -64,160 +89,197 @@
         </div>
     </header>
 
-    <main class="main-container">
-        <h1 class="page-title" data-i18n="history-page-title">大稻埕的歷史軌跡</h1>
-        <p class="page-subtitle" data-i18n="history-page-sub">從曬穀場到國際商港，探索台北最迷人的老城區。漫步在迪化街的紅磚騎樓下，彷彿能聽見百年前的繁華喧囂。</p>
+    <!-- 主要內容區塊 -->
+    <main class="flex-grow max-w-4xl mx-auto px-5 py-12 w-full">
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-primary mb-4" data-i18n="history-page-title">大稻埕的歷史軌跡
+        </h1>
+        <p class="text-ink-light leading-relaxed mb-10 text-lg" data-i18n="history-page-sub">
+            從曬穀場到國際商港，探索台北最迷人的老城區。漫步在迪化街的紅磚騎樓下，彷彿能聽見百年前的繁華喧囂。</p>
 
-        <div class="history-section">
-            <!-- 歷史階段 1 -->
-            <div class="history-card">
-                <h3><i class="fa-solid fa-seedling"></i> <span data-i18n="hist-1-title">起源：1850年代的曬穀場</span></h3>
-                <p data-i18n="hist-1-desc">「大稻埕」這個名字的意思是「廣大的曬穀場」。在 19 世紀中葉以前，這裡還只是一大片平坦的農地。直到 1853 年「頂下郊拚」分類械鬥爆發，許多商人從艋舺（今萬華）逃難至此，開始沿著淡水河岸建立商鋪，開啟了這裡的商業聚落雛形。</p>
+        <div class="flex flex-col gap-8">
+            <!-- 歷史階段卡片 (融入日系草稿風與微互動) -->
+            <div
+                class="group relative bg-white p-7 md:p-9 rounded-xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col hover:-translate-y-1 overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-tag-bg to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
+                </div>
+                <h3
+                    class="text-2xl font-serif font-bold text-ink mb-4 relative z-10 flex items-center gap-3 group-hover:text-primary transition-colors">
+                    <span
+                        class="bg-tag-bg text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i
+                            class="fa-solid fa-seedling"></i></span>
+                    <span data-i18n="hist-1-title">起源：1850年代的曬穀場</span>
+                </h3>
+                <p class="text-ink-light leading-relaxed relative z-10 text-base" data-i18n="hist-1-desc">
+                    「大稻埕」這個名字的意思是「廣大的曬穀場」。在 19 世紀中葉以前，這裡還只是一大片平坦的農地。直到 1853
+                    年「頂下郊拚」分類械鬥爆發，許多商人從艋舺（今萬華）逃難至此，開始沿著淡水河岸建立商鋪，開啟了這裡的商業聚落雛形。</p>
             </div>
 
-            <!-- 歷史階段 2 -->
-            <div class="history-card">
-                <h3><i class="fa-solid fa-leaf"></i> <span data-i18n="hist-2-title">繁華：茶香飄譽國際的茶港</span></h3>
-                <p data-i18n="hist-2-desc">1860 年淡水正式開港，大稻埕憑藉著優越的河運條件，一躍成為台灣最重要的國際貿易中心。英國商人約翰·陶德（John Dodd）引進茶苗與機器，將台灣烏龍茶以「Formosa Oolong Tea」之名行銷全球。洋行、領事館紛紛進駐，為這裡帶來了西洋與閩南融合的獨特巴洛克式建築。</p>
+            <div
+                class="group relative bg-white p-7 md:p-9 rounded-xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col hover:-translate-y-1 overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-tag-bg to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
+                </div>
+                <h3
+                    class="text-2xl font-serif font-bold text-ink mb-4 relative z-10 flex items-center gap-3 group-hover:text-primary transition-colors">
+                    <span
+                        class="bg-tag-bg text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i
+                            class="fa-solid fa-leaf"></i></span>
+                    <span data-i18n="hist-2-title">繁華：茶香飄譽國際的茶港</span>
+                </h3>
+                <p class="text-ink-light leading-relaxed relative z-10 text-base" data-i18n="hist-2-desc">1860
+                    年淡水正式開港，大稻埕憑藉著優越的河運條件，一躍成為台灣最重要的國際貿易中心。英國商人約翰·陶德（John Dodd）引進茶苗與機器，將台灣烏龍茶以「Formosa Oolong
+                    Tea」之名行銷全球。洋行、領事館紛紛進駐，為這裡帶來了西洋與閩南融合的獨特巴洛克式建築。</p>
             </div>
 
-            <!-- 歷史階段 3 -->
-            <div class="history-card">
-                <h3><i class="fa-solid fa-book-open"></i> <span data-i18n="hist-3-title">啟蒙：1920年代的文化思潮</span></h3>
-                <p data-i18n="hist-3-desc">到了日治時期，大稻埕不僅是南北貨、布料和中藥材的集散地，更是台灣新文化運動的發源地。蔣渭水等知識份子在此成立「台灣文化協會」，創辦報刊、舉行演講。這裡的戲院、咖啡廳林立，成為當時思想最前衛、文化最活耀的黃金年代。</p>
+            <div
+                class="group relative bg-white p-7 md:p-9 rounded-xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col hover:-translate-y-1 overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-tag-bg to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
+                </div>
+                <h3
+                    class="text-2xl font-serif font-bold text-ink mb-4 relative z-10 flex items-center gap-3 group-hover:text-primary transition-colors">
+                    <span
+                        class="bg-tag-bg text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i
+                            class="fa-solid fa-book-open"></i></span>
+                    <span data-i18n="hist-3-title">啟蒙：1920年代的文化思潮</span>
+                </h3>
+                <p class="text-ink-light leading-relaxed relative z-10 text-base" data-i18n="hist-3-desc">
+                    到了日治時期，大稻埕不僅是南北貨、布料和中藥材的集散地，更是台灣新文化運動的發源地。蔣渭水等知識份子在此成立「台灣文化協會」，創辦報刊、舉行演講。這裡的戲院、咖啡廳林立，成為當時思想最前衛、文化最活耀的黃金年代。
+                </p>
             </div>
 
-            <!-- 歷史階段 4 -->
-            <div class="history-card">
-                <h3><i class="fa-solid fa-lightbulb"></i> <span data-i18n="hist-4-title">現代：傳統與創新的文藝復興</span></h3>
-                <p data-i18n="hist-4-desc">經歷了都市重心的東移，大稻埕曾一度沉寂。但近年來，隨著老屋修興與文創產業的進駐，這裡迎來了令人驚豔的復興。如今，您可以在百年的中藥行旁喝到手沖精品咖啡，在傳統布莊看見創新設計，大稻埕成功地將新世代的靈感注入了老靈魂之中。</p>
+            <div
+                class="group relative bg-white p-7 md:p-9 rounded-xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col hover:-translate-y-1 overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-tag-bg to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0">
+                </div>
+                <h3
+                    class="text-2xl font-serif font-bold text-ink mb-4 relative z-10 flex items-center gap-3 group-hover:text-primary transition-colors">
+                    <span
+                        class="bg-tag-bg text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i
+                            class="fa-solid fa-lightbulb"></i></span>
+                    <span data-i18n="hist-4-title">現代：傳統與創新的文藝復興</span>
+                </h3>
+                <p class="text-ink-light leading-relaxed relative z-10 text-base" data-i18n="hist-4-desc">
+                    經歷了都市重心的東移，大稻埕曾一度沉寂。但近年來，隨著老屋修興與文創產業的進駐，這裡迎來了令人驚豔的復興。如今，您可以在百年的中藥行旁喝到手沖精品咖啡，在傳統布莊看見創新設計，大稻埕成功地將新世代的靈感注入了老靈魂之中。
+                </p>
             </div>
         </div>
     </main>
 
-    <!-- 底部資訊與回饋表單 -->
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-col">
-                <img src="images/Dadaocheng-Web.webp" alt="Logo" style="width: 100px; height: 100px; object-fit: contain; border-radius: 4px;"><span data-i18n="site-title">大稻埕特色店家</span></h4>
-                <p data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
+    <!-- 獨立刊物風頁尾 (與 index.html 完全同步) -->
+    <footer class="mt-auto border-t-4 border-primary bg-paper pb-8 pt-16 relative overflow-hidden">
+        <div
+            class="absolute -top-32 -right-20 w-96 h-96 bg-tag-bg rounded-full opacity-40 blur-3xl pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-12 relative z-10">
+            <div class="flex flex-col items-start gap-5">
+                <h4 class="flex items-center gap-4 text-xl font-serif font-bold text-ink">
+                    <img src="images/Dadaocheng-Web.webp" alt="Logo" width="64" height="64"
+                        class="w-16 h-16 object-contain rounded-xl border-2 border-ink/10 shadow-sm" loading="lazy">
+                    <span data-i18n="site-title">大稻埕特色店家</span>
+                </h4>
+                <p class="text-ink-light text-sm tracking-wide" data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
             </div>
-            <div class="footer-col">
-                <h4>Dadaocheng Guide</h4>
-                <p data-i18n="footer-desc2">所有店家資訊僅供參考，請以實際營業狀況為準。</p>
+
+            <div class="flex flex-col md:items-end gap-3 text-left md:text-right">
+                <h4 class="text-lg font-bold text-ink tracking-wider font-serif">Dadaocheng Guide</h4>
+                <p class="text-ink-light text-sm mb-2" data-i18n="footer-desc2">所有店家資訊僅供參考，請以實際營業狀況為準。</p>
+
+                <div
+                    class="bg-white/70 backdrop-blur-sm border-2 border-ink/10 p-5 rounded-xl shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] w-full md:w-80 text-left mt-2 relative group hover:border-ink/30 transition-colors">
+                    <h4 class="text-ink font-bold mb-2 flex items-center gap-2">
+                        <i
+                            class="fa-solid fa-pen-nib text-accent transform group-hover:rotate-12 transition-transform"></i>
+                        <span data-i18n="feedback-title">改善地方建議</span>
+                    </h4>
+                    <p class="text-ink-light text-xs mb-5 leading-relaxed" data-i18n="feedback-sub">
+                        您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。</p>
+                    <a href="https://forms.gle/4DoTH5v3u52vj2FU9" target="_blank" rel="noopener noreferrer"
+                        class="inline-block bg-ink text-white text-sm font-bold px-6 py-2.5 rounded-full hover:bg-primary transition-colors shadow-md w-full text-center"
+                        data-i18n="feedback-btn">
+                        前往填寫表單
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="feedback-section">
-            <h4 style="margin-bottom: 8px;" data-i18n="feedback-title">改善地方建議</h4>
-            <p data-i18n="feedback-sub">您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。</p>
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="https://forms.gle/4DoTH5v3u52vj2FU9" target="_blank" rel="noopener noreferrer" class="submit-btn" style="text-decoration: none; display: inline-block;" data-i18n="feedback-btn">
-                    前往填寫表單
-                </a>
-            </div>
+
+        <div
+            class="max-w-7xl mx-auto px-5 mt-16 pt-8 border-t border-ink/15 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-ink-light relative z-10">
+            <div class="tracking-widest">© 2026 Dadaocheng Guide. All rights reserved.</div>
         </div>
-        <div class="copyright">© 2026 Dadaocheng Guide. All rights reserved.</div>
     </footer>
 
-    <!-- 多語系翻譯腳本 -->
+    <!-- 簡化版的多語系切換腳本 -->
     <script>
         const i18n = {
             "zh": {
                 "site-title": "大稻埕特色店家", "nav-shops": "特色店家", "nav-history": "大稻埕的歷史", "nav-apps": "必備APP推薦", "nav-emergency": "緊急協助",
                 "history-page-title": "大稻埕的歷史軌跡",
                 "history-page-sub": "從曬穀場到國際商港，探索台北最迷人的老城區。漫步在迪化街的紅磚騎樓下，彷彿能聽見百年前的繁華喧囂。",
-                "hist-1-title": "起源：1850年代的曬穀場",
-                "hist-1-desc": "「大稻埕」這個名字的意思是「廣大的曬穀場」。在 19 世紀中葉以前，這裡還只是一大片平坦的農地。直到 1853 年「頂下郊拚」分類械鬥爆發，許多商人從艋舺（今萬華）逃難至此，開始沿著淡水河岸建立商鋪，開啟了這裡的商業聚落雛形。",
-                "hist-2-title": "繁華：茶香飄譽國際的茶港",
-                "hist-2-desc": "1860 年淡水正式開港，大稻埕憑藉著優越的河運條件，一躍成為台灣最重要的國際貿易中心。英國商人約翰·陶德（John Dodd）引進茶苗與機器，將台灣烏龍茶以「Formosa Oolong Tea」之名行銷全球。洋行、領事館紛紛進駐，為這裡帶來了西洋與閩南融合的獨特巴洛克式建築。",
-                "hist-3-title": "啟蒙：1920年代的文化思潮",
-                "hist-3-desc": "到了日治時期，大稻埕不僅是南北貨、布料和中藥材的集散地，更是台灣新文化運動的發源地。蔣渭水等知識份子在此成立「台灣文化協會」，創辦報刊、舉行演講。這裡的戲院、咖啡廳林立，成為當時思想最前衛、文化最活耀的黃金年代。",
-                "hist-4-title": "現代：傳統與創新的文藝復興",
-                "hist-4-desc": "經歷了都市重心的東移，大稻埕曾一度沉寂。但近年來，隨著老屋修興與文創產業的進駐，這裡迎來了令人驚豔的復興。如今，您可以在百年的中藥行旁喝到手沖精品咖啡，在傳統布莊看見創新設計，大稻埕成功地將新世代的靈感注入了老靈魂之中。",
+                "hist-1-title": "起源：1850年代的曬穀場", "hist-1-desc": "「大稻埕」這個名字的意思是「廣大的曬穀場」。在 19 世紀中葉以前，這裡還只是一大片平坦的農地。直到 1853 年「頂下郊拚」分類械鬥爆發，許多商人從艋舺（今萬華）逃難至此，開始沿著淡水河岸建立商鋪，開啟了這裡的商業聚落雛形。",
+                "hist-2-title": "繁華：茶香飄譽國際的茶港", "hist-2-desc": "1860 年淡水正式開港，大稻埕憑藉著優越的河運條件，一躍成為台灣最重要的國際貿易中心。英國商人約翰·陶德引進茶苗與機器，將台灣烏龍茶行銷全球。洋行、領事館紛紛進駐，為這裡帶來了西洋與閩南融合的獨特巴洛克式建築。",
+                "hist-3-title": "啟蒙：1920年代的文化思潮", "hist-3-desc": "到了日治時期，大稻埕不僅是集散地，更是台灣新文化運動的發源地。蔣渭水等知識份子在此成立「台灣文化協會」，創辦報刊、舉行演講。這裡的戲院、咖啡廳林立，成為當時思想最前衛、文化最活耀的黃金年代。",
+                "hist-4-title": "現代：傳統與創新的文藝復興", "hist-4-desc": "經歷了都市重心的東移，大稻埕曾一度沉寂。但近年來，隨著老屋修興與文創產業的進駐，這裡迎來了令人驚豔的復興。如今，您可以在百年的中藥行旁喝到手沖精品咖啡，在傳統布莊看見創新設計，大稻埕成功地將新世代的靈感注入了老靈魂之中。",
                 "footer-desc1": "本指南由社群共編，持續更新中。", "footer-desc2": "所有店家資訊僅供參考，請以實際營業狀況為準。",
-                "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。",
-                "feedback-btn": "前往填寫表單"
+                "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。", "feedback-btn": "前往填寫表單"
             },
             "en": {
                 "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help",
                 "history-page-title": "The Historical Traces of Dadaocheng",
-                "history-page-sub": "From a simple drying ground to an international trading port. Strolling under the red-brick arcades of Dihua Street, you can almost hear the bustling prosperity of a century ago.",
-                "hist-1-title": "Origins: The 1850s Drying Grounds",
-                "hist-1-desc": "The name 'Dadaocheng' translates to 'large rice drying ground.' Before the mid-19th century, it was merely flat farmland. In 1853, following a severe clan conflict in nearby Monga (Wanhua), fleeing merchants settled along the Tamsui River here, establishing the first commercial settlements.",
-                "hist-2-title": "Prosperity: The International Tea Port",
-                "hist-2-desc": "When the Tamsui Port opened in 1860, Dadaocheng leveraged its river transport to become Taiwan's primary international trade hub. British merchant John Dodd introduced tea seedlings and machinery, marketing Taiwanese Oolong globally as 'Formosa Oolong Tea.' Foreign trading houses and consulates moved in, bringing unique Baroque architecture.",
-                "hist-3-title": "Enlightenment: The 1920s Cultural Wave",
-                "hist-3-desc": "During the Japanese era, Dadaocheng was not only a hub for dry goods, fabrics, and herbs but also the birthplace of Taiwan's New Cultural Movement. Intellectuals like Chiang Wei-shui founded the Taiwanese Cultural Association here. With numerous theaters and cafes, it was the golden age of progressive thought.",
-                "hist-4-title": "Modernity: A Renaissance of Tradition & Innovation",
-                "hist-4-desc": "Though Dadaocheng quieted as Taipei's center moved eastward, recent years have seen a stunning revival through heritage preservation and creative industries. Today, you can sip pour-over specialty coffee next to a century-old herbal shop, proving Dadaocheng has successfully infused a new generation's inspiration into its old soul.",
+                "history-page-sub": "From a simple drying ground to an international trading port. Strolling under the red-brick arcades, you can almost hear the bustling prosperity of a century ago.",
+                "hist-1-title": "Origins: The 1850s Drying Grounds", "hist-1-desc": "The name 'Dadaocheng' translates to 'large rice drying ground.' Before the mid-19th century, it was merely flat farmland. In 1853, fleeing merchants settled along the Tamsui River here, establishing the first commercial settlements.",
+                "hist-2-title": "Prosperity: The International Tea Port", "hist-2-desc": "When the Tamsui Port opened in 1860, Dadaocheng leveraged its river transport to become Taiwan's primary international trade hub. British merchant John Dodd introduced tea seedlings, marketing Taiwanese Oolong globally.",
+                "hist-3-title": "Enlightenment: The 1920s Cultural Wave", "hist-3-desc": "During the Japanese era, Dadaocheng was the birthplace of Taiwan's New Cultural Movement. Intellectuals founded the Taiwanese Cultural Association here. With numerous theaters and cafes, it was the golden age of progressive thought.",
+                "hist-4-title": "Modernity: A Renaissance of Tradition", "hist-4-desc": "Though Dadaocheng quieted as Taipei's center moved eastward, recent years have seen a stunning revival through heritage preservation and creative industries. Dadaocheng has successfully infused a new generation's inspiration into its old soul.",
                 "footer-desc1": "This guide is co-edited by the community and continuously updated.", "footer-desc2": "Store information is for reference only.",
-                "feedback-title": "Suggestions for Improvement", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!",
-                "feedback-btn": "Fill out Feedback Form"
+                "feedback-title": "Suggestions for Improvement", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!", "feedback-btn": "Fill out Feedback Form"
             },
             "ja": {
                 "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート",
                 "history-page-title": "大稲埕の歴史の足跡",
-                "history-page-sub": "米の天日干し場から国際商業港へ、台北で最も魅力的な古い街並みを探索しましょう。迪化街の赤レンガのアーケードを歩けば、百年前の賑わいが聞こえてくるようです。",
-                "hist-1-title": "起源：1850年代の天日干し場",
-                "hist-1-desc": "「大稲埕（ダーダオチェン）」という名前は、「広い米の天日干し場」を意味します。19世紀半ばまでは平坦な農地に過ぎませんでしたが、1853年に猛甲（現在の万華）で起きた抗争から逃れてきた商人たちが淡水河沿いに店舗を構え、商業集落の原型ができました。",
-                "hist-2-title": "繁栄：お茶の香りが世界へ広がる港",
-                "hist-2-desc": "1860年の淡水開港後、大稲埕は水運の利点を活かし、台湾で最も重要な国際貿易の中心地となりました。イギリスの商人ジョン・ドッドが茶の苗と機械を導入し、「フォルモサ烏龍茶」として世界中に販売しました。洋館や領事館が進出し、西洋と閩南（びんなん）が融合した独特なバロック建築が生まれました。",
-                "hist-3-title": "啓蒙：1920年代の文化思潮",
-                "hist-3-desc": "日本統治時代、大稲埕は乾物、布地、漢方薬の集散地であるだけでなく、台湾新文化運動の発祥地でもありました。蒋渭水などの知識人が「台湾文化協会」を設立し、新聞を発行し、演説会を開きました。映画館やカフェが立ち並び、最も進歩的で活気のある黄金時代を迎えました。",
-                "hist-4-title": "現代：伝統と革新のルネサンス",
-                "hist-4-desc": "都市の中心が東へ移るにつれ、大稲埕は一時静まり返りましたが、近年、古い建物の修復や文化クリエイティブ産業の進出により、見事な復活を遂げています。現在では、百年の歴史を持つ漢方薬店の隣でスペシャルティコーヒーを味わうことができ、新しい世代のインスピレーションが古い魂に吹き込まれています。",
-                "footer-desc1": "このガイドはコミュニティによって共同編集・更新されています。", "footer-desc2": "店舗情報は参考用です。実際の営業状況をご確認ください。",
-                "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見が、大稲埕をより良くする原動力です！",
-                "feedback-btn": "フォームに記入する"
+                "history-page-sub": "米の天日干し場から国際商業港へ。迪化街の赤レンガのアーケードを歩けば、百年前の賑わいが聞こえてくるようです。",
+                "hist-1-title": "起源：1850年代の天日干し場", "hist-1-desc": "「大稲埕」という名前は、「広い米の天日干し場」を意味します。1853年に抗争から逃れてきた商人たちが淡水河沿いに店舗を構え、商業集落の原型ができました。",
+                "hist-2-title": "繁栄：お茶の香りが世界へ", "hist-2-desc": "1860年の淡水開港後、大稲埕は台湾で最も重要な国際貿易の中心地となりました。イギリス商人ジョン・ドッドが「フォルモサ烏龍茶」として世界中に販売しました。",
+                "hist-3-title": "啓蒙：1920年代の文化思潮", "hist-3-desc": "日本統治時代、大稲埕は台湾新文化運動の発祥地でもありました。映画館やカフェが立ち並び、最も進歩的で活気のある黄金時代を迎えました。",
+                "hist-4-title": "現代：伝統と革新のルネサンス", "hist-4-desc": "近年、古い建物の修復や文化クリエイティブ産業の進出により、見事な復活を遂げています。新しい世代のインスピレーションが古い魂に吹き込まれています。",
+                "footer-desc1": "このガイドはコミュニティによって共同編集・更新されています。", "footer-desc2": "店舗情報は参考用です。",
+                "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見が、大稲埕をより良くする原動力です！", "feedback-btn": "フォームに記入する"
             },
             "ko": {
                 "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원",
                 "history-page-title": "다다오청의 역사적 발자취",
-                "history-page-sub": "곡물 건조장에서 국제 무역항으로 변모한 타이베이에서 가장 매력적인 구시가지를 탐험해보세요. 디화제의 붉은 벽돌 아케이드 아래를 거닐면 백 년 전의 번화한 소리가 들리는 듯합니다.",
-                "hist-1-title": "기원: 1850년대의 곡물 건조장",
-                "hist-1-desc": "'다다오청'이라는 이름은 '넓은 곡물 건조장'을 의미합니다. 19세기 중반 이전에는 평탄한 농지에 불과했습니다. 1853년 맹갑(현재의 완화)에서 일어난 무력 충돌을 피해 도망친 상인들이 단수이 강변을 따라 상점을 세우면서 상업 취락의 형태가 갖춰지기 시작했습니다.",
-                "hist-2-title": "번영: 세계로 퍼진 차의 향기",
-                "hist-2-desc": "1860년 단수이항이 개항하면서 다다오청은 뛰어난 수운 조건을 바탕으로 대만에서 가장 중요한 국제 무역 중심지로 도약했습니다. 영국 상인 존 도드(John Dodd)가 차 묘목과 기계를 도입하여 대만 우롱차를 '포모사 우롱차(Formosa Oolong Tea)'라는 이름으로 전 세계에 판매했습니다. 외국 상사와 영사관들이 들어서면서 서양과 대만 전통이 융합된 독특한 바로크 양식 건축물이 생겨났습니다.",
-                "hist-3-title": "계몽: 1920년대의 문화 사조",
-                "hist-3-desc": "일제 강점기에 다다오청은 건어물, 직물, 한약재의 집산지일 뿐만 아니라 대만 신문화 운동의 발상지였습니다. 장웨이수이 등의 지식인들이 이곳에 '대만 문화 협회'를 설립하여 신문을 창간하고 강연을 열었습니다. 극장과 카페가 즐비하여 당시 가장 진보적인 사상과 문화가 활발했던 황금기였습니다.",
-                "hist-4-title": "현대: 전통과 혁신의 르네상스",
-                "hist-4-desc": "도시의 중심이 동쪽으로 이동하면서 다다오청은 한때 침체기를 겪었습니다. 하지만 최근 오래된 건물의 복원과 문화 창의 산업의 진출로 놀라운 부흥을 맞이하고 있습니다. 오늘날에는 백 년 된 한약방 옆에서 스페셜티 드립 커피를 마실 수 있으며, 다다오청은 새로운 세대의 영감을 오래된 영혼에 성공적으로 불어넣고 있습니다.",
-                "footer-desc1": "이 가이드는 커뮤니티가 공동으로 편집하며 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다. 실제 영업 상황을 확인해 주세요.",
-                "feedback-title": "개선 제안", "feedback-sub": "여러분의 의견은 다다오청을 발전시키는 원동력입니다! 제안을 환영합니다.",
-                "feedback-btn": "피드백 양식 작성하기"
+                "history-page-sub": "곡물 건조장에서 국제 무역항으로. 붉은 벽돌 아케이드 아래를 거닐면 백 년 전의 번화한 소리가 들리는 듯합니다.",
+                "hist-1-title": "기원: 1850년대의 곡물 건조장", "hist-1-desc": "'다다오청'이라는 이름은 '넓은 곡물 건조장'을 의미합니다. 1853년 무력 충돌을 피해 도망친 상인들이 강변을 따라 상점을 세우면서 상업 취락이 갖춰지기 시작했습니다.",
+                "hist-2-title": "번영: 세계로 퍼진 차의 향기", "hist-2-desc": "1860년 단수이항이 개항하면서 다다오청은 대만에서 가장 중요한 국제 무역 중심지로 도약했습니다. 대만 우롱차를 전 세계에 판매했습니다.",
+                "hist-3-title": "계몽: 1920년대의 문화 사조", "hist-3-desc": "일제 강점기에 다다오청은 대만 신문화 운동의 발상지였습니다. 극장과 카페가 즐비하여 당시 가장 진보적인 사상과 문화가 활발했던 황금기였습니다.",
+                "hist-4-title": "현대: 전통과 혁신의 르네상스", "hist-4-desc": "최근 오래된 건물의 복원과 문화 창의 산업의 진출로 놀라운 부흥을 맞이하고 있습니다. 다다오청은 새로운 세대의 영감을 오래된 영혼에 불어넣고 있습니다.",
+                "footer-desc1": "이 가이드는 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다.",
+                "feedback-title": "개선 제안", "feedback-sub": "여러분의 의견은 다다오청을 발전시키는 원동력입니다!", "feedback-btn": "피드백 양식 작성하기"
             }
         };
 
-        // 1. 取得下拉選單元素
-        const langSelect = document.getElementById('lang-select');
-
-        // 2. 建立一個切換語言的專屬功能
         function changeLanguage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (i18n[lang] && i18n[lang][key]) {
-                    el.innerHTML = i18n[lang][key]; 
-                }
+                if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
             });
-            if (langSelect) {
-                langSelect.value = lang;
-            }
-            // 記憶語言選擇
+            const langSelect = document.getElementById('lang-select');
+            if (langSelect) langSelect.value = lang;
             localStorage.setItem('dadaocheng_lang', lang);
         }
 
-        // 3. 當使用者手動切換下拉選單時，執行切換並記憶
-        if (langSelect) {
-            langSelect.addEventListener('change', function() {
-                changeLanguage(this.value);
-            });
-        }
-
-        // 4. 每次網頁一載入，就去檢查有沒有存過的語言
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('dadaocheng_lang') || 'zh';
             changeLanguage(savedLang);
+
+            document.getElementById('lang-select').addEventListener('change', (e) => {
+                changeLanguage(e.target.value);
+            });
         });
     </script>
 </body>
+
 </html>

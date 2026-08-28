@@ -1,59 +1,85 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>必備APP推薦 - 大稻埕特色店家</title>
+    <title>必備APP推薦 - 大稻埕特色店家 Dadaocheng Guide</title>
+    <!-- SEO 優化 -->
+    <meta name="description" content="外國旅客必備數位工具！為您整理出在台灣最實用的交通、美食與生活 APP，以及大稻埕換匯提款指南。">
+
     <link rel="icon" href="images/Dadaocheng-Web.webp" type="image/webp">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* 確保連結按鈕樣式正常顯示，去除預設底線 */
-        .store-btn {
-            text-decoration: none;
-        }
-        .store-btn:hover {
-            opacity: 0.9; /* 加入滑鼠懸停效果 */
-        }
-        
-        /* 放大 APP 圖示 1.5 倍 */
-        .app-logo {
-            width: 75px !important;  /* 強制放大寬度 */
-            height: 75px !important; /* 強制放大高度 */
-            flex-shrink: 0;          /* 防止圖示被右側文字擠壓變形 */
-        }
 
-        /* 新增：地址連結的樣式與滑鼠懸停效果 */
-        .map-link {
-            color: #8B4513; /* 深紅棕色 */
-            text-decoration: underline;
-            transition: opacity 0.2s ease;
+    <!-- 引入 Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 設定 Tailwind Config (日系草稿風色彩與排版系統) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8A3324',
+                        paper: '#FAF6F0',
+                        ink: '#333333',
+                        'ink-light': '#666666',
+                        accent: '#C05C4D',
+                        'tag-bg': '#F8E8E6',
+                        'tag-text': '#A63F32',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', '"Microsoft JhengHei"', 'sans-serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                    }
+                }
+            }
         }
-        .map-link:hover {
-            opacity: 0.7;
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+            body { @apply bg-paper text-ink font-sans antialiased flex flex-col min-h-screen; }
         }
     </style>
 </head>
-<body>
-    <!-- Header (美化版，APP為 active 狀態) -->
-    <header class="header-container">
-        <div class="top-nav">
-            <div class="logo-area">
-                <img src="images/Dadaocheng-Web.webp" alt="大稻埕特色店家 Logo" style="width: 50px; height: 50px; object-fit: contain; margin-right: 12px; border-radius: 8px;">
-                <div class="logo-text">
-                    <div class="title" data-i18n="site-title">大稻埕特色店家</div>
-                    <div class="subtitle">Dadaocheng Guide</div>
+
+<body class="flex flex-col min-h-screen">
+
+    <!-- 頂部導覽列 (Active 狀態已切換至「必備APP推薦」) -->
+    <header
+        class="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b-4 border-primary shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+
+            <div class="flex items-center gap-3">
+                <img src="images/Dadaocheng-Web.webp" alt="大稻埕特色店家 Logo" width="50" height="50"
+                    class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200" loading="lazy">
+                <div class="flex flex-col leading-tight">
+                    <div class="font-serif font-bold text-lg text-ink" data-i18n="site-title">大稻埕特色店家</div>
+                    <div class="text-xs text-ink-light tracking-wider">Dadaocheng Guide</div>
                 </div>
             </div>
-            <nav class="nav-links">
-                <a href="index.html" data-i18n="nav-shops">特色店家</a>
-                <a href="history.html" data-i18n="nav-history">大稻埕的歷史</a>
-                <a href="apps.html" class="active" data-i18n="nav-apps">必備APP推薦</a>
-                <a href="emergency.html" data-i18n="nav-emergency">緊急協助</a>
+
+            <nav class="flex flex-wrap justify-center gap-2 text-sm font-medium">
+                <a href="index.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-shops">特色店家</a>
+                <a href="history.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-history">大稻埕的歷史</a>
+                <!-- Active 樣式 -->
+                <a href="apps.html"
+                    class="px-4 py-2 rounded-md bg-tag-bg text-tag-text font-bold transition-colors shadow-sm"
+                    data-i18n="nav-apps">必備APP推薦</a>
+                <a href="emergency.html"
+                    class="px-4 py-2 rounded-md text-ink-light hover:bg-black/5 hover:text-accent transition-colors"
+                    data-i18n="nav-emergency">緊急協助</a>
             </nav>
-            <div class="language-select">
-                Language : 
-                <select id="lang-select">
+
+            <div class="flex items-center gap-2 text-sm text-ink-light">
+                <i class="fa-solid fa-globe text-accent"></i>
+                <select id="lang-select"
+                    class="bg-white border border-gray-300 text-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-shadow">
                     <option value="zh">繁體中文</option>
                     <option value="en">English</option>
                     <option value="ja">日本語</option>
@@ -63,258 +89,417 @@
         </div>
     </header>
 
-    <main class="main-container">
-        <h1 class="page-title" data-i18n="app-page-title">外國旅客必備數位工具</h1>
-        <p class="page-subtitle" data-i18n="app-page-sub">讓您的台灣之旅更順暢！以下為您整理出在台灣最實用的交通、美食與生活 APP。</p>
+    <!-- 主要內容區塊 -->
+    <main class="flex-grow max-w-7xl mx-auto px-5 py-12 w-full">
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-primary mb-4" data-i18n="app-page-title">外國旅客必備數位工具
+        </h1>
+        <p class="text-ink-light leading-relaxed mb-12 text-lg" data-i18n="app-page-sub">
+            讓您的台灣之旅更順暢！以下為您整理出在台灣最實用的交通、美食與生活 APP。</p>
 
         <!-- 類別 1: 地圖與綜合導航 -->
-        <div class="category-section">
-            <h2 class="category-title"><i class="fa-solid fa-map"></i> <span data-i18n="cat-map">地圖與綜合導航</span></h2>
-            <div class="app-grid">
-                <div class="app-card">
-                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
-                        <img src="images/Google.webp" alt="Google Maps" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+        <section class="mb-12">
+            <h2 class="text-2xl font-serif font-bold text-ink mb-6 flex items-center gap-3">
+                <span
+                    class="bg-tag-bg text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i
+                        class="fa-solid fa-map"></i></span>
+                <span data-i18n="cat-map">地圖與綜合導航</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Google Maps 卡片 -->
+                <div
+                    class="group bg-white p-6 rounded-2xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col gap-4 hover:-translate-y-1">
+                    <div class="flex items-start gap-4">
+                        <img src="images/Google.webp" alt="Google Maps"
+                            class="w-16 h-16 rounded-xl border border-gray-200 shadow-sm shrink-0" loading="lazy">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="font-bold text-lg text-ink">Google Maps</h3>
+                            </div>
+                            <span class="bg-[#EAF2EA] text-[#4A7B4A] text-[10px] font-bold px-2 py-1 rounded-full"
+                                data-i18n="tag-nav">綜合導航</span>
+                        </div>
                     </div>
-                    <div class="app-info">
-                        <div class="app-head">
-                            <span class="app-name">Google Maps</span>
-                            <span class="app-tag" data-i18n="tag-nav">綜合導航</span>
-                        </div>
-                        <p class="app-desc" data-i18n="desc-google">具有導航、查詢大眾運輸路線與即時路況等工具，是找尋地標的必備工具。</p>
-                        <div class="app-btns">
-                            <a href="https://apps.apple.com/tw/app/google-maps/id585027354" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-apple"></i> App Store
-                            </a>
-                            <a href="https://play.google.com/store/search?q=Google+Maps&c=apps" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-google-play"></i> Google Play
-                            </a>
-                        </div>
+                    <p class="text-ink-light text-sm flex-grow leading-relaxed" data-i18n="desc-google">
+                        具有導航、查詢大眾運輸路線與即時路況等工具，是找尋地標的必備工具。</p>
+                    <div class="flex flex-wrap gap-2 mt-auto border-t border-ink/10 pt-4">
+                        <a href="https://apps.apple.com/tw/app/google-maps/id585027354" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-apple text-base"></i> App Store
+                        </a>
+                        <a href="https://play.google.com/store/search?q=Google+Maps&c=apps" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-google-play text-base"></i> Google Play
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 類別 2: 大眾運輸與火車 -->
-        <div class="category-section">
-            <h2 class="category-title"><i class="fa-solid fa-train-subway"></i> <span data-i18n="cat-transit">大眾運輸與火車</span></h2>
-            <div class="app-grid">
-                <div class="app-card">
-                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
-                        <img src="images/Bus+.webp" alt="Bus+" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
-                    </div>
-                    <div class="app-info">
-                        <div class="app-head"><span class="app-name">Bus+</span><span class="app-tag" data-i18n="tag-bus">公車動態</span></div>
-                        <p class="app-desc" data-i18n="desc-bus">全台公車動態即時查詢，等公車必備神器，介面乾淨好用。</p>
-                        <div class="app-btns">
-                            <a href="https://apps.apple.com/tw/app/bus-公車動態-ubike-臺鐵查詢/id967861325" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-apple"></i> App Store
-                            </a>
-                            <a href="https://play.google.com/store/search?q=Bus%2B&c=apps" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-google-play"></i> Google Play
-                            </a>
+        <section class="mb-12">
+            <h2 class="text-2xl font-serif font-bold text-ink mb-6 flex items-center gap-3">
+                <span
+                    class="bg-tag-bg text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i
+                        class="fa-solid fa-train-subway"></i></span>
+                <span data-i18n="cat-transit">大眾運輸與火車</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Bus+ -->
+                <div
+                    class="group bg-white p-6 rounded-2xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col gap-4 hover:-translate-y-1">
+                    <div class="flex items-start gap-4">
+                        <img src="images/Bus+.webp" alt="Bus+"
+                            class="w-16 h-16 rounded-xl border border-gray-200 shadow-sm shrink-0" loading="lazy">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="font-bold text-lg text-ink">Bus+</h3>
+                            </div>
+                            <span class="bg-[#EAF2EA] text-[#4A7B4A] text-[10px] font-bold px-2 py-1 rounded-full"
+                                data-i18n="tag-bus">公車動態</span>
                         </div>
+                    </div>
+                    <p class="text-ink-light text-sm flex-grow leading-relaxed" data-i18n="desc-bus">
+                        全台公車動態即時查詢，等公車必備神器，介面乾淨好用。</p>
+                    <div class="flex flex-wrap gap-2 mt-auto border-t border-ink/10 pt-4">
+                        <a href="https://apps.apple.com/tw/app/bus-公車動態-ubike-臺鐵查詢/id967861325" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-apple text-base"></i> App Store
+                        </a>
+                        <a href="https://play.google.com/store/search?q=Bus%2B&c=apps" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-google-play text-base"></i> Google Play
+                        </a>
                     </div>
                 </div>
-                <div class="app-card">
-                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
-                        <img src="images/MetroMan.webp" alt="台北捷運通" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
-                    </div>
-                    <div class="app-info">
-                        <div class="app-head"><span class="app-name" data-i18n="app-mrt">台北捷運通</span><span class="app-tag" data-i18n="tag-mrt">捷運路線</span></div>
-                        <p class="app-desc" data-i18n="desc-mrt">提供台北捷運路線圖、票價查詢及首末班車時間，在複雜的車站內不怕迷路。</p>
-                        <div class="app-btns">
-                            <a href="https://apps.apple.com/tw/app/台北捷運通/id552250874" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-apple"></i> App Store
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.xinlukou.metromantb&pcampaignid=web_share" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-google-play"></i> Google Play
-                            </a>
+                <!-- 台北捷運通 -->
+                <div
+                    class="group bg-white p-6 rounded-2xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col gap-4 hover:-translate-y-1">
+                    <div class="flex items-start gap-4">
+                        <img src="images/MetroMan.webp" alt="台北捷運通"
+                            class="w-16 h-16 rounded-xl border border-gray-200 shadow-sm shrink-0" loading="lazy">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="font-bold text-lg text-ink" data-i18n="app-mrt">台北捷運通</h3>
+                            </div>
+                            <span class="bg-[#EAF2EA] text-[#4A7B4A] text-[10px] font-bold px-2 py-1 rounded-full"
+                                data-i18n="tag-mrt">捷運路線</span>
                         </div>
+                    </div>
+                    <p class="text-ink-light text-sm flex-grow leading-relaxed" data-i18n="desc-mrt">
+                        提供台北捷運路線圖、票價查詢及首末班車時間，在複雜的車站內不怕迷路。</p>
+                    <div class="flex flex-wrap gap-2 mt-auto border-t border-ink/10 pt-4">
+                        <a href="https://apps.apple.com/tw/app/台北捷運通/id552250874" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-apple text-base"></i> App Store
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.xinlukou.metromantb" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-google-play text-base"></i> Google Play
+                        </a>
                     </div>
                 </div>
-                <div class="app-card">
-                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
-                        <img src="images/台鐵e訂通.webp" alt="台鐵e訂票" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
-                    </div>
-                    <div class="app-info">
-                        <div class="app-head"><span class="app-name" data-i18n="app-tra">台鐵e訂票</span><span class="app-tag" data-i18n="tag-train">火車訂票</span></div>
-                        <p class="app-desc" data-i18n="desc-tra">台灣鐵路官方APP，提供查詢時刻表、線上訂票，並可開啟手機電子車票進出站。</p>
-                        <div class="app-btns">
-                            <a href="https://apps.apple.com/tw/app/台鐵e訂通/id1441617748" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-apple"></i> App Store
-                            </a>
-                            <a href="https://play.google.com/store/search?q=%E5%8F%B0%E9%90%BFe%E8%A8%82%E7%A5%A8&c=apps" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-google-play"></i> Google Play
-                            </a>
+                <!-- 台鐵e訂通 -->
+                <div
+                    class="group bg-white p-6 rounded-2xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col gap-4 hover:-translate-y-1">
+                    <div class="flex items-start gap-4">
+                        <img src="images/台鐵e訂通.webp" alt="台鐵e訂票"
+                            class="w-16 h-16 rounded-xl border border-gray-200 shadow-sm shrink-0" loading="lazy">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="font-bold text-lg text-ink" data-i18n="app-tra">台鐵e訂票</h3>
+                            </div>
+                            <span class="bg-[#EAF2EA] text-[#4A7B4A] text-[10px] font-bold px-2 py-1 rounded-full"
+                                data-i18n="tag-train">火車訂票</span>
                         </div>
+                    </div>
+                    <p class="text-ink-light text-sm flex-grow leading-relaxed" data-i18n="desc-tra">
+                        台灣鐵路官方APP，提供查詢時刻表、線上訂票，並可開啟手機電子車票進出站。</p>
+                    <div class="flex flex-wrap gap-2 mt-auto border-t border-ink/10 pt-4">
+                        <a href="https://apps.apple.com/tw/app/台鐵e訂通/id1441617748" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-apple text-base"></i> App Store
+                        </a>
+                        <a href="https://play.google.com/store/search?q=%E5%8F%B0%E9%90%BFe%E8%A8%82%E7%A5%A8&c=apps"
+                            target="_blank" rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-google-play text-base"></i> Google Play
+                        </a>
                     </div>
                 </div>
-                <div class="app-card">
-                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
-                        <img src="images/台灣高鐵 T Express.webp" alt="T Express" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
-                    </div>
-                    <div class="app-info">
-                        <div class="app-head"><span class="app-name">T Express</span><span class="app-tag" data-i18n="tag-hsr">高鐵訂票</span></div>
-                        <p class="app-desc" data-i18n="desc-hsr">台灣高鐵官方APP，手機直接買票，進站只要刷手機條碼，跨縣市移動最方便。</p>
-                        <div class="app-btns">
-                            <a href="https://apps.apple.com/tw/app/id468963664" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-apple"></i> App Store
-                            </a>
-                            <a href="https://play.google.com/store/search?q=T+Express&c=apps" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-google-play"></i> Google Play
-                            </a>
+                <!-- T Express -->
+                <div
+                    class="group bg-white p-6 rounded-2xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col gap-4 hover:-translate-y-1">
+                    <div class="flex items-start gap-4">
+                        <img src="images/台灣高鐵 T Express.webp" alt="T Express"
+                            class="w-16 h-16 rounded-xl border border-gray-200 shadow-sm shrink-0" loading="lazy">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="font-bold text-lg text-ink">T Express</h3>
+                            </div>
+                            <span class="bg-[#EAF2EA] text-[#4A7B4A] text-[10px] font-bold px-2 py-1 rounded-full"
+                                data-i18n="tag-hsr">高鐵訂票</span>
                         </div>
+                    </div>
+                    <p class="text-ink-light text-sm flex-grow leading-relaxed" data-i18n="desc-hsr">
+                        台灣高鐵官方APP，手機直接買票，進站只要刷手機條碼，跨縣市移動最方便。</p>
+                    <div class="flex flex-wrap gap-2 mt-auto border-t border-ink/10 pt-4">
+                        <a href="https://apps.apple.com/tw/app/id468963664" target="_blank" rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-apple text-base"></i> App Store
+                        </a>
+                        <a href="https://play.google.com/store/search?q=T+Express&c=apps" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-google-play text-base"></i> Google Play
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 類別 3: 叫車與單車租借 -->
-        <div class="category-section">
-            <h2 class="category-title"><i class="fa-solid fa-car"></i> <span data-i18n="cat-ride">叫車與單車租借</span></h2>
-            <div class="app-grid">
-                <div class="app-card">
-                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
-                        <img src="images/Uber.webp" alt="Uber" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
-                    </div>
-                    <div class="app-info">
-                        <div class="app-head"><span class="app-name">Uber</span><span class="app-tag" data-i18n="tag-uber">叫車載客</span></div>
-                        <p class="app-desc" data-i18n="desc-uber">在台灣的系統與國外完全相同，綁定信用卡付款，不怕語言不通或被繞路。</p>
-                        <div class="app-btns">
-                            <a href="https://apps.apple.com/tw/app/uber-request-a-ride/id368677368" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-apple"></i> App Store
-                            </a>
-                            <a href="https://play.google.com/store/search?q=Uber&c=apps" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-google-play"></i> Google Play
-                            </a>
+        <section class="mb-12">
+            <h2 class="text-2xl font-serif font-bold text-ink mb-6 flex items-center gap-3">
+                <span
+                    class="bg-tag-bg text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i
+                        class="fa-solid fa-car"></i></span>
+                <span data-i18n="cat-ride">叫車與單車租借</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Uber -->
+                <div
+                    class="group bg-white p-6 rounded-2xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col gap-4 hover:-translate-y-1">
+                    <div class="flex items-start gap-4">
+                        <img src="images/Uber.webp" alt="Uber"
+                            class="w-16 h-16 rounded-xl border border-gray-200 shadow-sm shrink-0" loading="lazy">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="font-bold text-lg text-ink">Uber</h3>
+                            </div>
+                            <span class="bg-[#EAF2EA] text-[#4A7B4A] text-[10px] font-bold px-2 py-1 rounded-full"
+                                data-i18n="tag-uber">叫車載客</span>
                         </div>
+                    </div>
+                    <p class="text-ink-light text-sm flex-grow leading-relaxed" data-i18n="desc-uber">
+                        在台灣的系統與國外完全相同，綁定信用卡付款，不怕語言不通或被繞路。</p>
+                    <div class="flex flex-wrap gap-2 mt-auto border-t border-ink/10 pt-4">
+                        <a href="https://apps.apple.com/tw/app/uber-request-a-ride/id368677368" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-apple text-base"></i> App Store
+                        </a>
+                        <a href="https://play.google.com/store/search?q=Uber&c=apps" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-google-play text-base"></i> Google Play
+                        </a>
                     </div>
                 </div>
-                <div class="app-card">
-                    <div class="app-logo" style="background-color: transparent; padding: 0; overflow: hidden;">
-                        <img src="images/YouBike.webp" alt="YouBike 2.0" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
-                    </div>
-                    <div class="app-info">
-                        <div class="app-head"><span class="app-name">YouBike 2.0</span><span class="app-tag" data-i18n="tag-bike">共享單車</span></div>
-                        <p class="app-desc" data-i18n="desc-bike">全球馳名的微型單車租借系統好騎無比，在大稻埕小巷弄穿梭的絕佳交通工具。</p>
-                        <div class="app-btns">
-                            <a href="https://apps.apple.com/tw/app/youbike微笑單車-官方版/id1483423095" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-apple"></i> App Store
-                            </a>
-                            <a href="https://play.google.com/store/search?q=YouBike+2.0&c=apps" target="_blank" rel="noopener noreferrer" class="store-btn">
-                                <i class="fa-brands fa-google-play"></i> Google Play
-                            </a>
+                <!-- YouBike 2.0 -->
+                <div
+                    class="group bg-white p-6 rounded-2xl border-2 border-ink/10 hover:border-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] transition-all duration-300 flex flex-col gap-4 hover:-translate-y-1">
+                    <div class="flex items-start gap-4">
+                        <img src="images/YouBike.webp" alt="YouBike 2.0"
+                            class="w-16 h-16 rounded-xl border border-gray-200 shadow-sm shrink-0" loading="lazy">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="font-bold text-lg text-ink">YouBike 2.0</h3>
+                            </div>
+                            <span class="bg-[#EAF2EA] text-[#4A7B4A] text-[10px] font-bold px-2 py-1 rounded-full"
+                                data-i18n="tag-bike">共享單車</span>
                         </div>
+                    </div>
+                    <p class="text-ink-light text-sm flex-grow leading-relaxed" data-i18n="desc-bike">
+                        全球馳名的微型單車租借系統好騎無比，在大稻埕小巷弄穿梭的絕佳交通工具。</p>
+                    <div class="flex flex-wrap gap-2 mt-auto border-t border-ink/10 pt-4">
+                        <a href="https://apps.apple.com/tw/app/youbike微笑單車-官方版/id1483423095" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-apple text-base"></i> App Store
+                        </a>
+                        <a href="https://play.google.com/store/search?q=YouBike+2.0&c=apps" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-ink hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-google-play text-base"></i> Google Play
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- 現金提款與換匯指南 -->
-        <div class="guide-section">
-            <h3 data-i18n="guide-title">現金提款與換匯指南</h3>
-            <p data-i18n="guide-sub">雖然大稻埕許多特色店家已提供電子支付或信用卡，但傳統小吃、夜市等仍只收現金。以下是獲取新台幣的最方便方式：</p>
-            
-            <div class="warning-banner">
-                <i class="fa-solid fa-circle-exclamation"></i>
+        <section
+            class="mt-16 bg-tag-bg/30 border-2 border-tag-text/20 p-8 md:p-10 rounded-2xl relative overflow-hidden">
+            <!-- 裝飾性背景 -->
+            <div
+                class="absolute -bottom-20 -right-20 w-64 h-64 bg-tag-bg rounded-full opacity-50 blur-3xl pointer-events-none">
+            </div>
+
+            <h3 class="text-2xl font-serif font-bold text-primary mb-3 relative z-10" data-i18n="guide-title">現金提款與換匯指南
+            </h3>
+            <p class="text-ink-light text-base mb-8 relative z-10" data-i18n="guide-sub">
+                雖然大稻埕許多特色店家已提供電子支付或信用卡，但傳統小吃、夜市等仍只收現金。以下是獲取新台幣的最方便方式：</p>
+
+            <!-- 警告標語 (DCC) -->
+            <div
+                class="bg-red-50 border-l-4 border-accent p-5 rounded-r-xl flex gap-4 text-sm text-red-900 mb-8 relative z-10 shadow-sm">
+                <i class="fa-solid fa-circle-exclamation text-accent text-xl mt-1"></i>
                 <div data-i18n="guide-warning">
-                    <strong>匯率陷阱！避免選擇動態貨幣轉換 (DCC)</strong><br>
-                    當您在 ATM 提款或刷卡時，如果螢幕詢問您要使用「當地貨幣(台幣)」還是「母國貨幣」結帳，請務必選擇<strong>「新台幣 (TWD) / 本國貨幣」</strong>。若選擇母國貨幣（即動態貨幣轉換 DCC），ATM 將會使用極差的匯率計算，您可能會因此多付 3%~7% 的隱藏費用。
+                    <strong class="text-accent text-base block mb-1">匯率陷阱！避免選擇動態貨幣轉換 (DCC)</strong>
+                    當您在 ATM 提款或刷卡時，如果螢幕詢問您要使用「當地貨幣(台幣)」還是「母國貨幣」結帳，請務必選擇<strong class="text-accent">「新台幣 (TWD) /
+                        本國貨幣」</strong>。若選擇母國貨幣（即動態貨幣轉換 DCC），ATM 將會使用極差的匯率計算，您可能會因此多付 3%~7% 的隱藏費用。
                 </div>
             </div>
 
-            <div class="info-cards">
-                <div class="info-card">
-                    <h4><i class="fa-solid fa-money-bill-wave"></i> <span data-i18n="atm-title">24小時便利商店跨國提款</span></h4>
-                    <p data-i18n="atm-desc">台灣的便利商店密集度極高，是外國旅客領取現金最方便的管道。</p>
-                    <ul>
-                        <li data-i18n="atm-li1" style="margin-bottom: 8px;">哪裡可以領？尋找 7-ELEVEN (內建中國信託 ATM) 或 全家便利商店 (內建台新或國泰世華 ATM)。大稻埕周邊步行5分鐘內皆有便利商店。</li>
-                        <li data-i18n="atm-li2" style="margin-bottom: 8px;">支援卡片：機台上若貼有 Visa, Mastercard, PLUS, Cirrus, UnionPay (銀聯) 等標誌，即可使用國外提款卡領取新台幣(TWD)。</li>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10">
+                <!-- 24小時便利商店跨國提款 -->
+                <div
+                    class="bg-white p-6 rounded-xl border border-ink/10 shadow-sm hover:border-ink/30 transition-colors">
+                    <h4 class="font-bold text-primary text-lg mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-money-bill-wave text-accent"></i> <span
+                            data-i18n="atm-title">24小時便利商店跨國提款</span>
+                    </h4>
+                    <p class="text-sm text-ink-light mb-4" data-i18n="atm-desc">台灣的便利商店密集度極高，是外國旅客領取現金最方便的管道。</p>
+                    <ul class="list-disc pl-5 text-sm text-ink-light space-y-2">
+                        <li data-i18n="atm-li1">哪裡可以領？尋找 7-ELEVEN (內建中國信託 ATM) 或 全家便利商店 (內建台新或國泰世華
+                            ATM)。大稻埕周邊步行5分鐘內皆有便利商店。</li>
+                        <li data-i18n="atm-li2">支援卡片：機台上若貼有 Visa, Mastercard, PLUS, Cirrus, UnionPay (銀聯)
+                            等標誌，即可使用國外提款卡領取新台幣(TWD)。</li>
                         <li data-i18n="atm-li3">手續費：台灣本地銀行通常會收每筆約 NT$100 的設備手續費（您的發卡銀行可能還會收取跨國手續費，建議一次領取足夠金額）。</li>
                     </ul>
                 </div>
-                
-                <!-- 💡 更新的實體銀行換匯卡片 -->
-                <div class="info-card">
-                    <h4><i class="fa-solid fa-building-columns"></i> <span data-i18n="bank-title">實體銀行換匯</span></h4>
-                    <p data-i18n="bank-desc" style="margin-bottom: 12px;">如果您手邊持有外幣現鈔（如美金、日圓、歐元）需要兌換成新台幣，前往銀行就有提供外匯業務的實體銀行。</p>
-                    <ul style="padding-left: 18px;">
-                        <li data-i18n="bank-li1" style="margin-bottom: 10px;"></li>
-                        <li data-i18n="bank-li4" style="margin-bottom: 10px;"></li>
-                        <li data-i18n="bank-li2" style="margin-bottom: 10px;">營業時間：平日（週一至週五）09:00 - 15:30，週末與國定假日休息。</li>
-                        <li data-i18n="bank-li3">注意事項：在台灣的銀行辦理任何換匯業務，都規定必須出示護照正本 (Passport)。實際匯率與手續費，依各分行現場公告為主。</li>
+
+                <!-- 實體銀行換匯 -->
+                <div
+                    class="bg-white p-6 rounded-xl border border-ink/10 shadow-sm hover:border-ink/30 transition-colors">
+                    <h4 class="font-bold text-primary text-lg mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-building-columns text-accent"></i> <span
+                            data-i18n="bank-title">實體銀行換匯</span>
+                    </h4>
+                    <p class="text-sm text-ink-light mb-4" data-i18n="bank-desc">
+                        如果您手邊持有外幣現鈔（如美金、日圓、歐元）需要兌換成新台幣，前往銀行就有提供外匯業務的實體銀行。</p>
+                    <ul class="list-none text-sm text-ink-light space-y-3">
+                        <li data-i18n="bank-li1" class="bg-paper p-3 rounded-lg border border-ink/5"><strong>第一銀行
+                                大稻埕分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行'
+                                target='_blank'
+                                class='map-link hover:text-primary transition-colors underline decoration-ink/20 hover:decoration-primary'><i
+                                    class='fa-solid fa-location-dot'></i> 台北市大同區迪化街一段 63 號</a>（迪化街主街上）。</li>
+                        <li data-i18n="bank-li4" class="bg-paper p-3 rounded-lg border border-ink/5"><strong>臺灣銀行
+                                延平分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行'
+                                target='_blank'
+                                class='map-link hover:text-primary transition-colors underline decoration-ink/20 hover:decoration-primary'><i
+                                    class='fa-solid fa-location-dot'></i> 台北市大同區南京西路 163 號</a>（換匯免手續費）。</li>
+                        <li data-i18n="bank-li2" class="flex gap-2 items-start"><i
+                                class="fa-regular fa-clock text-accent mt-1"></i>營業時間：平日（週一至週五）09:00 - 15:30，週末與國定假日休息。
+                        </li>
+                        <li data-i18n="bank-li3" class="flex gap-2 items-start"><i
+                                class="fa-regular fa-address-card text-accent mt-1"></i>注意事項：在台灣的銀行辦理任何換匯業務，都規定必須出示護照正本
+                            (Passport)。實際匯率與手續費，依各分行現場公告為主。</li>
                     </ul>
                 </div>
+            </div>
 
-                <div class="info-card">
-                    <h4><i class="fa-solid fa-lightbulb"></i> <span data-i18n="kiosk-title">旅客專屬：自動外幣兌換機</span></h4>
-                    <p data-i18n="kiosk-desc">為了因應大稻埕龐大的觀光人潮，如果您急需小額現金又逢銀行下班時間，可以尋找自動兌幣機（例如：新光銀行 會有外幣兌換機）。部分據點設置專屬台灣與外國旅客可操作的兌換機，支援美金、日幣等主流幣種直接兌換新台幣，填補晚間逛街無處換匯的空窗。</p>
-                </div>
+            <!-- 自動兌幣機與簡易指南 -->
+            <div class="mt-6 bg-[#fffaf0] border border-[#ffe0b2] p-6 md:p-8 rounded-xl shadow-sm relative z-10">
+                <h4 class="text-xl font-serif font-bold text-primary mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-money-bill-transfer text-accent"></i> <span
+                        data-i18n="guide-cash-title">簡單明瞭的外幣現鈔換台幣指南</span>
+                </h4>
 
-                <div class="info-card" style="grid-column: 1 / -1; background-color: #fffaf0; border: 1px solid #ffe0b2;">
-                    <h4 style="color: var(--primary-bg); font-size: 1.2rem; margin-bottom: 15px;">
-                        <i class="fa-solid fa-money-bill-transfer"></i> <span data-i18n="guide-cash-title">簡單明瞭的外幣現鈔換台幣指南</span>
-                    </h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                        <div>
-                            <h5 data-i18n="guide-step1-title" style="color: #555; margin-bottom: 10px; font-size: 1.05rem;">1. 換匯流程</h5>
-                            <ul style="padding-left: 20px; font-size: 0.95rem;">
-                                <li data-i18n="guide-step1-1" style="margin-bottom: 8px;"><strong>準備物品：</strong>帶好「外幣現鈔」與「身分證」（外籍人士帶護照或居留證）。</li>
-                                <li data-i18n="guide-step1-2" style="margin-bottom: 8px;"><strong>選擇地點：</strong>前往有外匯業務的銀行或郵局。</li>
-                                <li data-i18n="guide-step1-3"><strong>臨櫃辦理：</strong>抽號碼牌 ➔ 告訴行員要「外幣換台幣」 ➔ 填寫外匯買賣水單 ➔ 行員驗明鈔票真偽與計算金額 ➔ 領取台幣現金。</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h5 data-i18n="guide-step2-title" style="color: #555; margin-bottom: 10px; font-size: 1.05rem;">2. 手續費怎麼算？</h5>
-                            <ul style="padding-left: 20px; font-size: 0.95rem;">
-                                <li data-i18n="guide-step2-1" style="margin-bottom: 8px;"><strong>完全免費：</strong>市區的一般「臺灣銀行」、「兆豐銀行」或指定「郵局」（郵局只收美金、日圓、港幣、歐元、人民幣）。</li>
-                                <li data-i18n="guide-step2-2"><strong>要收手續費的情況：</strong>機場櫃檯（約 100 元）、一般民營銀行（約 100～300 元）、特殊舊版或破損鈔票。</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h5 data-i18n="guide-step3-title" style="color: #555; margin-bottom: 10px; font-size: 1.05rem;">3. 三大注意事項</h5>
-                            <ul style="padding-left: 20px; font-size: 0.95rem;">
-                                <li data-i18n="guide-step3-1" style="margin-bottom: 8px;"><strong>銀行不收硬幣：</strong>台灣所有銀行和郵局只收紙鈔，外國硬幣無法兌換。</li>
-                                <li data-i18n="guide-step3-2" style="margin-bottom: 8px;"><strong>鈔票不能太破舊：</strong>有破洞、明顯污漬、塗鴉或撕裂修補過，銀行可能拒收或加收處理費。</li>
-                                <li data-i18n="guide-step3-3"><strong>匯率看「現金買入」：</strong>請對照匯率看板的「現金買入」欄位，代表銀行用現金向你買進外幣的價格。</li>
-                            </ul>
-                        </div>
+                <p class="text-sm text-ink-light mb-8 bg-white p-4 rounded-lg border border-ink/5"
+                    data-i18n="kiosk-desc">
+                    為了因應大稻埕龐大的觀光人潮，如果您急需小額現金又逢銀行下班時間，可以尋找自動兌幣機（例如：新光銀行會有外幣兌換機）。部分據點設置專屬台灣與外國旅客可操作的兌換機，支援美金、日幣等主流幣種直接兌換新台幣，填補晚間逛街無處換匯的空窗。
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <h5 class="font-bold text-ink mb-3 text-base border-b-2 border-accent/30 inline-block pb-1"
+                            data-i18n="guide-step1-title">1. 換匯流程</h5>
+                        <ul class="list-disc pl-5 text-sm text-ink-light space-y-2">
+                            <li data-i18n="guide-step1-1"><strong>準備物品：</strong>帶好「外幣現鈔」與「身分證」（外籍人士帶護照或居留證）。</li>
+                            <li data-i18n="guide-step1-2"><strong>選擇地點：</strong>前往有外匯業務的銀行或郵局。</li>
+                            <li data-i18n="guide-step1-3"><strong>臨櫃辦理：</strong>抽號碼牌 ➔ 告訴行員要「外幣換台幣」 ➔ 填寫外匯買賣水單 ➔
+                                行員驗明鈔票真偽與計算金額 ➔ 領取台幣現金。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-ink mb-3 text-base border-b-2 border-accent/30 inline-block pb-1"
+                            data-i18n="guide-step2-title">2. 手續費怎麼算？</h5>
+                        <ul class="list-disc pl-5 text-sm text-ink-light space-y-2">
+                            <li data-i18n="guide-step2-1">
+                                <strong>完全免費：</strong>市區的一般「臺灣銀行」、「兆豐銀行」或指定「郵局」（郵局只收美金、日圓、港幣、歐元、人民幣）。
+                            </li>
+                            <li data-i18n="guide-step2-2"><strong>要收手續費的情況：</strong>機場櫃檯（約 100 元）、一般民營銀行（約 100～300
+                                元）、特殊舊版或破損鈔票。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-ink mb-3 text-base border-b-2 border-accent/30 inline-block pb-1"
+                            data-i18n="guide-step3-title">3. 三大注意事項</h5>
+                        <ul class="list-disc pl-5 text-sm text-ink-light space-y-2">
+                            <li data-i18n="guide-step3-1"><strong>銀行不收硬幣：</strong>台灣所有銀行和郵局只收紙鈔，外國硬幣無法兌換。</li>
+                            <li data-i18n="guide-step3-2"><strong>鈔票不能太破舊：</strong>有破洞、明顯污漬、塗鴉或撕裂修補過，銀行可能拒收或加收處理費。</li>
+                            <li data-i18n="guide-step3-3"><strong>匯率看「現金買入」：</strong>請對照匯率看板的「現金買入」欄位，代表銀行用現金向你買進外幣的價格。
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-top">
-            <div class="footer-col">
-                <h4 style="display: flex; align-items: center; gap: 8px;">
-    <img src="images/Dadaocheng-Web.webp" alt="Logo" style="width: 100px; height: 100px; object-fit: contain; border-radius: 4px;"><span data-i18n="site-title">大稻埕特色店家</span></h4>
-                <p data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
+    <!-- 獨立刊物風頁尾 (保持同步) -->
+    <footer class="mt-auto border-t-4 border-primary bg-paper pb-8 pt-16 relative overflow-hidden">
+        <div
+            class="absolute -top-32 -right-20 w-96 h-96 bg-tag-bg rounded-full opacity-40 blur-3xl pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-12 relative z-10">
+            <div class="flex flex-col items-start gap-5">
+                <h4 class="flex items-center gap-4 text-xl font-serif font-bold text-ink">
+                    <img src="images/Dadaocheng-Web.webp" alt="Logo" width="64" height="64"
+                        class="w-16 h-16 object-contain rounded-xl border-2 border-ink/10 shadow-sm" loading="lazy">
+                    <span data-i18n="site-title">大稻埕特色店家</span>
+                </h4>
+                <p class="text-ink-light text-sm tracking-wide" data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
             </div>
-            <div class="footer-col">
-                <h4>Dadaocheng Guide</h4>
-                <p data-i18n="footer-desc2">所有店家資訊僅供參考，請以實際營業狀況為準。</p>
+
+            <div class="flex flex-col md:items-end gap-3 text-left md:text-right">
+                <h4 class="text-lg font-bold text-ink tracking-wider font-serif">Dadaocheng Guide</h4>
+                <p class="text-ink-light text-sm mb-2" data-i18n="footer-desc2">所有店家資訊僅供參考，請以實際營業狀況為準。</p>
+
+                <div
+                    class="bg-white/70 backdrop-blur-sm border-2 border-ink/10 p-5 rounded-xl shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] w-full md:w-80 text-left mt-2 relative group hover:border-ink/30 transition-colors">
+                    <h4 class="text-ink font-bold mb-2 flex items-center gap-2">
+                        <i
+                            class="fa-solid fa-pen-nib text-accent transform group-hover:rotate-12 transition-transform"></i>
+                        <span data-i18n="feedback-title">改善地方建議</span>
+                    </h4>
+                    <p class="text-ink-light text-xs mb-5 leading-relaxed" data-i18n="feedback-sub">
+                        您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。</p>
+                    <a href="https://forms.gle/4DoTH5v3u52vj2FU9" target="_blank" rel="noopener noreferrer"
+                        class="inline-block bg-ink text-white text-sm font-bold px-6 py-2.5 rounded-full hover:bg-primary transition-colors shadow-md w-full text-center"
+                        data-i18n="feedback-btn">
+                        前往填寫表單
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="feedback-section">
-            <h4 style="margin-bottom: 8px;" data-i18n="feedback-title">改善地方建議</h4>
-            <p data-i18n="feedback-sub">您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。</p>
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="https://forms.gle/4DoTH5v3u52vj2FU9" target="_blank" rel="noopener noreferrer" class="submit-btn" style="text-decoration: none; display: inline-block;" data-i18n="feedback-btn">
-                    前往填寫表單
-                </a>
-            </div>
-        </div>
-        <div class="copyright">
-            © 2026 Dadaocheng Guide. All rights reserved.<br>
-            <span style="font-size: 1em; color: #555; margin-top: 8px; display: inline-block;">
-                <i class="fa-solid fa-clock-rotate-left"></i> <span data-i18n="update-label">店家資料最後更新：</span><span id="update-time">讀取中...</span>
-            </span>
+
+        <div
+            class="max-w-7xl mx-auto px-5 mt-16 pt-8 border-t border-ink/15 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-ink-light relative z-10">
+            <div class="tracking-widest">© 2026 Dadaocheng Guide. All rights reserved.</div>
         </div>
     </footer>
 
-    <!-- 多語系翻譯腳本 -->
+    <!-- 多語系切換腳本 -->
     <script>
         const i18n = {
             "zh": {
@@ -327,22 +512,18 @@
                 "tag-hsr": "高鐵訂票", "desc-hsr": "台灣高鐵官方APP，手機直接買票，進站只要刷手機條碼，跨縣市移動最方便。",
                 "cat-ride": "叫車與單車租借", "tag-uber": "叫車載客", "desc-uber": "在台灣的系統與國外完全相同，綁定信用卡付款，不怕語言不通或被繞路。",
                 "tag-bike": "共享單車", "desc-bike": "全球馳名的微型單車租借系統好騎無比，在大稻埕小巷弄穿梭的絕佳交通工具。",
-                
                 "guide-title": "現金提款與換匯指南", "guide-sub": "雖然大稻埕許多特色店家已提供電子支付或信用卡，但傳統小吃、夜市等仍只收現金。以下是獲取新台幣的最方便方式：",
-                "guide-warning": "<strong>匯率陷阱！避免選擇動態貨幣轉換 (DCC)</strong><br>當您在 ATM 提款或刷卡時，如果螢幕詢問您要使用「當地貨幣(台幣)」還是「母國貨幣」結帳，請務必選擇<strong>「新台幣 (TWD) / 本國貨幣」</strong>。若選擇母國貨幣（即動態貨幣轉換 DCC），ATM 將會使用極差的匯率計算，您可能會因此多付 3%~7% 的隱藏費用。",
+                "guide-warning": "<strong class='text-accent text-base block mb-1'>匯率陷阱！避免選擇動態貨幣轉換 (DCC)</strong>當您在 ATM 提款或刷卡時，如果螢幕詢問您要使用「當地貨幣(台幣)」還是「母國貨幣」結帳，請務必選擇<strong class='text-accent'>「新台幣 (TWD) / 本國貨幣」</strong>。若選擇母國貨幣（即動態貨幣轉換 DCC），ATM 將會使用極差的匯率計算，您可能會因此多付 3%~7% 的隱藏費用。",
                 "atm-title": "24小時便利商店跨國提款", "atm-desc": "台灣的便利商店密集度極高，是外國旅客領取現金最方便的管道。",
                 "atm-li1": "哪裡可以領？尋找 7-ELEVEN (內建中國信託 ATM) 或 全家便利商店 (內建台新或國泰世華 ATM)。大稻埕周邊步行5分鐘內皆有便利商店。",
-                "atm-li2": "支援卡片：機台上若貼有 Visa, Mastercard, PLUS, Cirrus, UnionPay (銀聯) 等標誌，即可使用國外提款卡領取新台幣(TWD)。",
+                "atm-li2": "支援卡片：機台上若貼有 Visa, Mastercard, PLUS, Cirrus, UnionPay 等標誌，即可使用國外提款卡領取新台幣(TWD)。",
                 "atm-li3": "手續費：台灣本地銀行通常會收每筆約 NT$100 的設備手續費（您的發卡銀行可能還會收取跨國手續費，建議一次領取足夠金額）。",
                 "bank-title": "實體銀行換匯", "bank-desc": "如果您手邊持有外幣現鈔（如美金、日圓、歐元）需要兌換成新台幣，前往銀行就有提供外匯業務的實體銀行。",
-                
-                "bank-li1": "<strong>第一銀行 大稻埕分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 台北市大同區迪化街一段 63 號</a>（迪化街主街上）。",
-                "bank-li4": "<strong>臺灣銀行 延平分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 台北市大同區南京西路 163 號</a>（換匯免手續費）。",
-                
+                "bank-li1": "<strong>第一銀行 大稻埕分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link hover:text-primary transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同區迪化街一段 63 號</a>（迪化街主街上）。",
+                "bank-li4": "<strong>臺灣銀行 延平分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link hover:text-primary transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同區南京西路 163 號</a>（換匯免手續費）。",
                 "bank-li2": "營業時間：平日（週一至週五）09:00 - 15:30，週末與國定假日休息。",
                 "bank-li3": "注意事項：在台灣的銀行辦理任何換匯業務，都規定必須出示護照正本 (Passport)。實際匯率與手續費，依各分行現場公告為主。",
-                "kiosk-title": "旅客專屬：自動外幣兌換機", "kiosk-desc": "為了因應大稻埕龐大的觀光人潮，如果您急需小額現金又逢銀行下班時間，可以尋找自動兌幣機（例如：新光銀行 會有外幣兌換機）。部分據點設置專屬台灣與外國旅客可操作的兌換機，支援美金、日幣等主流幣種直接兌換新台幣，填補晚間逛街無處換匯的空窗。",
-                
+                "kiosk-desc": "為了因應大稻埕龐大的觀光人潮，如果您急需小額現金又逢銀行下班時間，可以尋找自動兌幣機（例如：新光銀行會有外幣兌換機）。部分據點設置專屬台灣與外國旅客可操作的兌換機，支援美金、日幣等主流幣種直接兌換新台幣，填補晚間逛街無處換匯的空窗。",
                 "guide-cash-title": "簡單明瞭的外幣現鈔換台幣指南",
                 "guide-step1-title": "1. 換匯流程",
                 "guide-step1-1": "<strong>準備物品：</strong>帶好「外幣現鈔」與「身分證」（外籍人士帶護照或居留證）。",
@@ -355,10 +536,8 @@
                 "guide-step3-1": "<strong>銀行不收硬幣：</strong>台灣所有銀行和郵局只收紙鈔，外國硬幣無法兌換。",
                 "guide-step3-2": "<strong>鈔票不能太破舊：</strong>有破洞、明顯污漬、塗鴉或撕裂修補過，銀行可能拒收或加收處理費。",
                 "guide-step3-3": "<strong>匯率看「現金買入」：</strong>請對照匯率看板的「現金買入」欄位，代表銀行用現金向你買進外幣的價格。",
-
                 "footer-desc1": "本指南由社群共編，持續更新中。", "footer-desc2": "所有店家資訊僅供參考，請以實際營業狀況為準。",
-                "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。",
-                "feedback-btn": "前往填寫表單", "update-label": "店家資料最後更新："
+                "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。", "feedback-btn": "前往填寫表單"
             },
             "en": {
                 "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help",
@@ -370,179 +549,128 @@
                 "tag-hsr": "HSR Tickets", "desc-hsr": "Official High-Speed Rail app. Buy tickets and scan your phone to enter gates.",
                 "cat-ride": "Ride-Hailing & Bikes", "tag-uber": "Ride-Hailing", "desc-uber": "The same Uber system used worldwide. Link your card to avoid cash or language barriers.",
                 "tag-bike": "Bike Sharing", "desc-bike": "World-renowned bike-sharing system. The perfect way to navigate Dadaocheng's narrow alleys.",
-                
-                "guide-title": "Cash Withdrawal & Exchange Guide", "guide-sub": "While many shops accept cards, traditional street food and markets still require cash. Here is the easiest way to get NTD:",
-                "guide-warning": "<strong>Exchange Rate Trap! Avoid DCC</strong><br>When withdrawing cash or paying by card, if asked to be charged in your 'Home Currency' or 'Local Currency', ALWAYS choose <strong>'Local Currency (NTD)'</strong>. Choosing your home currency (Dynamic Currency Conversion) uses poor exchange rates, adding 3%-7% in hidden fees.",
+                "guide-title": "Cash Withdrawal & Exchange", "guide-sub": "While many shops accept cards, traditional street food and markets still require cash. Here is the easiest way to get NTD:",
+                "guide-warning": "<strong class='text-accent text-base block mb-1'>Exchange Rate Trap! Avoid DCC</strong>When withdrawing cash or paying by card, if asked to be charged in your 'Home Currency' or 'Local Currency', ALWAYS choose <strong class='text-accent'>'Local Currency (NTD)'</strong>. Choosing your home currency (Dynamic Currency Conversion) uses poor exchange rates, adding 3%-7% in hidden fees.",
                 "atm-title": "24H Convenience Store ATMs", "atm-desc": "Taiwan has a high density of convenience stores, making them the easiest way for tourists to get cash.",
                 "atm-li1": "Where? Look for 7-ELEVEN (CTBC Bank ATMs) or FamilyMart (Taishin or Cathay United ATMs). Stores are within a 5-min walk in Dadaocheng.",
                 "atm-li2": "Supported Cards: Look for Visa, Mastercard, PLUS, Cirrus, or UnionPay logos on the machine to withdraw NTD using your foreign card.",
-                "atm-li3": "Fees: Local banks usually charge a ~NT$100 machine fee per withdrawal (your home bank may also charge foreign transaction fees, so withdrawing larger amounts at once is recommended).",
+                "atm-li3": "Fees: Local banks usually charge a ~NT$100 machine fee per withdrawal (your home bank may also charge foreign transaction fees).",
                 "bank-title": "Bank Currency Exchange", "bank-desc": "If you have foreign cash (e.g., USD, JPY, EUR) and need NTD, you can exchange it at physical bank branches.",
-                
-                "bank-li1": "<strong>First Bank Dadaocheng Branch:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> No. 63, Sec. 1, Dihua St.</a> (On the main street).",
-                "bank-li4": "<strong>Bank of Taiwan Yanping Branch:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> No. 163, Nanjing W. Rd.</a> (No exchange fee).",
-                
-                "bank-li2": "Hours: Weekdays (Mon-Fri) 09:00 - 15:30. Closed on weekends and public holidays.",
-                "bank-li3": "Note: You MUST present your original Passport to exchange currency in Taiwan. Exchange rates and fees depend on the branch's daily announcements.",
-                "kiosk-title": "Foreign Currency Exchange Kiosks", "kiosk-desc": "If you need a small amount of cash outside bank hours, look for automated exchange kiosks (e.g., Shin Kong Bank ATMs). Some locations offer machines supporting major currencies like USD and JPY, filling the gap for evening shoppers.",
-
+                "bank-li1": "<strong>First Bank Dadaocheng Branch:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link hover:text-primary transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> No. 63, Sec. 1, Dihua St.</a>",
+                "bank-li4": "<strong>Bank of Taiwan Yanping Branch:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link hover:text-primary transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> No. 163, Nanjing W. Rd.</a> (No exchange fee).",
+                "bank-li2": "Hours: Weekdays (Mon-Fri) 09:00 - 15:30. Closed on weekends and holidays.",
+                "bank-li3": "Note: You MUST present your original Passport to exchange currency in Taiwan.",
+                "kiosk-desc": "If you need a small amount of cash outside bank hours, look for automated exchange kiosks (e.g., Shin Kong Bank ATMs). Some locations offer machines supporting major currencies like USD and JPY.",
                 "guide-cash-title": "Simple Guide to Exchanging Foreign Cash",
                 "guide-step1-title": "1. Exchange Process",
-                "guide-step1-1": "<strong>What to bring:</strong> Foreign cash and ID (Passport or ARC for foreigners).",
+                "guide-step1-1": "<strong>What to bring:</strong> Foreign cash and ID (Passport).",
                 "guide-step1-2": "<strong>Where to go:</strong> Banks or Post Offices handling foreign exchange.",
-                "guide-step1-3": "<strong>At the counter:</strong> Take a number ➔ Tell the teller 'exchange foreign currency to NTD' ➔ Fill out the form ➔ Teller verifies and calculates ➔ Receive NTD.",
+                "guide-step1-3": "<strong>At the counter:</strong> Take a number ➔ Tell the teller 'exchange foreign currency to NTD' ➔ Fill out the form ➔ Receive NTD.",
                 "guide-step2-title": "2. How are fees calculated?",
-                "guide-step2-1": "<strong>Free of charge:</strong> Bank of Taiwan, Mega Bank, or designated Post Offices (Post Office only accepts USD, JPY, HKD, EUR, CNY).",
-                "guide-step2-2": "<strong>Fees apply:</strong> Airport counters (~NT$100), private banks (NT$100~300), or old/damaged banknotes.",
-                "guide-step3-title": "3. Three Major Precautions",
+                "guide-step2-1": "<strong>Free of charge:</strong> Bank of Taiwan, Mega Bank, or designated Post Offices (Post Office accepts USD, JPY, EUR).",
+                "guide-step2-2": "<strong>Fees apply:</strong> Airport counters (~NT$100), private banks, or old/damaged banknotes.",
+                "guide-step3-title": "3. Three Precautions",
                 "guide-step3-1": "<strong>No coins accepted:</strong> Banks and post offices in Taiwan only accept paper bills.",
-                "guide-step3-2": "<strong>Condition of banknotes:</strong> Torn, heavily stained, drawn on, or taped bills may be rejected or incur high processing fees.",
-                "guide-step3-3": "<strong>Check 'Cash Buying' Rate:</strong> Look at the 'Cash Buying' column on the exchange rate board, which is the price the bank buys your foreign cash.",
-
-                "footer-desc1": "This guide is co-edited by the community and continuously updated.", "footer-desc2": "Store information is for reference only.",
-                "feedback-title": "Suggestions for Improvement", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!",
-                "feedback-btn": "Fill out Feedback Form", "update-label": "Data Last Updated: "
+                "guide-step3-2": "<strong>Condition of banknotes:</strong> Torn or heavily stained bills may be rejected.",
+                "guide-step3-3": "<strong>Check 'Cash Buying' Rate:</strong> Look at the 'Cash Buying' column on the exchange rate board.",
+                "footer-desc1": "This guide is co-edited by the community.", "footer-desc2": "Store information is for reference only.",
+                "feedback-title": "Suggestions", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!", "feedback-btn": "Feedback Form"
             },
             "ja": {
                 "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート",
-                "app-page-title": "外国人旅行者必須のツール", "app-page-sub": "台湾の旅をよりスムーズに！最も実用的な交通・グルメ・生活アプリをまとめました。",
-                "cat-map": "地図とナビゲーション", "tag-nav": "ナビゲーション", "desc-google": "ナビゲーション、公共交通機関の検索、渋滞情報など、目的地を探すための必須ツールです。",
-                "cat-transit": "公共交通機関と鉄道", "tag-bus": "バス運行状況", "desc-bus": "台湾全土のバスのリアルタイム検索。バス待ちに必須の使いやすいアプリ。",
+                "app-page-title": "外国人旅行者必須のツール", "app-page-sub": "台湾の旅をよりスムーズに！最も実用的な交通・生活アプリをまとめました。",
+                "cat-map": "地図とナビ", "tag-nav": "ナビ", "desc-google": "ナビゲーション、公共交通機関の検索など、目的地を探すための必須ツール。",
+                "cat-transit": "公共交通機関と鉄道", "tag-bus": "バス運行状況", "desc-bus": "台湾全土のバスのリアルタイム検索。バス待ちに必須のアプリ。",
                 "app-mrt": "台北捷運 Go", "tag-mrt": "地下鉄路線", "desc-mrt": "台北MRTの路線図、運賃、始発・終電時間を検索可能。",
                 "app-tra": "台鉄e予約", "tag-train": "列車の予約", "desc-tra": "台湾鉄道の公式アプリ。時刻表検索やオンライン予約が可能。",
                 "tag-hsr": "新幹線の予約", "desc-hsr": "台湾新幹線の公式アプリ。スマホで直接乗車券を購入し、改札を通れます。",
-                "cat-ride": "配車・シェアサイクル", "tag-uber": "配車サービス", "desc-uber": "言葉が通じなくても安心して利用可能。カード決済で支払いもスムーズです。",
-                "tag-bike": "シェアサイクル", "desc-bike": "世界的に有名なシェアサイクル。大稲埕の路地裏をスイスイ移動できる最高の交通手段です。",
-                
-                "guide-title": "現金引き出しと両替ガイド", "guide-sub": "多くのお店でカードが使えますが、屋台や市場では現金が必要です。台湾ドルを入手する最も便利な方法：",
-                "guide-warning": "<strong>為替レートの罠！DCC（動的通貨換算）を回避</strong><br>ATMやカード決済時、「現地通貨（台湾ドル）」または「自国通貨」のどちらで決済するか問われた場合は、必ず<strong>「現地通貨（NTD）」</strong>を選択してください。自国通貨を選ぶと、不利なレートが適用され、3〜7%の隠れ手数料が発生する可能性があります。",
+                "cat-ride": "配車・シェアサイクル", "tag-uber": "配車サービス", "desc-uber": "言葉が通じなくても安心して利用可能。カード決済で支払いもスムーズ。",
+                "tag-bike": "シェアサイクル", "desc-bike": "大稲埕の路地裏をスイスイ移動できる最高の交通手段です。",
+                "guide-title": "現金引き出しと両替ガイド", "guide-sub": "屋台や市場では現金が必要です。台湾ドルを入手する最も便利な方法：",
+                "guide-warning": "<strong class='text-accent text-base block mb-1'>為替レートの罠！DCCを回避</strong>ATMやカード決済時、「現地通貨（台湾ドル）」または「自国通貨」のどちらで決済するか問われた場合は、必ず<strong class='text-accent'>「現地通貨（NTD）」</strong>を選択してください。自国通貨を選ぶと、不利なレートが適用されます。",
                 "atm-title": "24時間コンビニでのキャッシング", "atm-desc": "台湾はコンビニが非常に多く、外国人旅行者が現金を手に入れる最も便利な方法です。",
-                "atm-li1": "どこで？ 7-ELEVEN（CTBC銀行ATM）またはファミリーマート（台新銀行・國泰世華銀行ATM）を探してください。大稲埕周辺には徒歩5分圏内に多数あります。",
-                "atm-li2": "対応カード：Visa、Mastercard、PLUS、Cirrus、UnionPay（銀聯）などのマークがあるATMで、海外のキャッシュカードでNTDを引き出せます。",
-                "atm-li3": "手数料：台湾の銀行で1回につき約NT$100の手数料がかかります（ご利用の銀行でも海外手数料が発生する場合があります。一度に十分な額を引き出すことをお勧めします）。",
-                "bank-title": "銀行での外貨両替", "bank-desc": "外貨の現金（米ドル、日本円、ユーロなど）をお持ちで台湾ドルに両替したい場合は、外為業務を行う銀行へお越しください。",
-                
-                "bank-li1": "<strong>第一銀行 大稲埕支店：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 台北市大同区迪化街一段63号</a>（メインストリート沿い）。",
-                "bank-li4": "<strong>台湾銀行 延平支店：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 台北市大同区南京西路163号</a>（両替手数料無料）。",
-                
+                "atm-li1": "どこで？ 7-ELEVEN またはファミリーマートを探してください。大稲埕周辺には徒歩5分圏内に多数あります。",
+                "atm-li2": "対応カード：Visa、MastercardなどのマークがあるATMで、海外のキャッシュカードでNTDを引き出せます。",
+                "atm-li3": "手数料：台湾の銀行で1回につき約NT$100の手数料がかかります。",
+                "bank-title": "銀行での外貨両替", "bank-desc": "外貨の現金をお持ちで台湾ドルに両替したい場合は、外為業務を行う銀行へお越しください。",
+                "bank-li1": "<strong>第一銀行 大稲埕支店：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link hover:text-primary transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同区迪化街一段63号</a>",
+                "bank-li4": "<strong>台湾銀行 延平支店：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link hover:text-primary transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同区南京西路163号</a>（両替手数料無料）。",
                 "bank-li2": "営業時間：平日（月〜金）09:00 - 15:30。週末および祝日は休業。",
-                "bank-li3": "注意事項：台湾の銀行で両替をする際は、必ずパスポートの原本が必要です。実際のレートや手数料は各店舗の掲示に従います。",
-                "kiosk-title": "自動外貨両替機", "kiosk-desc": "銀行の営業時間外に少額の現金が必要な場合は、自動両替機（例：新光銀行の機械など）を探してみてください。米ドルや日本円などの主要通貨に対応しており、夜間の散策時に便利です。",
-
+                "bank-li3": "注意事項：両替をする際は、必ずパスポートの原本が必要です。",
+                "kiosk-desc": "銀行の営業時間外に少額の現金が必要な場合は、自動両替機を探してみてください。米ドルや日本円などの主要通貨に対応しています。",
                 "guide-cash-title": "外貨現金の台湾ドル両替ガイド",
                 "guide-step1-title": "1. 両替の手順",
-                "guide-step1-1": "<strong>必要なもの：</strong> 外貨の現金と身分証明書（外国人はパスポートまたは居留証）。",
-                "guide-step1-2": "<strong>場所：</strong> 外国為替業務を行っている銀行または郵便局。",
-                "guide-step1-3": "<strong>窓口にて：</strong> 整理券を取る ➔ 「台湾ドルに両替したい」と伝える ➔ 申込書に記入 ➔ 担当者が紙幣を確認・計算 ➔ 台湾ドルの現金を受け取る。",
+                "guide-step1-1": "<strong>必要なもの：</strong> 外貨の現金とパスポート。",
+                "guide-step1-2": "<strong>場所：</strong> 外国為替業務を行っている銀行。",
+                "guide-step1-3": "<strong>窓口にて：</strong> 「台湾ドルに両替したい」と伝える ➔ 申込書に記入 ➔ 台湾ドルの現金を受け取る。",
                 "guide-step2-title": "2. 手数料について",
-                "guide-step2-1": "<strong>手数料無料：</strong> 市内の「台湾銀行」、「兆豊銀行」、または指定の「郵便局」（郵便局は米ドル、日本円、香港ドル、ユーロ、人民元のみ）。",
-                "guide-step2-2": "<strong>手数料がかかる場合：</strong> 空港の窓口（約100元）、一般の民間銀行（100〜300元）、旧紙幣や破損した紙幣。",
-                "guide-step3-title": "3. 3つの重要な注意事項",
-                "guide-step3-1": "<strong>硬貨は不可：</strong> 台湾のすべての銀行・郵便局は紙幣のみ受け付けます。外国の硬貨は両替できません。",
-                "guide-step3-2": "<strong>紙幣の状態：</strong> 破れ、目立つ汚れ、落書き、テープでの補修がある場合、両替を拒否されるか、高い処理手数料を請求されることがあります。",
-                "guide-step3-3": "<strong>レートは「Cash Buying（現金買入）」を確認：</strong> 銀行のレート表を見る際は、「現金買入」の欄を確認してください。",
-
-                "footer-desc1": "このガイドはコミュニティによって共同編集・更新されています。", "footer-desc2": "店舗情報は参考用です。実際の営業状況をご確認ください。",
-                "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見が、大稲埕をより良くする原動力です！",
-                "feedback-btn": "フォームに記入する", "update-label": "データ最終更新："
+                "guide-step2-1": "<strong>手数料無料：</strong> 台湾銀行、兆豊銀行など。",
+                "guide-step2-2": "<strong>手数料がかかる場合：</strong> 一般の民間銀行（100〜300元）、旧紙幣や破損した紙幣。",
+                "guide-step3-title": "3. 注意事項",
+                "guide-step3-1": "<strong>硬貨は不可：</strong> 外国の硬貨は両替できません。",
+                "guide-step3-2": "<strong>紙幣の状態：</strong> 破れや目立つ汚れがある場合、両替を拒否されることがあります。",
+                "guide-step3-3": "<strong>レートは「Cash Buying（現金買入）」を確認。</strong>",
+                "footer-desc1": "このガイドはコミュニティによって更新されています。", "footer-desc2": "店舗情報は参考用です。",
+                "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見をお待ちしております！", "feedback-btn": "フォームに記入"
             },
             "ko": {
                 "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원",
                 "app-page-title": "외국인 여행객 필수 도구", "app-page-sub": "대만 여행을 더욱 순조롭게! 교통, 음식 및 생활 필수 앱을 정리했습니다.",
-                "cat-map": "지도 및 내비게이션", "tag-nav": "내비게이션", "desc-google": "내비게이션, 대중교통 경로 확인 및 실시간 교통 정보를 제공하는 필수 도구입니다.",
+                "cat-map": "지도 및 내비게이션", "tag-nav": "내비게이션", "desc-google": "내비게이션, 대중교통 경로 확인을 제공하는 필수 도구입니다.",
                 "cat-transit": "대중교통 및 기차", "tag-bus": "버스 실시간", "desc-bus": "대만 전역의 버스 실시간 검색. 깔끔하고 사용하기 쉽습니다.",
                 "app-mrt": "타이베이 MRT Go", "tag-mrt": "지하철 노선", "desc-mrt": "MRT 노선도, 요금 조회 및 첫/막차 시간을 제공합니다.",
-                "app-tra": "대만 철도 e예약", "tag-train": "기차 예매", "desc-tra": "대만 철도 공식 앱. 시간표 조회, 온라인 예매 및 모바일 티켓을 제공합니다.",
-                "tag-hsr": "고속철도 예매", "desc-hsr": "대만 고속철도 공식 앱. 휴대폰으로 바로 티켓을 구매하고 개찰구를 통과하세요.",
-                "cat-ride": "차량 호출 및 자전거", "tag-uber": "차량 호출", "desc-uber": "대만 우버 시스템은 전 세계와 동일합니다. 신용카드를 연동해 편리하게 이용하세요.",
-                "tag-bike": "공유 자전거", "desc-bike": "세계적으로 유명한 공유 자전거 시스템. 다다오청의 좁은 골목을 누비기 가장 좋습니다.",
-                
-                "guide-title": "현금 인출 및 환전 가이드", "guide-sub": "많은 상점에서 카드를 받지만 전통 길거리 음식과 시장에서는 여전히 현금이 필요합니다. 현금 인출 방법:",
-                "guide-warning": "<strong>환율 함정! DCC(해외원화결제) 피하기</strong><br>ATM 인출이나 카드 결제 시 '자국 통화'와 '현지 통화(대만 달러)' 중 선택하라는 메시지가 나오면 반드시 <strong>'현지 통화(NTD)'</strong>를 선택하세요. 자국 통화를 선택하면 불리한 환율이 적용되어 3~7%의 수수료가 추가될 수 있습니다.",
-                "atm-title": "24시간 편의점 해외 인출", "atm-desc": "대만은 편의점이 매우 많아 외국인 여행객이 현금을 찾기에 가장 편리합니다.",
-                "atm-li1": "어디서? 7-ELEVEN (CTBC 은행 ATM) 또는 패밀리마트 (Taishin 또는 Cathay 은행 ATM). 다다오청 주변 도보 5분 거리에 많이 있습니다.",
-                "atm-li2": "지원 카드: Visa, Mastercard, PLUS, Cirrus, UnionPay 등 마크가 있는 ATM에서 해외 카드로 대만 달러(NTD)를 인출할 수 있습니다.",
-                "atm-li3": "수수료: 대만 은행에서 건당 약 NT$100의 수수료를 부과합니다 (해당 카드사에서 별도의 해외 수수료를 부과할 수 있으므로 한 번에 충분한 금액을 인출하는 것을 권장합니다).",
-                "bank-title": "은행 환전", "bank-desc": "외화 현금(미국 달러, 일본 엔, 유로 등)을 대만 달러로 환전해야 한다면 외환 업무를 취급하는 은행을 방문하세요.",
-                
-                "bank-li1": "<strong>제일은행(First Bank) 다다오청 지점:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 타이베이시 다퉁구 디화제 1단 63호</a> (메인 거리 위치).",
-                "bank-li4": "<strong>대만은행(Bank of Taiwan) 옌핑 지점:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link'><i class='fa-solid fa-location-dot'></i> 타이베이시 다퉁구 난징서로 163호</a> (수수료 면제).",
-                
+                "app-tra": "대만 철도 e예약", "tag-train": "기차 예매", "desc-tra": "대만 철도 공식 앱. 시간표 조회, 온라인 예매를 제공합니다.",
+                "tag-hsr": "고속철도 예매", "desc-hsr": "대만 고속철도 공식 앱. 휴대폰으로 바로 티켓을 구매하세요.",
+                "cat-ride": "차량 호출 및 자전거", "tag-uber": "차량 호출", "desc-uber": "신용카드를 연동해 언어 장벽 없이 편리하게 이용하세요.",
+                "tag-bike": "공유 자전거", "desc-bike": "다다오청의 좁은 골목을 누비기 가장 좋은 교통수단입니다.",
+                "guide-title": "현금 인출 및 환전 가이드", "guide-sub": "전통 길거리 음식과 시장에서는 여전히 현금이 필요합니다.",
+                "guide-warning": "<strong class='text-accent text-base block mb-1'>환율 함정! DCC(해외원화결제) 피하기</strong>ATM 인출이나 카드 결제 시 반드시 <strong class='text-accent'>'현지 통화(NTD)'</strong>를 선택하세요. 자국 통화를 선택하면 불리한 환율이 적용되어 3~7%의 수수료가 추가될 수 있습니다.",
+                "atm-title": "24시간 편의점 해외 인출", "atm-desc": "대만은 편의점이 매우 많아 현금을 찾기에 가장 편리합니다.",
+                "atm-li1": "어디서? 7-ELEVEN 또는 패밀리마트. 다다오청 주변 도보 5분 거리에 많이 있습니다.",
+                "atm-li2": "지원 카드: Visa, Mastercard 등 마크가 있는 ATM에서 인출할 수 있습니다.",
+                "atm-li3": "수수료: 대만 은행에서 건당 약 NT$100의 수수료를 부과합니다.",
+                "bank-title": "은행 환전", "bank-desc": "외화 현금을 대만 달러로 환전해야 한다면 은행을 방문하세요.",
+                "bank-li1": "<strong>제일은행 다다오청 지점:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link hover:text-primary transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 타이베이시 다퉁구 디화제 1단 63호</a>",
+                "bank-li4": "<strong>대만은행 옌핑 지점:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link hover:text-primary transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 타이베이시 다퉁구 난징서로 163호</a> (수수료 면제).",
                 "bank-li2": "영업시간: 평일(월~금) 09:00 - 15:30. 주말 및 공휴일 휴무.",
-                "bank-li3": "주의사항: 대만 은행에서 환전 시 반드시 여권 원본을 제시해야 합니다. 실제 환율 및 수수료는 지점 안내에 따릅니다.",
-                "kiosk-title": "자동 외화 환전기", "kiosk-desc": "은행 영업시간 외에 소액 현금이 필요하다면 자동 환전기(예: 신광은행 환전기)를 찾아보세요. 미국 달러, 일본 엔 등 주요 통화를 지원하여 야간 쇼핑 시 유용합니다.",
-
+                "bank-li3": "주의사항: 대만 은행에서 환전 시 반드시 여권 원본을 제시해야 합니다.",
+                "kiosk-desc": "은행 영업시간 외에 소액 현금이 필요하다면 자동 환전기를 찾아보세요. 미국 달러, 일본 엔 등 주요 통화를 지원합니다.",
                 "guide-cash-title": "외화 현금 대만 달러 환전 가이드",
                 "guide-step1-title": "1. 환전 절차",
-                "guide-step1-1": "<strong>준비물:</strong> 외화 현금 및 신분증 (외국인은 여권 또는 거류증).",
-                "guide-step1-2": "<strong>장소:</strong> 외환 업무를 취급하는 은행 또는 우체국.",
-                "guide-step1-3": "<strong>창구 업무:</strong> 번호표 뽑기 ➔ 은행원에게 '대만 달러로 환전' 요청 ➔ 환전 신청서 작성 ➔ 위폐 감별 및 금액 계산 ➔ 대만 달러 현금 수령.",
+                "guide-step1-1": "<strong>준비물:</strong> 외화 현금 및 신분증 (여권).",
+                "guide-step1-2": "<strong>장소:</strong> 외환 업무를 취급하는 은행.",
+                "guide-step1-3": "<strong>창구 업무:</strong> 은행원에게 '대만 달러로 환전' 요청 ➔ 환전 신청서 작성 ➔ 현금 수령.",
                 "guide-step2-title": "2. 수수료 계산",
-                "guide-step2-1": "<strong>수수료 무료:</strong> 시내의 '대만은행(Bank of Taiwan)', '메가은행(Mega Bank)' 또는 지정 '우체국' (우체국은 USD, JPY, HKD, EUR, CNY만 가능).",
-                "guide-step2-2": "<strong>수수료 발생:</strong> 공항 창구 (약 100위안), 일반 민간 은행 (100~300위안), 구권 또는 훼손된 지폐.",
-                "guide-step3-title": "3. 3가지 주요 주의사항",
-                "guide-step3-1": "<strong>동전 환전 불가:</strong> 대만의 모든 은행과 우체국은 지폐만 취급하며, 외국 동전은 환전할 수 없습니다.",
-                "guide-step3-2": "<strong>지폐 상태:</strong> 구멍, 심한 얼룩, 낙서, 찢어짐 등 훼손된 지폐는 거절되거나 높은 처리 수수료가 부과될 수 있습니다.",
-                "guide-step3-3": "<strong>환율은 '현찰 살 때(Cash Buying)' 확인:</strong> 환율 전광판에서 은행이 고객의 외화를 매입하는 기준인 '현찰 살 때' 란을 확인하세요.",
-
-                "footer-desc1": "이 가이드는 커뮤니티가 공동으로 편집하며 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다. 실제 영업 상황을 확인해 주세요.",
-                "feedback-title": "개선 제안", "feedback-sub": "여러분의 의견은 다다오청을 발전시키는 원동력입니다! 제안을 환영합니다.",
-                "feedback-btn": "피드백 양식 작성하기", "update-label": "데이터 마지막 업데이트: "
+                "guide-step2-1": "<strong>수수료 무료:</strong> 시내의 '대만은행', '메가은행' 등.",
+                "guide-step2-2": "<strong>수수료 발생:</strong> 일반 민간 은행 (100~300위안), 훼손된 지폐.",
+                "guide-step3-title": "3. 주의사항",
+                "guide-step3-1": "<strong>동전 환전 불가:</strong> 외국 동전은 환전할 수 없습니다.",
+                "guide-step3-2": "<strong>지폐 상태:</strong> 훼손된 지폐는 거절될 수 있습니다.",
+                "guide-step3-3": "<strong>환율은 '현찰 살 때(Cash Buying)' 확인.</strong>",
+                "footer-desc1": "이 가이드는 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다.",
+                "feedback-title": "개선 제안", "feedback-sub": "제안을 환영합니다.", "feedback-btn": "피드백 작성"
             }
         };
 
-        // 1. 取得下拉選單元素
-        const langSelect = document.getElementById('lang-select');
-
-        // 2. 建立一個切換語言的專屬功能
         function changeLanguage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (i18n[lang] && i18n[lang][key]) {
-                    el.innerHTML = i18n[lang][key]; 
-                }
+                if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
             });
-            if (langSelect) {
-                langSelect.value = lang;
-            }
-            // 記憶語言選擇
+            const langSelect = document.getElementById('lang-select');
+            if (langSelect) langSelect.value = lang;
             localStorage.setItem('dadaocheng_lang', lang);
         }
 
-        // 3. 當使用者手動切換下拉選單時，執行切換並記憶
-        if (langSelect) {
-            langSelect.addEventListener('change', function() {
-                changeLanguage(this.value);
-            });
-        }
-
-        // 4. 每次網頁一載入，就去檢查有沒有存過的語言
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('dadaocheng_lang') || 'zh';
             changeLanguage(savedLang);
 
-            // 背景自動抓取 data.json 最後更新時間
-            fetch('data.json', { method: 'HEAD' })
-                .then(response => {
-                    const lastModified = response.headers.get('Last-Modified');
-                    const timeEl = document.getElementById('update-time');
-                    if (lastModified && timeEl) {
-                        const date = new Date(lastModified);
-                        const formatted = date.getFullYear() + '/' + 
-                                          String(date.getMonth() + 1).padStart(2, '0') + '/' + 
-                                          String(date.getDate()).padStart(2, '0') + ' ' + 
-                                          String(date.getHours()).padStart(2, '0') + ':' + 
-                                          String(date.getMinutes()).padStart(2, '0');
-                        timeEl.innerText = formatted;
-                    } else if (timeEl) {
-                        timeEl.innerText = '近期';
-                    }
-                })
-                .catch(() => {
-                    const timeEl = document.getElementById('update-time');
-                    if (timeEl) timeEl.innerText = '未知';
-                });
+            document.getElementById('lang-select').addEventListener('change', (e) => {
+                changeLanguage(e.target.value);
+            });
         });
     </script>
 </body>
+
 </html>
