@@ -6,8 +6,8 @@
       "type": "shell",
       "command": "git pull origin main --rebase",
       "runOptions": {
-        "runOn": "folderOpen"
-      },
+      "runOn": "default"
+     },
       "presentation": {
         "echo": true,
         "reveal": "silent",
