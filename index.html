@@ -87,6 +87,12 @@
                 <a href="emergency.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-emergency">緊急協助</a>
             </nav>
 
+            <!-- 搜尋框區塊 -->
+            <div class="relative w-full md:w-auto">
+                <input type="text" id="search-input" placeholder="搜尋店家..." class="w-full md:w-48 pl-9 pr-3 py-1.5 rounded-full border border-ink/20 dark:border-gray-600 bg-white/50 dark:bg-dark-card/50 text-ink dark:text-dark-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent/50 transition-colors shadow-sm" data-i18n-placeholder="search-placeholder">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-ink-light dark:text-gray-400 text-sm pointer-events-none"></i>
+            </div>
+
             <div class="flex items-center gap-4 text-sm text-ink-light dark:text-gray-400">
                 <!-- 深淺色切換按鈕 -->
                 <button id="theme-toggle" aria-label="切換深淺色模式" class="relative w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none">
@@ -181,6 +187,7 @@
         let currentLang = 'zh';
         let currentCategory = 'all';
         let currentPage = 1;
+        let searchQuery = '';
         const cardsPerPage = 9;
 
         const i18n = {
@@ -193,7 +200,8 @@
                 "feedback-btn": "前往填寫表單", "update-label": "店家資料最後更新：",
                 "tag-coffee": "咖啡", "tag-tea": "茶館", "tag-restaurant": "餐廳", "tag-craft": "文創選物",
                 "tag-pastry": "傳統糕餅", "tag-medicine": "中藥行", "tag-snack": "小吃飲品", "tag-dessert": "小吃飲品",
-                "tag-bar": "酒吧", "tag-culture": "文化", "page-text": "總共第 {start} 到 {end} 筆，共 {total} 筆"
+                "tag-bar": "酒吧", "tag-culture": "文化", "page-text": "總共第 {start} 到 {end} 筆，共 {total} 筆",
+                "search-placeholder": "搜尋店家"
             },
             "en": {
                 "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help",
@@ -204,7 +212,8 @@
                 "feedback-btn": "Fill out Feedback Form", "update-label": "Data Last Updated: ",
                 "tag-coffee": "Coffee", "tag-tea": "Tea House", "tag-restaurant": "Restaurant", "tag-craft": "Crafts",
                 "tag-pastry": "Pastry", "tag-medicine": "Medicine", "tag-snack": "Snacks", "tag-dessert": "Dessert",
-                "tag-bar": "Bar", "tag-culture": "Culture", "page-text": "Showing {start} to {end} of {total} entries"
+                "tag-bar": "Bar", "tag-culture": "Culture", "page-text": "Showing {start} to {end} of {total} entries",
+                "search-placeholder": "Search shops"
             },
             "ja": {
                 "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート",
@@ -215,7 +224,8 @@
                 "feedback-btn": "フォームに記入する", "update-label": "データ最終更新：",
                 "tag-coffee": "カフェ", "tag-tea": "茶館", "tag-restaurant": "レストラン", "tag-craft": "クラフト",
                 "tag-pastry": "伝統菓子", "tag-medicine": "漢方薬局", "tag-snack": "軽食", "tag-dessert": "スイーツ",
-                "tag-bar": "バー", "tag-culture": "文化", "page-text": "全 {total} 件中 {start} から {end} 件目を表示"
+                "tag-bar": "バー", "tag-culture": "文化", "page-text": "全 {total} 件中 {start} から {end} 件目を表示",
+                "search-placeholder": "店舗検索"
             },
             "ko": {
                 "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원",
@@ -226,7 +236,8 @@
                 "feedback-btn": "피드백 양식 작성하기", "update-label": "데이터 마지막 업데이트: ",
                 "tag-coffee": "카페", "tag-tea": "찻집", "tag-restaurant": "레스토랑", "tag-craft": "문화 창작",
                 "tag-pastry": "전통 과자", "tag-medicine": "한약방", "tag-snack": "스낵", "tag-dessert": "디저트",
-                "tag-bar": "바", "tag-culture": "문화", "page-text": "총 {total}개 중 {start}에서 {end}까지 표시"
+                "tag-bar": "바", "tag-culture": "문화", "page-text": "총 {total}개 중 {start}에서 {end}까지 표시",
+                "search-placeholder": "매장 찾기"
             }
         };
 
@@ -236,6 +247,13 @@
                 const key = el.getAttribute('data-i18n');
                 if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key]; 
             });
+
+            // 處理 input placeholder 的多語系切換
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (i18n[lang] && i18n[lang][key]) el.placeholder = i18n[lang][key];
+            });
+
             const langSelect = document.getElementById('lang-select');
             if (langSelect) langSelect.value = lang;
             localStorage.setItem('dadaocheng_lang', lang);
@@ -284,7 +302,17 @@
                 });
             }
 
-            // 抓取最後更新時間[cite: 5]
+            // 監聽搜尋框輸入事件
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    searchQuery = e.target.value.trim().toLowerCase();
+                    currentPage = 1; // 重新搜尋時自動回到第一頁
+                    renderCards();
+                });
+            }
+
+            // 抓取最後更新時間
             fetch('data.json', { method: 'HEAD' })
                 .then(response => {
                     const lastModified = response.headers.get('Last-Modified');
@@ -300,7 +328,7 @@
                 });
         });
 
-        // 讀取 JSON 資料[cite: 2, 5]
+        // 讀取 JSON 資料
         fetch('data.json')
             .then(response => {
                 if (!response.ok) throw new Error('無法讀取檔案');
@@ -320,10 +348,24 @@
             const cardGrid = document.getElementById('card-grid');
             
             let filteredData = shopData;
+            
+            // 處理分類過濾
             if (currentCategory !== 'all') {
-                filteredData = shopData.filter(item => {
+                filteredData = filteredData.filter(item => {
                     if (currentCategory === 'snack') return item.Category === 'snack' || item.Category === 'dessert';
                     return item.Category === currentCategory;
+                });
+            }
+
+            // 處理關鍵字過濾 (比對標題、描述、地址)
+            if (searchQuery) {
+                const langKey = currentLang.toUpperCase(); 
+                filteredData = filteredData.filter(item => {
+                    const title = (item[`Title (${langKey})`] || item[`Title (ZH)`] || '').toLowerCase();
+                    const desc = (item[`Description (${langKey})`] || item[`Description (ZH)`] || '').toLowerCase();
+                    const address = (item[`Address (${langKey})`] || item[`Address (ZH)`] || '').toLowerCase();
+                    
+                    return title.includes(searchQuery) || desc.includes(searchQuery) || address.includes(searchQuery);
                 });
             }
 
