@@ -409,7 +409,7 @@
   },
   {
     "ID": 19,
-    "Category": "snack",
+    "Category": "dessert",
     "Title (ZH)": "維多麗亞的秋天(雞蛋糕）",
     "Title (EN)": "Victoria's Autumn (Egg Waffles)",
     "Title (JA)": "ヴィクトリアの秋（ベビーカステラ）",
@@ -426,7 +426,7 @@
     "Description (EN)": "An exquisite egg waffle stand on Dihua Street offering crispy and fluffy treats. Open weekends only, perfect for a stroll.",
     "Description (JA)": "迪化街にあるベビーカステラの屋台。外はサクサク、中はふんわりで卵の豊かな香りが特徴。週末のみの限定営業です。",
     "Description (KO)": "디화제에 위치한 계란빵 노점. 겉은 바삭하고 속은 부드러운 식감과 진한 계란 향이 일품입니다. 주말 한정 영업합니다.",
-    "UpdateTime": "2026-08-17T01:07:00.000Z",
+    "UpdateTime": "2026-09-04T06:25:00.000Z",
     "Place ID": "ChIJreRqSbipQjQRxBJgOWbtBJ4",
     "Rating": 4.9,
     "User Rating Count": 312
@@ -1201,7 +1201,7 @@
   },
   {
     "ID": 52,
-    "Category": "snack",
+    "Category": "dessert",
     "Title (ZH)": "魚刺人雞蛋糕-大稻埕店",
     "Title (EN)": "Yuciren Egg Waffle - Dadaocheng Branch",
     "Title (JA)": "魚刺人雞蛋糕 大稲埕店",
@@ -1218,14 +1218,14 @@
     "Description (EN)": "A popular egg waffle brand from Taichung. The Dadaocheng branch combines a retro vibe with innovative flavors, making it a must-try walking dessert on Dihua Street.",
     "Description (JA)": "台中発の超人気ベビーカステラ専門店。大稲埕店はレトロな雰囲気の中で、斬新なフレーバーの台湾式カステラが楽しめる、迪化街の食べ歩きにぴったりの一品です。",
     "Description (KO)": "타이중에서 시작된 인기 대만식 계란빵 브랜드. 다다오청점은 레트로한 분위기 속에서 독창적인 맛을 제공하며, 디화제 산책 시 꼭 맛봐야 할 길거리 디저트입니다.",
-    "UpdateTime": "2026-08-17T01:07:00.000Z",
+    "UpdateTime": "2026-09-04T06:25:00.000Z",
     "Place ID": "ChIJRyT79sSrQjQRpd8zjYNdUOA",
     "Rating": 4.4,
     "User Rating Count": 959
   },
   {
     "ID": 53,
-    "Category": "snack",
+    "Category": "dessert",
     "Title (ZH)": "導演的豆花店",
     "Title (EN)": "Director's Tofu Pudding Shop",
     "Title (JA)": "導演的豆花店",
@@ -1242,7 +1242,7 @@
     "Description (EN)": "A cozy shop in Dadaocheng run by a documentary director, offering traditional handmade tofu pudding and fen-guo in a photography-themed space.",
     "Description (JA)": "大稲埕の路地裏にあるドキュメンタリー監督が営むお店。天然素材にこだわった手作りの豆花と粉粿（フングェ）が楽しめます。",
     "Description (KO)": "다다오청 골목에 위치한 다큐멘터리 감독이 운영하는 디저트 가게. 천연 식재료로 만든 수제 도우화와 펀궈를 사진 테마 공간에서 즐길 수 있습니다.",
-    "UpdateTime": "2026-08-17T01:07:00.000Z",
+    "UpdateTime": "2026-09-04T06:25:00.000Z",
     "Place ID": "ChIJj9hi0ECpQjQR5150cNelvII",
     "Rating": 4.7,
     "User Rating Count": 1057
@@ -1273,7 +1273,7 @@
   },
   {
     "ID": 55,
-    "Category": "snack",
+    "Category": "dessert",
     "Title (ZH)": "昭和浪漫洗濯屋_霜淇淋專賣店",
     "Title (EN)": "Showa Romantic Laundry Soft Serve",
     "Title (JA)": "昭和浪漫洗濯屋 ソフトクリーム専門店",
@@ -1290,7 +1290,7 @@
     "Description (EN)": "A nostalgic ice cream shop in a renovated old house, preserving Showa-era Japanese charm with rich, smooth soft serve—a must-visit spot in Dihua Street.",
     "Description (JA)": "昭和の雰囲気が漂う古民家リノベーションカフェ。濃厚なソフトクリームが人気で、迪化街の代表的な写真映えスポット。",
     "Description (KO)": "일본 쇼와 시대의 감성을 담은 노포 개조 아이스크림 가게. 부드러운 식감의 소프트 아이스크림으로 유명한 디화제의 대표적인 명소.",
-    "UpdateTime": "2026-08-17T01:07:00.000Z",
+    "UpdateTime": "2026-09-04T06:25:00.000Z",
     "Place ID": "ChIJXdA_EBGpQjQRukkF7i3AARY",
     "Rating": 4.3,
     "User Rating Count": 1009
@@ -1681,7 +1681,7 @@
   },
   {
     "ID": 72,
-    "Category": "snack",
+    "Category": "dessert",
     "Title (ZH)": "BOPOMOO 波波畝 café",
     "Title (EN)": "BOPOMOO café",
     "Title (JA)": "BOPOMOO 波波畝 カフェ",
@@ -1698,7 +1698,7 @@
     "Description (EN)": "A creative café in Dadaocheng featuring Taiwanese Zhuyin symbol waffle cakes, specialty drinks, and original illustrated merchandise.",
     "Description (JA)": "大稲埕の路地裏にある注音符号テーマのカフェ。台湾ならではの注音符号形ワッフルや特製ドリンク、可愛い文創雑貨が魅力です。",
     "Description (KO)": "다다오청 골목에 위치한 대만 주음부호 테마 카페. 귀여운 주음부호 와플(계란빵)과 수제 음료, 감성 문창 굿즈를 만날 수 있습니다.",
-    "UpdateTime": "2026-08-05T04:05:41.000Z",
+    "UpdateTime": "2026-09-04T06:25:00.000Z",
     "Place ID": "ChIJEew0V_ypQjQRJCHI3teYC-U",
     "Rating": 4.9,
     "User Rating Count": 539
