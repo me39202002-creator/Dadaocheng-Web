@@ -122,9 +122,10 @@
             <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="tea" data-i18n="cat-tea">茶館</button>
             <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="restaurant" data-i18n="cat-rest">餐廳</button>
             <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="craft" data-i18n="cat-craft">文創選物</button>
+            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="snack" data-i18n="cat-snack">小吃</button>
+            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="dessert" data-i18n="cat-dessert">冰品飲料</button>
             <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="pastry" data-i18n="cat-pastry">傳統糕餅</button>
             <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="medicine" data-i18n="cat-med">中藥行</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="snack" data-i18n="cat-snack">小吃飲品</button>
             <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="bar" data-i18n="cat-bar">酒吧</button>
             <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="culture" data-i18n="cat-culture">文化</button>
         </div>
@@ -190,56 +191,56 @@
         let searchQuery = '';
         const cardsPerPage = 9;
 
-        const i18n = {
+       const i18n = {
             "zh": {
                 "site-title": "大稻埕人文導覽", "nav-shops": "特色店家", "nav-history": "大稻埕的歷史", "nav-apps": "必備APP推薦", "nav-emergency": "緊急協助",
                 "cat-all": "全部", "cat-coffee": "咖啡", "cat-tea": "茶館", "cat-rest": "餐廳", "cat-craft": "文創選物", 
-                "cat-pastry": "傳統糕餅", "cat-med": "中藥行", "cat-snack": "小吃飲品", "cat-bar": "酒吧", "cat-culture": "文化",
+                "cat-pastry": "傳統糕餅", "cat-med": "中藥行", "cat-snack": "小吃", "cat-dessert": "冰品飲料", "cat-bar": "酒吧", "cat-culture": "文化",
                 "footer-desc1": "本指南由社群共編，持續更新中。", "footer-desc2": "所有店家資訊僅供參考，請以實際營業狀況為準。",
                 "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。",
                 "feedback-btn": "前往填寫表單", "update-label": "店家資料最後更新：",
                 "tag-coffee": "咖啡", "tag-tea": "茶館", "tag-restaurant": "餐廳", "tag-craft": "文創選物",
-                "tag-pastry": "傳統糕餅", "tag-medicine": "中藥行", "tag-snack": "小吃飲品", "tag-dessert": "小吃飲品",
+                "tag-pastry": "傳統糕餅", "tag-medicine": "中藥行", "tag-snack": "小吃", "tag-dessert": "冰品飲料",
                 "tag-bar": "酒吧", "tag-culture": "文化", "page-text": "總共第 {start} 到 {end} 筆，共 {total} 筆",
                 "search-placeholder": "搜尋店家"
             },
             "en": {
                 "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help",
                 "cat-all": "All", "cat-coffee": "Coffee", "cat-tea": "Tea House", "cat-rest": "Restaurant", "cat-craft": "Crafts", 
-                "cat-pastry": "Pastry", "cat-med": "Medicine", "cat-snack": "Snacks", "cat-bar": "Bar", "cat-culture": "Culture",
+                "cat-pastry": "Pastry", "cat-med": "Medicine", "cat-snack": "Snacks", "cat-dessert": "Ice & Drinks", "cat-bar": "Bar", "cat-culture": "Culture",
                 "footer-desc1": "This guide is co-edited by the community and continuously updated.", "footer-desc2": "Store information is for reference only.",
                 "feedback-title": "Suggestions for Improvement", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!",
                 "feedback-btn": "Fill out Feedback Form", "update-label": "Data Last Updated: ",
                 "tag-coffee": "Coffee", "tag-tea": "Tea House", "tag-restaurant": "Restaurant", "tag-craft": "Crafts",
-                "tag-pastry": "Pastry", "tag-medicine": "Medicine", "tag-snack": "Snacks", "tag-dessert": "Dessert",
+                "tag-pastry": "Pastry", "tag-medicine": "Medicine", "tag-snack": "Snacks", "tag-dessert": "Ice & Drinks",
                 "tag-bar": "Bar", "tag-culture": "Culture", "page-text": "Showing {start} to {end} of {total} entries",
                 "search-placeholder": "Search shops"
             },
             "ja": {
                 "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート",
                 "cat-all": "すべて", "cat-coffee": "カフェ", "cat-tea": "茶館", "cat-rest": "レストラン", "cat-craft": "文化", 
-                "cat-pastry": "伝統菓子", "cat-med": "漢方薬局", "cat-snack": "軽食", "cat-bar": "バー", "cat-culture": "文化",
+                "cat-pastry": "伝統菓子", "cat-med": "漢方薬局", "cat-snack": "軽食", "cat-dessert": "アイス・飲み物", "cat-bar": "バー", "cat-culture": "文化",
                 "footer-desc1": "このガイドはコミュニティによって共同編集・更新されています。", "footer-desc2": "店舗情報は参考用です。",
                 "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見が、大稲埕をより良くする原動力です！",
                 "feedback-btn": "フォームに記入する", "update-label": "データ最終更新：",
                 "tag-coffee": "カフェ", "tag-tea": "茶館", "tag-restaurant": "レストラン", "tag-craft": "クラフト",
-                "tag-pastry": "伝統菓子", "tag-medicine": "漢方薬局", "tag-snack": "軽食", "tag-dessert": "スイーツ",
+                "tag-pastry": "伝統菓子", "tag-medicine": "漢方薬局", "tag-snack": "軽食", "tag-dessert": "アイス・飲み物",
                 "tag-bar": "バー", "tag-culture": "文化", "page-text": "全 {total} 件中 {start} から {end} 件目を表示",
                 "search-placeholder": "店舗検索"
             },
             "ko": {
                 "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원",
                 "cat-all": "전체", "cat-coffee": "카페", "cat-tea": "찻집", "cat-rest": "레스토랑", "cat-craft": "문화 창작", 
-                "cat-pastry": "전통 과자", "cat-med": "한약방", "cat-snack": "스낵", "cat-bar": "바", "cat-culture": "문화",
+                "cat-pastry": "전통 과자", "cat-med": "한약방", "cat-snack": "스낵", "cat-dessert": "아이스/음료", "cat-bar": "바", "cat-culture": "문화",
                 "footer-desc1": "이 가이드는 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다.",
                 "feedback-title": "개선 제안", "feedback-sub": "제안을 환영합니다.",
                 "feedback-btn": "피드백 양식 작성하기", "update-label": "데이터 마지막 업데이트: ",
                 "tag-coffee": "카페", "tag-tea": "찻집", "tag-restaurant": "레스토랑", "tag-craft": "문화 창작",
-                "tag-pastry": "전통 과자", "tag-medicine": "한약방", "tag-snack": "스낵", "tag-dessert": "디저트",
+                "tag-pastry": "전통 과자", "tag-medicine": "한약방", "tag-snack": "스낵", "tag-dessert": "아이스/음료",
                 "tag-bar": "바", "tag-culture": "문화", "page-text": "총 {total}개 중 {start}에서 {end}까지 표시",
                 "search-placeholder": "매장 찾기"
             }
-        };
+        };;
 
         function changeLanguage(lang) {
             currentLang = lang;
@@ -352,7 +353,6 @@
             // 處理分類過濾
             if (currentCategory !== 'all') {
                 filteredData = filteredData.filter(item => {
-                    if (currentCategory === 'snack') return item.Category === 'snack' || item.Category === 'dessert';
                     return item.Category === currentCategory;
                 });
             }
