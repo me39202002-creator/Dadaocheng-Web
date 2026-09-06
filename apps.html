@@ -86,6 +86,7 @@
                 <!-- Active 樣式套用到 Apps 頁面 -->
                 <a href="apps.html" class="px-4 py-2 rounded-md bg-tag-bg dark:bg-dark-tag text-tag-text dark:text-accent font-bold transition-colors shadow-sm" data-i18n="nav-apps">必備APP推薦</a>
                 <a href="emergency.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-emergency">緊急協助</a>
+                <a href="info.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-info">交通與便民</a>
             </nav>
 
             <div class="flex items-center gap-4 text-sm text-ink-light dark:text-gray-400">
@@ -323,88 +324,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- 現金提款與換匯指南 -->
-        <section class="mt-16 bg-[#FAF3EB] dark:bg-dark-card border-2 border-accent/20 p-8 md:p-10 rounded-2xl relative overflow-hidden transition-colors duration-500">
-            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-tag-bg dark:bg-dark-tag rounded-full opacity-50 blur-3xl pointer-events-none"></div>
-            
-            <h3 class="text-2xl font-serif font-bold text-primary dark:text-accent mb-3 relative z-10 transition-colors duration-500" data-i18n="guide-title">現金提款與換匯指南</h3>
-            <p class="text-ink-light dark:text-gray-400 text-base mb-8 relative z-10 transition-colors duration-500" data-i18n="guide-sub">雖然大稻埕許多特色店家已提供電子支付或信用卡，但傳統小吃、夜市等仍只收現金。以下是獲取新台幣的最方便方式：</p>
-            
-            <!-- 警告標語 (DCC) -->
-            <div class="bg-red-50 dark:bg-red-950/40 border-l-4 border-accent p-5 rounded-r-xl flex gap-4 text-sm text-red-900 dark:text-red-200 mb-8 relative z-10 shadow-sm transition-colors duration-500">
-                <i class="fa-solid fa-circle-exclamation text-accent text-xl mt-1"></i>
-                <div data-i18n="guide-warning">
-                    <strong class="text-accent text-base block mb-1">匯率陷阱！避免選擇動態貨幣轉換 (DCC)</strong>
-                    當您在 ATM 提款或刷卡時，如果螢幕詢問您要使用「當地貨幣(台幣)」還是「母國貨幣」結帳，請務必選擇<strong class="text-accent">「新台幣 (TWD) / 本國貨幣」</strong>。若選擇母國貨幣（即動態貨幣轉換 DCC），ATM 將會使用極差的匯率計算，您可能會因此多付 3%~7% 的隱藏費用。
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10">
-                <!-- 24小時便利商店跨國提款 -->
-                <div class="bg-white dark:bg-dark-paper p-6 rounded-xl border border-ink/10 dark:border-dark-ink/20 shadow-sm transition-colors duration-500">
-                    <h4 class="font-bold text-primary dark:text-accent text-lg mb-4 flex items-center gap-2 transition-colors duration-500">
-                        <i class="fa-solid fa-money-bill-wave text-accent"></i> <span data-i18n="atm-title">24小時便利商店跨國提款</span>
-                    </h4>
-                    <p class="text-sm text-ink-light dark:text-gray-400 mb-4 transition-colors duration-500" data-i18n="atm-desc">台灣的便利商店密集度極高，是外國旅客領取現金最方便的管道。</p>
-                    <ul class="list-disc pl-5 text-sm text-ink-light dark:text-gray-400 space-y-2 transition-colors duration-500">
-                        <li data-i18n="atm-li1">哪裡可以領？尋找 7-ELEVEN (內建中國信託 ATM) 或 全家便利商店 (內建台新或國泰世華 ATM)。大稻埕周邊步行5分鐘內皆有便利商店。</li>
-                        <li data-i18n="atm-li2">支援卡片：機台上若貼有 Visa, Mastercard, PLUS, Cirrus, UnionPay 等標誌，即可使用國外提款卡領取新台幣(TWD)。</li>
-                        <li data-i18n="atm-li3">手續費：台灣本地銀行通常會收每筆約 NT$100 的設備手續費（您的發卡銀行可能還會收取跨國手續費，建議一次領取足夠金額）。</li>
-                    </ul>
-                </div>
-                
-                <!-- 實體銀行換匯 -->
-                <div class="bg-white dark:bg-dark-paper p-6 rounded-xl border border-ink/10 dark:border-dark-ink/20 shadow-sm transition-colors duration-500">
-                    <h4 class="font-bold text-primary dark:text-accent text-lg mb-4 flex items-center gap-2 transition-colors duration-500">
-                        <i class="fa-solid fa-building-columns text-accent"></i> <span data-i18n="bank-title">實體銀行換匯</span>
-                    </h4>
-                    <p class="text-sm text-ink-light dark:text-gray-400 mb-4 transition-colors duration-500" data-i18n="bank-desc">如果您手邊持有外幣現鈔（如美金、日圓、歐元）需要兌換成新台幣，前往銀行就有提供外匯業務的實體銀行。</p>
-                    <ul class="list-none text-sm text-ink-light dark:text-gray-400 space-y-3 transition-colors duration-500">
-                        <li data-i18n="bank-li1" class="bg-paper dark:bg-dark-card p-3 rounded-lg border border-ink/5 dark:border-dark-ink/10"><strong>第一銀行 大稻埕分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同區迪化街一段 63 號</a>（迪化街主街上）。</li>
-                        <li data-i18n="bank-li4" class="bg-paper dark:bg-dark-card p-3 rounded-lg border border-ink/5 dark:border-dark-ink/10"><strong>臺灣銀行 延平分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同區南京西路 163 號</a>（換匯免手續費）。</li>
-                        <li data-i18n="bank-li2" class="flex gap-2 items-start"><i class="fa-regular fa-clock text-accent mt-1"></i>營業時間：平日（週一至週五）09:00 - 15:30，週末與國定假日休息。</li>
-                        <li data-i18n="bank-li3" class="flex gap-2 items-start"><i class="fa-regular fa-address-card text-accent mt-1"></i>注意事項：在台灣的銀行辦理任何換匯業務，都規定必須出示護照正本 (Passport)。實際匯率與手續費，依各分行現場公告為主。</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- 自動兌幣機與簡易指南 -->
-            <div class="mt-6 bg-[#fffaf0] dark:bg-dark-paper border border-[#ffe0b2] dark:border-amber-900/40 p-6 md:p-8 rounded-xl shadow-sm relative z-10 transition-colors duration-500">
-                <h4 class="text-xl font-serif font-bold text-primary dark:text-accent mb-6 flex items-center gap-2 transition-colors duration-500">
-                    <i class="fa-solid fa-money-bill-transfer text-accent"></i> <span data-i18n="guide-cash-title">簡單明瞭的外幣現鈔換台幣指南</span>
-                </h4>
-                
-                <p class="text-sm text-ink-light dark:text-gray-400 mb-8 bg-white dark:bg-dark-card p-4 rounded-lg border border-ink/5 dark:border-dark-ink/10 transition-colors duration-500" data-i18n="kiosk-desc">為了因應大稻埕龐大的觀光人潮，如果您急需小額現金又逢銀行下班時間，可以尋找自動兌幣機（例如：新光銀行會有外幣兌換機）。部分據點設置專屬台灣與外國旅客可操作的兌換機，支援美金、日幣等主流幣種直接兌換新台幣，填補晚間逛街無處換匯的空窗。</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div>
-                        <h5 class="font-bold text-ink dark:text-dark-ink mb-3 text-base border-b-2 border-accent/30 inline-block pb-1 transition-colors duration-500" data-i18n="guide-step1-title">1. 換匯流程</h5>
-                        <ul class="list-disc pl-5 text-sm text-ink-light dark:text-gray-400 space-y-2 transition-colors duration-500">
-                            <li data-i18n="guide-step1-1"><strong>準備物品：</strong>帶好「外幣現鈔」與「身分證」（外籍人士帶護照或居留證）。</li>
-                            <li data-i18n="guide-step1-2"><strong>選擇地點：</strong>前往有外匯業務的銀行或郵局。</li>
-                            <li data-i18n="guide-step1-3"><strong>臨櫃辦理：</strong>抽號碼牌 ➔ 告訴行員要「外幣換台幣」 ➔ 填寫外匯買賣水單 ➔ 行員驗明鈔票真偽與計算金額 ➔ 領取台幣現金。</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-ink dark:text-dark-ink mb-3 text-base border-b-2 border-accent/30 inline-block pb-1 transition-colors duration-500" data-i18n="guide-step2-title">2. 手續費怎麼算？</h5>
-                        <ul class="list-disc pl-5 text-sm text-ink-light dark:text-gray-400 space-y-2 transition-colors duration-500">
-                            <li data-i18n="guide-step2-1"><strong>完全免費：</strong>市區的一般「臺灣銀行」、「兆豐銀行」或指定「郵局」（郵局只收美金、日圓、港幣、歐元、人民幣）。</li>
-                            <li data-i18n="guide-step2-2"><strong>要收手續費的情況：</strong>機場櫃檯（約 100 元）、一般民營銀行（約 100～300 元）、特殊舊版或破損鈔票。</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h5 class="font-bold text-ink dark:text-dark-ink mb-3 text-base border-b-2 border-accent/30 inline-block pb-1 transition-colors duration-500" data-i18n="guide-step3-title">3. 三大注意事項</h5>
-                        <ul class="list-disc pl-5 text-sm text-ink-light dark:text-gray-400 space-y-2 transition-colors duration-500">
-                            <li data-i18n="guide-step3-1"><strong>銀行不收硬幣：</strong>台灣所有銀行和郵局只收紙鈔，外國硬幣無法兌換。</li>
-                            <li data-i18n="guide-step3-2"><strong>鈔票不能太破舊：</strong>有破洞、明顯污漬、塗鴉或撕裂修補過，銀行可能拒收或加收處理費。</li>
-                            <li data-i18n="guide-step3-3"><strong>匯率看「現金買入」：</strong>請對照匯率看板的「現金買入」欄位，代表銀行用現金向你買進外幣的價格。</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </section>       
     </main>
 
     <!-- 獨立刊物風頁尾 -->
@@ -484,7 +404,7 @@
                 "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。", "feedback-btn": "前往填寫表單"
             },
             "en": {
-                "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help",
+                "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help","nav-info": "Transport & Info",
                 "app-page-title": "Essential Digital Tools", "app-page-sub": "Make your Taiwan trip smoother! Here are the most practical transit, food, and lifestyle apps.",
                 "cat-map": "Maps & Navigation", "tag-nav": "Navigation", "desc-google": "Essential for navigation, checking public transit, and live traffic.",
                 "app-translate": "Google Translate", "tag-translate": "Translation", "desc-translate": "Supports text, voice, and real-time image (menu) translation. A great helper for overcoming language barriers.",
@@ -522,7 +442,7 @@
                 "feedback-title": "Suggestions", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!", "feedback-btn": "Feedback Form"
             },
             "ja": {
-                "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート",
+                "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート","nav-info": "交通・便利情報",
                 "app-page-title": "外国人旅行者必須のツール", "app-page-sub": "台湾の旅をよりスムーズに！最も実用的な交通・生活アプリをまとめました。",
                 "cat-map": "地図とナビ", "tag-nav": "ナビ", "desc-google": "ナビゲーション、公共交通機関の検索など、目的地を探すための必須ツール。",
                 "app-translate": "Google 翻訳", "tag-translate": "翻訳ツール", "desc-translate": "テキスト、音声、画像（メニュー）のリアルタイム翻訳に対応。言葉の壁を越える強力なサポートツールです。",
@@ -560,7 +480,7 @@
                 "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見をお待ちしております！", "feedback-btn": "フォームに記入"
             },
             "ko": {
-                "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원",
+                "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원","nav-info": "교통 및 편의시설",
                 "app-page-title": "외국인 여행객 필수 도구", "app-page-sub": "대만 여행을 더욱 순조롭게! 교통, 음식 및 생활 필수 앱을 정리했습니다.",
                 "cat-map": "지도 및 내비게이션", "tag-nav": "내비게이션", "desc-google": "내비게이션, 대중교통 경로 확인을 제공하는 필수 도구입니다.",
                 "app-translate": "Google 번역", "tag-translate": "언어 번역", "desc-translate": "텍스트, 음성 및 실시간 이미지(메뉴) 번역을 지원합니다. 언어 장벽을 극복하는 훌륭한 도우미입니다.",

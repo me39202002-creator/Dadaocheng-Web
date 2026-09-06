@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交通與便民資訊 - 大稻埕人文導覽 Dadaocheng Guide</title>
+    <meta name="description" content="大稻埕周邊停車場指南、即時導航連結，以及合法吸菸區位置、台灣菸害防制法旅遊注意事項與外幣換匯指南。">
+    <meta property="og:title" content="交通與便民資訊 - 大稻埕人文導覽 Dadaocheng Guide">
+    <meta property="og:description" content="大稻埕停車場資訊、吸菸區指南與換匯提款教學。">
+    <meta property="og:image" content="images/Dadaocheng-Web.webp">
+    
+    <link rel="icon" href="images/Dadaocheng-Web.webp" type="image/webp">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8A3324',
+                        paper: '#FAF6F0',
+                        ink: '#333333',
+                        'ink-light': '#666666',
+                        accent: '#C05C4D',
+                        'tag-bg': '#F8E8E6',
+                        'tag-text': '#A63F32',
+                        'dark-paper': '#1C1A1A',
+                        'dark-card': '#2A2828',
+                        'dark-ink': '#EFEBE3',
+                        'dark-tag': '#3A2E2D',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', '"Microsoft JhengHei"', 'sans-serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-paper text-ink font-sans antialiased transition-colors duration-500;
+            }
+            .dark body {
+                @apply bg-dark-paper text-dark-ink;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- 頂部導覽列 -->
+    <header class="sticky top-0 z-50 bg-paper/95 dark:bg-dark-paper/95 backdrop-blur-sm border-b-4 border-primary shadow-sm transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center gap-3">
+                <img src="images/Dadaocheng-Web.webp" alt="大稻埕人文導覽 Logo" width="50" height="50" class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200 dark:border-gray-700" loading="lazy">
+                <div class="flex flex-col leading-tight">
+                    <div class="font-serif font-bold text-lg text-ink dark:text-dark-ink transition-colors duration-500" data-i18n="site-title">大稻埕人文導覽</div>
+                    <div class="text-xs text-ink-light dark:text-gray-400 tracking-wider transition-colors duration-500">Dadaocheng Guide</div>
+                </div>
+            </div>
+
+            <nav class="flex flex-wrap justify-center gap-2 text-sm font-medium">
+                <a href="index.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-shops">特色店家</a>
+                <a href="history.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-history">大稻埕的歷史</a>
+                <a href="apps.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-apps">必備APP推薦</a>
+                <!-- Active 樣式套用到交通便民頁面 -->
+                <a href="info.html" class="px-4 py-2 rounded-md bg-tag-bg dark:bg-dark-tag text-tag-text dark:text-accent font-bold transition-colors shadow-sm" data-i18n="nav-info">交通與便民</a>
+                <a href="emergency.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-emergency">緊急協助</a>
+            </nav>
+
+            <div class="flex items-center gap-4 text-sm text-ink-light dark:text-gray-400">
+                <button id="theme-toggle" aria-label="切換深淺色模式" class="relative w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none">
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-accent absolute transition-all duration-300 transform dark:-rotate-90 dark:opacity-0 dark:scale-50"></i>
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-dark-ink absolute transition-all duration-300 transform rotate-90 opacity-0 scale-50 dark:rotate-0 dark:opacity-100 dark:scale-100"></i>
+                </button>
+
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-globe text-accent"></i>
+                    <select id="lang-select" class="bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 text-ink dark:text-dark-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-colors duration-500">
+                        <option value="zh">繁體中文</option>
+                        <option value="en">English</option>
+                        <option value="ja">日本語</option>
+                        <option value="ko">한국어</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要內容區塊 -->
+    <main class="flex-grow max-w-7xl mx-auto px-5 py-12 w-full">
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-primary mb-4" data-i18n="info-page-title">交通與便民資訊</h1>
+        <p class="text-ink-light dark:text-gray-400 leading-relaxed mb-12 text-lg transition-colors duration-500" data-i18n="info-page-sub">提供開車旅客最實用的周邊停車場指引，以及老街合法吸菸區與台灣菸害防制法規說明。</p>
+
+        <!-- 區塊 1: 停車場推薦 -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-serif font-bold text-ink dark:text-dark-ink mb-6 flex items-center gap-3 transition-colors duration-500">
+                <span class="bg-tag-bg dark:bg-dark-tag text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i class="fa-solid fa-square-parking"></i></span>
+                <span data-i18n="sec-parking-title">大稻埕周邊停車場</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 停車場 1: 大稻埕公園地下停車場 -->
+                <div class="group relative bg-white dark:bg-dark-card p-7 rounded-xl border-2 border-ink/10 dark:border-dark-ink/20 hover:border-ink dark:hover:border-dark-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] dark:shadow-[4px_4px_0px_0px_rgba(239,235,227,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] dark:hover:shadow-[6px_6px_0px_0px_rgba(239,235,227,0.3)] transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 overflow-hidden">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-[#EAF2EA] text-[#4A7B4A] dark:bg-green-900/40 dark:text-green-300 text-xs font-bold px-3 py-1 rounded-full" data-i18n="tag-p1">室內地下</span>
+                            <span class="text-xs text-ink-light dark:text-gray-400"><i class="fa-solid fa-person-walking"></i> 步行約 3 分鐘至迪化街</span>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-ink dark:text-dark-ink mb-3 group-hover:text-primary dark:group-hover:text-accent transition-colors" data-i18n="p1-name">大稻埕公園地下停車場</h3>
+                        <p class="text-sm text-ink-light dark:text-gray-400 mb-6 leading-relaxed" data-i18n="p1-desc">位於大稻埕北段商圈旁，車位較多、動線寬敞，是逛迪化街與中藥南北貨老街最便利的停車首選。</p>
+                    </div>
+                    <div class="border-t border-ink/10 dark:border-dark-ink/10 pt-4 text-xs text-ink-light dark:text-gray-400 flex flex-col gap-2">
+                        <div><i class="fa-solid fa-location-dot text-accent mr-1"></i> <span data-i18n="p1-addr">台北市大同區歸綏街 243 號地下</span></div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=大稻埕公園地下停車場" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center justify-center gap-1.5 bg-ink dark:bg-dark-ink hover:bg-primary dark:hover:bg-accent text-white dark:text-dark-paper py-2 px-4 rounded-full font-bold transition-colors">
+                            <i class="fa-solid fa-diamond-turn-right"></i> <span data-i18n="btn-nav">開啟地圖導航</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 停車場 2: 永樂市場地下停車場 -->
+                <div class="group relative bg-white dark:bg-dark-card p-7 rounded-xl border-2 border-ink/10 dark:border-dark-ink/20 hover:border-ink dark:hover:border-dark-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] dark:shadow-[4px_4px_0px_0px_rgba(239,235,227,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] dark:hover:shadow-[6px_6px_0px_0px_rgba(239,235,227,0.3)] transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 overflow-hidden">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-[#EAF2EA] text-[#4A7B4A] dark:bg-green-900/40 dark:text-green-300 text-xs font-bold px-3 py-1 rounded-full" data-i18n="tag-p2">市場核心</span>
+                            <span class="text-xs text-ink-light dark:text-gray-400"><i class="fa-solid fa-person-walking"></i> 電梯直達商圈核心</span>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-ink dark:text-dark-ink mb-3 group-hover:text-primary dark:group-hover:text-accent transition-colors" data-i18n="p2-name">永樂市場地下停車場</h3>
+                        <p class="text-sm text-ink-light dark:text-gray-400 mb-6 leading-relaxed" data-i18n="p2-desc">直達永樂市場美食區與霞海城隍廟，地段極佳。假日人潮眾多時容易排隊，建議提早抵達或轉停周邊。</p>
+                    </div>
+                    <div class="border-t border-ink/10 dark:border-dark-ink/10 pt-4 text-xs text-ink-light dark:text-gray-400 flex flex-col gap-2">
+                        <div><i class="fa-solid fa-location-dot text-accent mr-1"></i> <span data-i18n="p2-addr">台北市大同區迪化街一段 21 號地下</span></div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=永樂市場地下停車場" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center justify-center gap-1.5 bg-ink dark:bg-dark-ink hover:bg-primary dark:hover:bg-accent text-white dark:text-dark-paper py-2 px-4 rounded-full font-bold transition-colors">
+                            <i class="fa-solid fa-diamond-turn-right"></i> <span data-i18n="btn-nav">開啟地圖導航</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 停車場 3: 大稻埕碼頭水門堤外停車場 -->
+                <div class="group relative bg-white dark:bg-dark-card p-7 rounded-xl border-2 border-ink/10 dark:border-dark-ink/20 hover:border-ink dark:hover:border-dark-ink shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] dark:shadow-[4px_4px_0px_0px_rgba(239,235,227,0.05)] hover:shadow-[6px_6px_0px_0px_rgba(51,51,51,0.9)] dark:hover:shadow-[6px_6px_0px_0px_rgba(239,235,227,0.3)] transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 overflow-hidden">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-[#EAF2EA] text-[#4A7B4A] dark:bg-green-900/40 dark:text-green-300 text-xs font-bold px-3 py-1 rounded-full" data-i18n="tag-p3">平面空曠</span>
+                            <span class="text-xs text-ink-light dark:text-gray-400"><i class="fa-solid fa-person-walking"></i> 步行約 5 分鐘入老街</span>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-ink dark:text-dark-ink mb-3 group-hover:text-primary dark:group-hover:text-accent transition-colors" data-i18n="p3-name">大稻埕碼頭堤外停車場</h3>
+                        <p class="text-sm text-ink-light dark:text-gray-400 mb-6 leading-relaxed" data-i18n="p3-desc">位於民生西路底五號水門外，鄰近河岸貨櫃市集。適合計畫順道漫步河岸、欣賞淡水河夕陽夜景的旅客。</p>
+                    </div>
+                    <div class="border-t border-ink/10 dark:border-dark-ink/10 pt-4 text-xs text-ink-light dark:text-gray-400 flex flex-col gap-2">
+                        <div><i class="fa-solid fa-location-dot text-accent mr-1"></i> <span data-i18n="p3-addr">台北市大同區民生西路底（五號水門進入）</span></div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=大稻埕碼頭五號水門停車場" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center justify-center gap-1.5 bg-ink dark:bg-dark-ink hover:bg-primary dark:hover:bg-accent text-white dark:text-dark-paper py-2 px-4 rounded-full font-bold transition-colors">
+                            <i class="fa-solid fa-diamond-turn-right"></i> <span data-i18n="btn-nav">開啟地圖導航</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 區塊 2: 吸菸區與菸害防制法規 -->
+        <section class="mb-16 bg-white dark:bg-dark-card border-2 border-ink/10 dark:border-dark-ink/20 p-8 md:p-10 rounded-2xl relative overflow-hidden transition-colors duration-500 shadow-sm">
+            <h2 class="text-2xl font-serif font-bold text-primary dark:text-accent mb-3 flex items-center gap-3 relative z-10 transition-colors duration-500">
+                <span class="bg-tag-bg dark:bg-dark-tag text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i class="fa-solid fa-smoking"></i></span>
+                <span data-i18n="sec-smoke-title">迪化街商圈禁菸範圍與法規</span>
+            </h2>
+            <p class="text-ink-light dark:text-gray-400 text-base mb-8 relative z-10 transition-colors duration-500" data-i18n="smoke-sub">為了維護歷史街區與旅客健康，大稻埕迪化街商圈已實施全面禁菸，請旅客務必遵守法規以免受罰：</p>
+
+            <div class="bg-red-50 dark:bg-red-950/40 border-l-4 border-accent p-5 rounded-r-xl flex gap-4 text-sm text-red-900 dark:text-red-200 mb-8 relative z-10 shadow-sm transition-colors duration-500">
+                <i class="fa-solid fa-triangle-exclamation text-accent text-2xl shrink-0 mt-1"></i>
+                <div data-i18n="smoke-warning">
+                    <strong class="text-accent text-base block mb-1">2026年8月起迪化商圈全面禁菸！違規最高罰 NT$ 10,000</strong>
+                    大稻埕迪化街商圈已自 2026 年 8 月 1 日起劃為全面禁菸區。範圍包含：東至民樂街、西至西寧北路、南至南京西路（含南京西路239巷）、北至民生西路，<strong>且包含邊界之騎樓與人行道</strong>。電子煙亦全面禁止。請至指定吸菸點吸菸，違規者將依法處新台幣 2,000 元以上至 10,000 元以下罰鍰。
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                <div class="bg-paper dark:bg-dark-paper p-6 rounded-xl border border-ink/5 dark:border-dark-ink/10 shadow-sm">
+                    <h3 class="font-bold text-primary dark:text-accent text-lg mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-water text-accent"></i> <span data-i18n="smoke-loc1-title">大稻埕碼頭堤外開闊區域</span>
+                    </h3>
+                    <p class="text-sm text-ink-light dark:text-gray-400 leading-relaxed mb-4" data-i18n="smoke-loc1-desc">走出五號水門後之堤外開闊自行車道與碼頭空曠處（請避開貨櫃市集用餐人潮與孩童嬉戲區），請自備隨身菸灰袋收納菸蒂。</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=大稻埕碼頭五號水門" target="_blank" rel="noopener noreferrer" class="text-xs text-primary dark:text-accent underline hover:opacity-80">
+                        <i class="fa-solid fa-location-dot"></i> <span data-i18n="smoke-loc1-map">查看五號水門位置</span>
+                    </a>
+                </div>
+
+                <div class="bg-paper dark:bg-dark-paper p-6 rounded-xl border border-ink/5 dark:border-dark-ink/10 shadow-sm">
+                    <h3 class="font-bold text-primary dark:text-accent text-lg mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-store text-accent"></i> <span data-i18n="smoke-loc2-title">周邊設有熄菸筒之超商戶外開放處</span>
+                    </h3>
+                    <p class="text-sm text-ink-light dark:text-gray-400 leading-relaxed mb-4" data-i18n="smoke-loc2-desc">於禁菸範圍界線以外的主幹道便利商店外，若設有合法熄菸筒且非屬公車站牌及騎樓紅線區，可於該指定筒旁吸菸並落實熄菸。</p>
+                    <span class="text-xs text-ink-light dark:text-gray-400 italic" data-i18n="smoke-loc2-tip">＊特別注意：邊界範圍內的騎樓與人行道皆屬禁菸區。</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 區塊 3: 現金提款與換匯指南 -->
+        <section class="bg-[#FAF3EB] dark:bg-dark-card border-2 border-accent/20 p-8 md:p-10 rounded-2xl relative overflow-hidden transition-colors duration-500">
+            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-tag-bg dark:bg-dark-tag rounded-full opacity-50 blur-3xl pointer-events-none"></div>
+            
+            <h3 class="text-2xl font-serif font-bold text-primary dark:text-accent mb-3 relative z-10 transition-colors duration-500" data-i18n="guide-title">現金提款與換匯指南</h3>
+            <p class="text-ink-light dark:text-gray-400 text-base mb-8 relative z-10 transition-colors duration-500" data-i18n="guide-sub">雖然大稻埕許多特色店家已提供電子支付或信用卡，但傳統小吃、夜市等仍只收現金。以下是獲取新台幣的最方便方式：</p>
+            
+            <!-- 警告標語 (DCC) -->
+            <div class="bg-red-50 dark:bg-red-950/40 border-l-4 border-accent p-5 rounded-r-xl flex gap-4 text-sm text-red-900 dark:text-red-200 mb-8 relative z-10 shadow-sm transition-colors duration-500">
+                <i class="fa-solid fa-circle-exclamation text-accent text-xl mt-1"></i>
+                <div data-i18n="guide-warning">
+                    <strong class="text-accent text-base block mb-1">匯率陷阱！避免選擇動態貨幣轉換 (DCC)</strong>
+                    當您在 ATM 提款或刷卡時，如果螢幕詢問您要使用「當地貨幣(台幣)」還是「母國貨幣」結帳，請務必選擇<strong class="text-accent">「新台幣 (TWD) / 本國貨幣」</strong>。若選擇母國貨幣（即動態貨幣轉換 DCC），ATM 將會使用極差的匯率計算，您可能會因此多付 3%~7% 的隱藏費用。
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10">
+                <!-- 24小時便利商店跨國提款 -->
+                <div class="bg-white dark:bg-dark-paper p-6 rounded-xl border border-ink/10 dark:border-dark-ink/20 shadow-sm transition-colors duration-500">
+                    <h4 class="font-bold text-primary dark:text-accent text-lg mb-4 flex items-center gap-2 transition-colors duration-500">
+                        <i class="fa-solid fa-money-bill-wave text-accent"></i> <span data-i18n="atm-title">24小時便利商店跨國提款</span>
+                    </h4>
+                    <p class="text-sm text-ink-light dark:text-gray-400 mb-4 transition-colors duration-500" data-i18n="atm-desc">台灣的便利商店密集度極高，是外國旅客領取現金最方便的管道。</p>
+                    <ul class="list-disc pl-5 text-sm text-ink-light dark:text-gray-400 space-y-2 transition-colors duration-500">
+                        <li data-i18n="atm-li1">哪裡可以領？尋找 7-ELEVEN (內建中國信託 ATM) 或 全家便利商店 (內建台新或國泰世華 ATM)。大稻埕周邊步行5分鐘內皆有便利商店。</li>
+                        <li data-i18n="atm-li2">支援卡片：機台上若貼有 Visa, Mastercard, PLUS, Cirrus, UnionPay 等標誌，即可使用國外提款卡領取新台幣(TWD)。</li>
+                        <li data-i18n="atm-li3">手續費：台灣本地銀行通常會收每筆約 NT$100 的設備手續費（您的發卡銀行可能還會收取跨國手續費，建議一次領取足夠金額）。</li>
+                    </ul>
+                </div>
+                
+                <!-- 實體銀行換匯 -->
+                <div class="bg-white dark:bg-dark-paper p-6 rounded-xl border border-ink/10 dark:border-dark-ink/20 shadow-sm transition-colors duration-500">
+                    <h4 class="font-bold text-primary dark:text-accent text-lg mb-4 flex items-center gap-2 transition-colors duration-500">
+                        <i class="fa-solid fa-building-columns text-accent"></i> <span data-i18n="bank-title">實體銀行換匯</span>
+                    </h4>
+                    <p class="text-sm text-ink-light dark:text-gray-400 mb-4 transition-colors duration-500" data-i18n="bank-desc">如果您手邊持有外幣現鈔（如美金、日圓、歐元）需要兌換成新台幣，前往銀行就有提供外匯業務的實體銀行。</p>
+                    <ul class="list-none text-sm text-ink-light dark:text-gray-400 space-y-3 transition-colors duration-500">
+                        <li data-i18n="bank-li1" class="bg-paper dark:bg-dark-card p-3 rounded-lg border border-ink/5 dark:border-dark-ink/10"><strong>第一銀行 大稻埕分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同區迪化街一段 63 號</a>（迪化街主街上）。</li>
+                        <li data-i18n="bank-li4" class="bg-paper dark:bg-dark-card p-3 rounded-lg border border-ink/5 dark:border-dark-ink/10"><strong>臺灣銀行 延平分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同區南京西路 163 號</a>（換匯免手續費）。</li>
+                        <li data-i18n="bank-li2" class="flex gap-2 items-start"><i class="fa-regular fa-clock text-accent mt-1"></i>營業時間：平日（週一至週五）09:00 - 15:30，週末與國定假日休息。</li>
+                        <li data-i18n="bank-li3" class="flex gap-2 items-start"><i class="fa-regular fa-address-card text-accent mt-1"></i>注意事項：在台灣的銀行辦理任何換匯業務，都規定必須出示護照正本 (Passport)。實際匯率與手續費，依各分行現場公告為主。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 自動兌幣機與簡易指南 -->
+            <div class="mt-6 bg-[#fffaf0] dark:bg-dark-paper border border-[#ffe0b2] dark:border-amber-900/40 p-6 md:p-8 rounded-xl shadow-sm relative z-10 transition-colors duration-500">
+                <h4 class="text-xl font-serif font-bold text-primary dark:text-accent mb-6 flex items-center gap-2 transition-colors duration-500">
+                    <i class="fa-solid fa-money-bill-transfer text-accent"></i> <span data-i18n="guide-cash-title">簡單明瞭的外幣現鈔換台幣指南</span>
+                </h4>
+                
+                <p class="text-sm text-ink-light dark:text-gray-400 mb-8 bg-white dark:bg-dark-card p-4 rounded-lg border border-ink/5 dark:border-dark-ink/10 transition-colors duration-500" data-i18n="kiosk-desc">為了因應大稻埕龐大的觀光人潮，如果您急需小額現金又逢銀行下班時間，可以尋找自動兌幣機（例如：新光銀行會有外幣兌換機）。部分據點設置專屬台灣與外國旅客可操作的兌換機，支援美金、日幣等主流幣種直接兌換新台幣，填補晚間逛街無處換匯的空窗。</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <h5 class="font-bold text-ink dark:text-dark-ink mb-3 text-base border-b-2 border-accent/30 inline-block pb-1 transition-colors duration-500" data-i18n="guide-step1-title">1. 換匯流程</h5>
+                        <ul class="list-disc pl-5 text-sm text-ink-light dark:text-gray-400 space-y-2 transition-colors duration-500">
+                            <li data-i18n="guide-step1-1"><strong>準備物品：</strong>帶好「外幣現鈔」與「身分證」（外籍人士帶護照或居留證）。</li>
+                            <li data-i18n="guide-step1-2"><strong>選擇地點：</strong>前往有外匯業務的銀行或郵局。</li>
+                            <li data-i18n="guide-step1-3"><strong>臨櫃辦理：</strong>抽號碼牌 ➔ 告訴行員要「外幣換台幣」 ➔ 填寫外匯買賣水單 ➔ 行員驗明鈔票真偽與計算金額 ➔ 領取台幣現金。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-ink dark:text-dark-ink mb-3 text-base border-b-2 border-accent/30 inline-block pb-1 transition-colors duration-500" data-i18n="guide-step2-title">2. 手續費怎麼算？</h5>
+                        <ul class="list-disc pl-5 text-sm text-ink-light dark:text-gray-400 space-y-2 transition-colors duration-500">
+                            <li data-i18n="guide-step2-1"><strong>完全免費：</strong>市區的一般「臺灣銀行」、「兆豐銀行」或指定「郵局」（郵局只收美金、日圓、港幣、歐元、人民幣）。</li>
+                            <li data-i18n="guide-step2-2"><strong>要收手續費的情況：</strong>機場櫃檯（約 100 元）、一般民營銀行（約 100～300 元）、特殊舊版或破損鈔票。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-ink dark:text-dark-ink mb-3 text-base border-b-2 border-accent/30 inline-block pb-1 transition-colors duration-500" data-i18n="guide-step3-title">3. 三大注意事項</h5>
+                        <ul class="list-disc pl-5 text-sm text-ink-light dark:text-gray-400 space-y-2 transition-colors duration-500">
+                            <li data-i18n="guide-step3-1"><strong>銀行不收硬幣：</strong>台灣所有銀行和郵局只收紙鈔，外國硬幣無法兌換。</li>
+                            <li data-i18n="guide-step3-2"><strong>鈔票不能太破舊：</strong>有破洞、明顯污漬、塗鴉或撕裂修補過，銀行可能拒收或加收處理費。</li>
+                            <li data-i18n="guide-step3-3"><strong>匯率看「現金買入」：</strong>請對照匯率看板的「現金買入」欄位，代表銀行用現金向你買進外幣的價格。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 獨立刊物風頁尾 -->
+    <footer class="mt-auto border-t-4 border-primary bg-paper dark:bg-dark-paper transition-colors duration-500 pb-8 pt-16 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-12 relative z-10">
+            <div class="flex flex-col items-start gap-5">
+                <h4 class="flex items-center gap-4 text-xl font-serif font-bold text-ink dark:text-dark-ink transition-colors duration-500">
+                    <img src="images/Dadaocheng-Web.webp" alt="Logo" width="64" height="64" class="w-16 h-16 object-contain rounded-xl border-2 border-ink/10 dark:border-dark-ink/20 shadow-sm" loading="lazy">
+                    <span data-i18n="site-title">大稻埕人文導覽</span>
+                </h4>
+                <p class="text-ink-light dark:text-gray-400 text-sm tracking-wide transition-colors duration-500" data-i18n="footer-desc1">本指南由社群共編，持續更新中。</p>
+            </div>
+
+            <div class="flex flex-col md:items-end gap-3 text-left md:text-right">
+                <h4 class="text-lg font-bold text-ink dark:text-dark-ink tracking-wider font-serif transition-colors duration-500">Dadaocheng Guide</h4>
+                <p class="text-ink-light dark:text-gray-400 text-sm mb-2 transition-colors duration-500" data-i18n="footer-desc2">所有店家資訊僅供參考，請以實際營業狀況為準。</p>
+
+                <div class="bg-white/70 dark:bg-dark-card/70 backdrop-blur-sm border-2 border-ink/10 dark:border-dark-ink/20 p-5 rounded-xl shadow-[4px_4px_0px_0px_rgba(51,51,51,0.05)] dark:shadow-[4px_4px_0px_0px_rgba(239,235,227,0.05)] w-full md:w-80 text-left mt-2 relative group hover:border-ink/30 dark:hover:border-dark-ink/40 transition-colors duration-500">
+                    <h4 class="text-ink dark:text-dark-ink font-bold mb-2 flex items-center gap-2 transition-colors duration-500">
+                        <i class="fa-solid fa-pen-nib text-accent transform group-hover:rotate-12 transition-transform"></i> 
+                        <span data-i18n="feedback-title">改善地方建議</span>
+                    </h4>
+                    <p class="text-ink-light dark:text-gray-400 text-xs mb-5 leading-relaxed transition-colors duration-500" data-i18n="feedback-sub">您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。</p>
+                    <a href="https://forms.gle/4DoTH5v3u52vj2FU9" target="_blank" rel="noopener noreferrer" class="inline-block bg-ink dark:bg-dark-ink text-white dark:text-dark-paper text-sm font-bold px-6 py-2.5 rounded-full hover:bg-primary dark:hover:bg-accent transition-colors shadow-md w-full text-center" data-i18n="feedback-btn">
+                        前往填寫表單
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-5 mt-16 pt-8 border-t border-ink/15 dark:border-dark-ink/15 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-ink-light dark:text-gray-400 relative z-10 transition-colors duration-500">
+            <div class="tracking-widest">© 2026 Dadaocheng Guide. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <!-- 多語系腳本 -->
+    <script>
+        const i18n = {
+            "zh": {
+                "site-title": "大稻埕人文導覽", "nav-shops": "特色店家", "nav-history": "大稻埕的歷史", "nav-apps": "必備APP推薦", "nav-info": "交通與便民", "nav-emergency": "緊急協助",
+                "info-page-title": "交通與便民資訊", "info-page-sub": "提供開車旅客最實用的周邊停車場指引，以及老街合法吸菸區與台灣菸害防制法規說明。",
+                "sec-parking-title": "大稻埕周邊停車場",
+                "tag-p1": "室內地下", "p1-name": "大稻埕公園地下停車場", "p1-desc": "位於大稻埕北段商圈旁，車位較多、動線寬敞，是逛迪化街與中藥南北貨老街最便利的停車首選。", "p1-addr": "台北市大同區歸綏街 243 號地下",
+                "tag-p2": "市場核心", "p2-name": "永樂市場地下停車場", "p2-desc": "直達永樂市場美食區與霞海城隍廟，地段極佳。假日人潮眾多時容易排隊，建議提早抵達或轉停周邊。", "p2-addr": "台北市大同區迪化街一段 21 號地下",
+                "tag-p3": "平面空曠", "p3-name": "大稻埕碼頭堤外停車場", "p3-desc": "位於民生西路底五號水門外，鄰近河岸貨櫃市集。適合計畫順道漫步河岸、欣賞淡水河夕陽夜景的旅客。", "p3-addr": "台北市大同區民生西路底（五號水門進入）",
+                "btn-nav": "開啟地圖導航",
+                "sec-smoke-title": "迪化街商圈禁菸範圍與法規",
+                "smoke-sub": "為了維護歷史街區與旅客健康，大稻埕迪化街商圈已實施全面禁菸，請旅客務必遵守法規以免受罰：",
+                "smoke-warning": "<strong class='text-accent text-base block mb-1'>2026年8月起迪化商圈全面禁菸！違規最高罰 NT$ 10,000</strong>大稻埕迪化街商圈已自 2026 年 8 月 1 日起劃為全面禁菸區。範圍包含：東至民樂街、西至西寧北路、南至南京西路（含南京西路239巷）、北至民生西路，<strong>且包含邊界之騎樓與人行道</strong>。電子煙亦全面禁止。請至指定吸菸點吸菸，違規者將依法處新台幣 2,000 元以上至 10,000 元以下罰鍰。",
+                "smoke-loc1-title": "大稻埕碼頭堤外開闊區域", "smoke-loc1-desc": "走出五號水門後之堤外開闊自行車道與碼頭空曠處（請避開貨櫃市集用餐人潮與孩童嬉戲區），請自備隨身菸灰袋收納菸蒂。", "smoke-loc1-map": "查看五號水門位置",
+                "smoke-loc2-title": "周邊設有熄菸筒之超商戶外開放處", "smoke-loc2-desc": "於禁菸範圍界線以外的主幹道便利商店外，若設有合法熄菸筒且非屬公車站牌及騎樓紅線區，可於該指定筒旁吸菸並落實熄菸。", "smoke-loc2-tip": "＊特別注意：邊界範圍內的騎樓與人行道皆屬禁菸區。",
+                
+                "guide-title": "現金提款與換匯指南", "guide-sub": "雖然大稻埕許多特色店家已提供電子支付或信用卡，但傳統小吃、夜市等仍只收現金。以下是獲取新台幣的最方便方式：",
+                "guide-warning": "<strong class='text-accent text-base block mb-1'>匯率陷阱！避免選擇動態貨幣轉換 (DCC)</strong>當您在 ATM 提款或刷卡時，如果螢幕詢問您要使用「當地貨幣(台幣)」還是「母國貨幣」結帳，請務必選擇<strong class='text-accent'>「新台幣 (TWD) / 本國貨幣」</strong>。若選擇母國貨幣（即動態貨幣轉換 DCC），ATM 將會使用極差的匯率計算，您可能會因此多付 3%~7% 的隱藏費用。",
+                "atm-title": "24小時便利商店跨國提款", "atm-desc": "台灣的便利商店密集度極高，是外國旅客領取現金最方便的管道。",
+                "atm-li1": "哪裡可以領？尋找 7-ELEVEN (內建中國信託 ATM) 或 全家便利商店 (內建台新或國泰世華 ATM)。大稻埕周邊步行5分鐘內皆有便利商店。",
+                "atm-li2": "支援卡片：機台上若貼有 Visa, Mastercard, PLUS, Cirrus, UnionPay 等標誌，即可使用國外提款卡領取新台幣(TWD)。",
+                "atm-li3": "手續費：台灣本地銀行通常會收每筆約 NT$100 的設備手續費（您的發卡銀行可能還會收取跨國手續費，建議一次領取足夠金額）。",
+                "bank-title": "實體銀行換匯", "bank-desc": "如果您手邊持有外幣現鈔（如美金、日圓、歐元）需要兌換成新台幣，前往銀行就有提供外匯業務的實體銀行。",
+                "bank-li1": "<strong>第一銀行 大稻埕分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同區迪化街一段 63 號</a>（迪化街主街上）。",
+                "bank-li4": "<strong>臺灣銀行 延平分行：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同區南京西路 163 號</a>（換匯免手續費）。",
+                "bank-li2": "營業時間：平日（週一至週五）09:00 - 15:30，週末與國定假日休息。",
+                "bank-li3": "注意事項：在台灣的銀行辦理任何換匯業務，都規定必須出示護照正本 (Passport)。實際匯率與手續費，依各分行現場公告為主。",
+                "kiosk-desc": "為了因應大稻埕龐大的觀光人潮，如果您急需小額現金又逢銀行下班時間，可以尋找自動兌幣機（例如：新光銀行會有外幣兌換機）。部分據點設置專屬台灣與外國旅客可操作的兌換機，支援美金、日幣等主流幣種直接兌換新台幣，填補晚間逛街無處換匯的空窗。",
+                "guide-cash-title": "簡單明瞭的外幣現鈔換台幣指南",
+                "guide-step1-title": "1. 換匯流程",
+                "guide-step1-1": "<strong>準備物品：</strong>帶好「外幣現鈔」與「身分證」（外籍人士帶護照或居留證）。",
+                "guide-step1-2": "<strong>選擇地點：</strong>前往有外匯業務的銀行或郵局。",
+                "guide-step1-3": "<strong>臨櫃辦理：</strong>抽號碼牌 ➔ 告訴行員要「外幣換台幣」 ➔ 填寫外匯買賣水單 ➔ 行員驗明鈔票真偽與計算金額 ➔ 領取台幣現金。",
+                "guide-step2-title": "2. 手續費怎麼算？",
+                "guide-step2-1": "<strong>完全免費：</strong>市區的一般「臺灣銀行」、「兆豐銀行」或指定「郵局」（郵局只收美金、日圓、港幣、歐元、人民幣）。",
+                "guide-step2-2": "<strong>要收手續費的情況：</strong>機場櫃檯（約 100 元）、一般民營銀行（約 100～300 元）、特殊舊版或破損鈔票。",
+                "guide-step3-title": "3. 三大注意事項",
+                "guide-step3-1": "<strong>銀行不收硬幣：</strong>台灣所有銀行和郵局只收紙鈔，外國硬幣無法兌換。",
+                "guide-step3-2": "<strong>鈔票不能太破舊：</strong>有破洞、明顯污漬、塗鴉或撕裂修補過，銀行可能拒收或加收處理費。",
+                "guide-step3-3": "<strong>匯率看「現金買入」：</strong>請對照匯率看板的「現金買入」欄位，代表銀行用現金向你買進外幣的價格。",
+
+                "footer-desc1": "本指南由社群共編，持續更新中。", "footer-desc2": "所有店家資訊僅供參考，請以實際營業狀況為準。",
+                "feedback-title": "改善地方建議", "feedback-sub": "您的意見是讓大稻埕更好的動力！歡迎提出與指教為改善建議。", "feedback-btn": "前往填寫表單"
+            },
+            "en": {
+                "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-info": "Transport & Info", "nav-emergency": "Emergency Help",
+                "info-page-title": "Transport & Visitor Info", "info-page-sub": "Practical parking guide for drivers, designated smoking points, and Taiwan's anti-smoking laws.",
+                "sec-parking-title": "Parking Lots Around Dadaocheng",
+                "tag-p1": "Underground", "p1-name": "Dadaocheng Park Underground Parking", "p1-desc": "Spacious and located right next to northern Dihua Street, making it the most convenient lot for visiting herbal and dry goods shops.", "p1-addr": "B1, No. 243, Guisui St., Datong District",
+                "tag-p2": "Market Core", "p2-name": "Yongle Market Underground Parking", "p2-desc": "Located right underneath Yongle Market and close to Xiahai City God Temple. Prone to queues during weekends.", "p2-addr": "B1, No. 21, Sec. 1, Dihua St., Datong District",
+                "tag-p3": "Open Ground", "p3-name": "Dadaocheng Wharf Riverside Parking", "p3-desc": "Outside Water Gate No. 5 near the container market. Perfect for travelers planning an evening sunset stroll along the river.", "p3-addr": "End of Minsheng W. Rd (Enter via Water Gate 5)",
+                "btn-nav": "Open Navigation",
+                "sec-smoke-title": "Smoking Areas & Regulations",
+                "smoke-sub": "To protect historical districts and public health, the Dihua St. Commercial District is completely smoke-free:",
+                "smoke-warning": "<strong class='text-accent text-base block mb-1'>Dihua St. is Completely Smoke-Free! Fines up to NT$10,000</strong>As of August 1, 2026, the Dihua St. Commercial District is a designated non-smoking area. Boundaries: East to Minle St., West to Xining N. Rd., South to Nanjing W. Rd. (incl. Ln. 239), and North to Minsheng W. Rd. <strong>This includes all arcades and sidewalks along these boundaries.</strong> E-cigarettes are also banned. Please use designated smoking areas to avoid fines (NT$2,000 - NT$10,000).",
+                "smoke-loc1-title": "Open Areas Outside Dadaocheng Wharf", "smoke-loc1-desc": "Open riverside areas beyond Water Gate No. 5 away from crowds and dining areas. Please carry a portable ashtray.", "smoke-loc1-map": "View Water Gate No. 5 Location",
+                "smoke-loc2-title": "Convenience Stores Outside the Boundary", "smoke-loc2-desc": "Outdoor areas completely outside the restricted zone with designated cigarette bins.", "smoke-loc2-tip": "Note: Arcades and sidewalks on the boundary streets are strictly non-smoking.",
+
+                "guide-title": "Cash Withdrawal & Exchange", "guide-sub": "While many shops accept cards, traditional street food and markets still require cash. Here is the easiest way to get NTD:",
+                "guide-warning": "<strong class='text-accent text-base block mb-1'>Exchange Rate Trap! Avoid DCC</strong>When withdrawing cash or paying by card, if asked to be charged in your 'Home Currency' or 'Local Currency', ALWAYS choose <strong class='text-accent'>'Local Currency (NTD)'</strong>. Choosing your home currency (Dynamic Currency Conversion) uses poor exchange rates, adding 3%-7% in hidden fees.",
+                "atm-title": "24H Convenience Store ATMs", "atm-desc": "Taiwan has a high density of convenience stores, making them the easiest way for tourists to get cash.",
+                "atm-li1": "Where? Look for 7-ELEVEN (CTBC Bank ATMs) or FamilyMart (Taishin or Cathay United ATMs). Stores are within a 5-min walk in Dadaocheng.",
+                "atm-li2": "Supported Cards: Look for Visa, Mastercard, PLUS, Cirrus, or UnionPay logos on the machine to withdraw NTD using your foreign card.",
+                "atm-li3": "Fees: Local banks usually charge a ~NT$100 machine fee per withdrawal (your home bank may also charge foreign transaction fees).",
+                "bank-title": "Bank Currency Exchange", "bank-desc": "If you have foreign cash (e.g., USD, JPY, EUR) and need NTD, you can exchange it at physical bank branches.",
+                "bank-li1": "<strong>First Bank Dadaocheng Branch:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> No. 63, Sec. 1, Dihua St.</a>",
+                "bank-li4": "<strong>Bank of Taiwan Yanping Branch:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> No. 163, Nanjing W. Rd.</a> (No exchange fee).",
+                "bank-li2": "Hours: Weekdays (Mon-Fri) 09:00 - 15:30. Closed on weekends and holidays.",
+                "bank-li3": "Note: You MUST present your original Passport to exchange currency in Taiwan.",
+                "kiosk-desc": "If you need a small amount of cash outside bank hours, look for automated exchange kiosks (e.g., Shin Kong Bank ATMs). Some locations offer machines supporting major currencies like USD and JPY.",
+                "guide-cash-title": "Simple Guide to Exchanging Foreign Cash",
+                "guide-step1-title": "1. Exchange Process",
+                "guide-step1-1": "<strong>What to bring:</strong> Foreign cash and ID (Passport).",
+                "guide-step1-2": "<strong>Where to go:</strong> Banks or Post Offices handling foreign exchange.",
+                "guide-step1-3": "<strong>At the counter:</strong> Take a number ➔ Tell the teller 'exchange foreign currency to NTD' ➔ Fill out the form ➔ Receive NTD.",
+                "guide-step2-title": "2. How are fees calculated?",
+                "guide-step2-1": "<strong>Free of charge:</strong> Bank of Taiwan, Mega Bank, or designated Post Offices (Post Office accepts USD, JPY, EUR).",
+                "guide-step2-2": "<strong>Fees apply:</strong> Airport counters (~NT$100), private banks, or old/damaged banknotes.",
+                "guide-step3-title": "3. Three Precautions",
+                "guide-step3-1": "<strong>No coins accepted:</strong> Banks and post offices in Taiwan only accept paper bills.",
+                "guide-step3-2": "<strong>Condition of banknotes:</strong> Torn or heavily stained bills may be rejected.",
+                "guide-step3-3": "<strong>Check 'Cash Buying' Rate:</strong> Look at the 'Cash Buying' column on the exchange rate board.",
+
+                "footer-desc1": "This guide is co-edited by the community.", "footer-desc2": "Store information is for reference only.",
+                "feedback-title": "Suggestions", "feedback-sub": "We welcome your suggestions to make Dadaocheng better!", "feedback-btn": "Feedback Form"
+            },
+            "ja": {
+                "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-info": "交通・便利情報", "nav-emergency": "緊急サポート",
+                "info-page-title": "交通と便利情報", "info-page-sub": "周辺駐車場ガイド、喫煙エリアのご案内、および台湾の禁煙法規について。",
+                "sec-parking-title": "大稲埕周辺の駐車場",
+                "tag-p1": "地下駐車場", "p1-name": "大稲埕公園地下駐車場", "p1-desc": "迪化街北側に位置し、駐車台数が多く移動もスムーズ。漢方薬街や乾物街の散策に最も適しています。", "p1-addr": "台北市大同区帰綏街243号地下",
+                "tag-p2": "市場直結", "p2-name": "永楽市場地下駐車場", "p2-desc": "永楽市場や霞海城隍廟のすぐそば。休日は混雑しやすいため早めの到着をお勧めします。", "p2-addr": "台北市大同区迪化街一段21号地下",
+                "tag-p3": "平面河川敷", "p3-name": "大稲埕埠頭堤外駐車場", "p3-desc": "第5水門の外側に位置し、コンテナ市集の近く。川沿いの夕日散策を楽しみたい方に最適。", "p3-addr": "台北市大同区民生西路突き当たり（第5水門）",
+                "btn-nav": "ナビを開く",
+                "sec-smoke-title": "迪化街商圏の禁煙範囲と法規",
+                "smoke-sub": "歴史的景観と皆様の健康を守るため、大稲埕・迪化街商圏は全面禁煙となっています：",
+                "smoke-warning": "<strong class='text-accent text-base block mb-1'>迪化街商圏は全面禁煙です！違反者は最高10,000元の罰金</strong>2026年8月1日より、大稲埕・迪化街商圏は全面禁煙エリアに指定されました。範囲：東は民楽街、西は西寧北路、南は南京西路（239巷を含む）、北は民生西路まで。<strong>境界となる道路のアーケード（軒下）や歩道も含まれます。</strong>電子タバコも禁止です。罰金（2,000〜10,000台湾ドル）を避けるため、指定の喫煙所をご利用ください。",
+                "smoke-loc1-title": "大稲埕埠頭・堤外の開放エリア", "smoke-loc1-desc": "第5水門を出た川沿いの開放的な場所（飲食エリアや子供の多い場所を避けてください）。携帯灰皿をご持参ください。", "smoke-loc1-map": "第5水門の場所を確認",
+                "smoke-loc2-title": "禁煙エリア外のコンビニ屋外指定場所", "smoke-loc2-desc": "禁煙境界線の外側にある大通り沿いのコンビニ屋外で、灰皿が設置されている開放エリアをご利用ください。", "smoke-loc2-tip": "※注意：境界線上の歩道およびアーケード下は全面禁煙です。",
+
+                "guide-title": "現金引き出しと両替ガイド", "guide-sub": "屋台や市場では現金が必要です。台湾ドルを入手する最も便利な方法：",
+                "guide-warning": "<strong class='text-accent text-base block mb-1'>為替レートの罠！DCCを回避</strong>ATMやカード決済時、「現地通貨（台湾ドル）」または「自国通貨」のどちらで決済するか問われた場合は、必ず<strong class='text-accent'>「現地通貨（NTD）」</strong>を選択してください。自国通貨を選ぶと、不利なレートが適用されます。",
+                "atm-title": "24時間コンビニでのキャッシング", "atm-desc": "台湾はコンビニが非常に多く、外国人旅行者が現金を手に入れる最も便利な方法です。",
+                "atm-li1": "どこで？ 7-ELEVEN またはファミリーマートを探してください。大稲埕周辺には徒歩5分圏内に多数あります。",
+                "atm-li2": "対応カード：Visa、MastercardなどのマークがあるATMで、海外のキャッシュカードでNTDを引き出せます。",
+                "atm-li3": "手数料：台湾の銀行で1回につき約NT$100の手数料がかかります。",
+                "bank-title": "銀行での外貨両替", "bank-desc": "外貨の現金をお持ちで台湾ドルに両替したい場合は、外為業務を行う銀行へお越しください。",
+                "bank-li1": "<strong>第一銀行 大稲埕支店：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同区迪化街一段63号</a>",
+                "bank-li4": "<strong>台湾銀行 延平支店：</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 台北市大同区南京西路163号</a>（両替手数料無料）。",
+                "bank-li2": "営業時間：平日（月〜金）09:00 - 15:30。週末および祝日は休業。",
+                "bank-li3": "注意事項：両替をする際は、必ずパスポートの原本が必要です。",
+                "kiosk-desc": "銀行の営業時間外に少額の現金が必要な場合は、自動両替機を探してみてください。米ドルや日本円などの主要通貨に対応しています。",
+                "guide-cash-title": "外貨現金の台湾ドル両替ガイド",
+                "guide-step1-title": "1. 両替の手順",
+                "guide-step1-1": "<strong>必要なもの：</strong> 外貨の現金とパスポート。",
+                "guide-step1-2": "<strong>場所：</strong> 外国為替業務を行っている銀行。",
+                "guide-step1-3": "<strong>窓口にて：</strong> 「台湾ドルに両替したい」と伝える ➔ 申込書に記入 ➔ 台湾ドルの現金を受け取る。",
+                "guide-step2-title": "2. 手数料について",
+                "guide-step2-1": "<strong>手数料無料：</strong> 台湾銀行、兆豊銀行など。",
+                "guide-step2-2": "<strong>手数料がかかる場合：</strong> 一般の民間銀行（100〜300元）、旧紙幣や破損した紙幣。",
+                "guide-step3-title": "3. 注意事項",
+                "guide-step3-1": "<strong>硬貨は不可：</strong> 外国の硬貨は両替できません。",
+                "guide-step3-2": "<strong>紙幣の状態：</strong> 破れや目立つ汚れがある場合、両替を拒否されることがあります。",
+                "guide-step3-3": "<strong>レートは「Cash Buying（現金買入）」を確認。</strong>",
+
+                "footer-desc1": "このガイドはコミュニティによって更新されています。", "footer-desc2": "店舗情報は参考用です。",
+                "feedback-title": "改善のご提案", "feedback-sub": "皆様のご意見をお待ちしております！", "feedback-btn": "フォームに記入"
+            },
+            "ko": {
+                "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-info": "교통 및 편의시설", "nav-emergency": "긴급 지원",
+                "info-page-title": "교통 및 편의 안내", "info-page-sub": "다다오청 주변 주차장 안내 및 대만 금연 구역 법규/흡연 구역 안내.",
+                "sec-parking-title": "다다오청 주변 주차장",
+                "tag-p1": "지하 주차장", "p1-name": "다다오청 공원 지하 주차장", "p1-desc": "디화제 북쪽 상권 인근에 위치하며 공간이 넓어 건어물 및 한약재 거리 방문에 가장 편리합니다.", "p1-addr": "타이베이시 다퉁구 구이수이제 243호 지하",
+                "tag-p2": "시장 중심", "p2-name": "융러 시장 지하 주차장", "p2-desc": "융러 시장 및 하해성화묘 바로 아래에 위치합니다. 주말에는 혼잡할 수 있습니다.", "p2-addr": "타이베이시 다퉁구 디화제 1단 21호 지하",
+                "tag-p3": "야외 평면", "p3-name": "다다오청 부두 둔치 주차장", "p3-desc": "제5수문 밖 강변에 위치하며 컨테이너 마켓과 가깝습니다. 노을 산책에 최적입니다.", "p3-addr": "타이베이시 다퉁구 민생서로 끝 (제5수문 진입)",
+                "btn-nav": "지도 내비게이션",
+                "sec-smoke-title": "디화제 상권 금연 구역 및 규정",
+                "smoke-sub": "역사 지구와 관광객의 건강을 보호하기 위해 다다오청 디화제 상권은 전면 금연입니다:",
+                "smoke-warning": "<strong class='text-accent text-base block mb-1'>디화제 상권 전면 금연! 위반 시 최대 NT$10,000 벌금</strong>2026년 8월 1일부터 다다오청 디화제 상권은 전면 금연 구역으로 지정되었습니다. 범위: 동쪽 민러제, 서쪽 시닝북로, 남쪽 난징서로(239항 포함), 북쪽 민생서로. <strong>경계 도로의 아케이드(처마 밑 복도) 및 인도도 포함됩니다.</strong> 전자담배 또한 금지됩니다. 벌금(NT$2,000~10,000)이 부과될 수 있으니 지정된 흡연 구역을 이용해 주십시오.",
+                "smoke-loc1-title": "다다오청 부두 제5수문 야외 개방 공간", "smoke-loc1-desc": "제5수문 밖 강변 자전거 도로 등 개방된 장소. 휴대용 재떨이를 지참해 주십시오.", "smoke-loc1-map": "제5수문 위치 확인",
+                "smoke-loc2-title": "금연 구역 밖 편의점 야외 공간", "smoke-loc2-desc": "금연 경계선 바깥쪽 도로변 편의점 앞 합법적 재떨이가 설치된 개방된 야외 공간을 이용하세요.", "smoke-loc2-tip": "※주의: 경계선의 아케이드 복도와 인도는 모두 금연입니다.",
+
+                "guide-title": "현금 인출 및 환전 가이드", "guide-sub": "전통 길거리 음식과 시장에서는 여전히 현금이 필요합니다.",
+                "guide-warning": "<strong class='text-accent text-base block mb-1'>환율 함정! DCC(해외원화결제) 피하기</strong>ATM 인출이나 카드 결제 시 반드시 <strong class='text-accent'>'현지 통화(NTD)'</strong>를 선택하세요. 자국 통화를 선택하면 불리한 환율이 적용되어 3~7%의 수수료가 추가될 수 있습니다.",
+                "atm-title": "24시간 편의점 해외 인출", "atm-desc": "대만은 편의점이 매우 많아 현금을 찾기에 가장 편리합니다.",
+                "atm-li1": "어디서? 7-ELEVEN 또는 패밀리마트. 다다오청 주변 도보 5분 거리에 많이 있습니다.",
+                "atm-li2": "지원 카드: Visa, Mastercard 등 마크가 있는 ATM에서 인출할 수 있습니다.",
+                "atm-li3": "수수료: 대만 은행에서 건당 약 NT$100의 수수료를 부과합니다.",
+                "bank-title": "은행 환전", "bank-desc": "외화 현금을 대만 달러로 환전해야 한다면 은행을 방문하세요.",
+                "bank-li1": "<strong>제일은행 다다오청 지점:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=第一銀行大稻埕分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 타이베이시 다퉁구 디화제 1단 63호</a>",
+                "bank-li4": "<strong>대만은행 옌핑 지점:</strong><br><a href='https://www.google.com/maps/search/?api=1&query=臺灣銀行延平分行' target='_blank' class='map-link hover:text-primary dark:hover:text-accent transition-colors underline decoration-ink/20 hover:decoration-primary'><i class='fa-solid fa-location-dot'></i> 타이베이시 다퉁구 난징서로 163号</a> (수수료 면제).",
+                "bank-li2": "영업시간: 평일(월~금) 09:00 - 15:30. 주말 및 공휴일 휴무.",
+                "bank-li3": "주의사항: 대만 은행에서 환전 시 반드시 여권 원본을 제시해야 합니다.",
+                "kiosk-desc": "은행 영업시간 외에 소액 현금이 필요하다면 자동 환전기를 찾아보세요. 미국 달러, 일본 엔 등 주요 통화를 지원합니다.",
+                "guide-cash-title": "외화 현금 대만 달러 환전 가이드",
+                "guide-step1-title": "1. 환전 절차",
+                "guide-step1-1": "<strong>준비물:</strong> 외화 현금 및 신분증 (여권).",
+                "guide-step1-2": "<strong>장소:</strong> 외환 업무를 취급하는 은행.",
+                "guide-step1-3": "<strong>창구 업무:</strong> 은행원에게 '대만 달러로 환전' 요청 ➔ 환전 신청서 작성 ➔ 현금 수령.",
+                "guide-step2-title": "2. 수수료 계산",
+                "guide-step2-1": "<strong>수수료 무료:</strong> 시내의 '대만은행', '메가은행' 등.",
+                "guide-step2-2": "<strong>수수료 발생:</strong> 일반 민간 은행 (100~300위안), 훼손된 지폐.",
+                "guide-step3-title": "3. 주의사항",
+                "guide-step3-1": "<strong>동전 환전 불가:</strong> 외국 동전은 환전할 수 없습니다.",
+                "guide-step3-2": "<strong>지폐 상태:</strong> 훼손된 지폐는 거절될 수 있습니다.",
+                "guide-step3-3": "<strong>환율은 '현찰 살 때(Cash Buying)' 확인.</strong>",
+
+                "footer-desc1": "이 가이드는 지속적으로 업데이트됩니다.", "footer-desc2": "상점 정보는 참고용입니다.",
+                "feedback-title": "개선 제안", "feedback-sub": "제안을 환영합니다.", "feedback-btn": "피드백 작성"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key]; 
+            });
+            const langSelect = document.getElementById('lang-select');
+            if (langSelect) langSelect.value = lang;
+            localStorage.setItem('dadaocheng_lang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('dadaocheng_lang') || 'zh';
+            changeLanguage(savedLang);
+
+            document.getElementById('lang-select').addEventListener('change', (e) => {
+                changeLanguage(e.target.value);
+            });
+
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            themeToggleBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            });
+        });
+    </script>
+</body>
+</html>
