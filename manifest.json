@@ -1,0 +1,21 @@
+{
+  "name": "大稻埕人文導覽 Dadaocheng Guide",
+  "short_name": "大稻埕導覽",
+  "description": "由社群共編的大稻埕在地店家與人文導覽指南",
+  "start_url": "/Dadaocheng-Web/index.html",
+  "display": "standalone",
+  "background_color": "#FAF6F0",
+  "theme_color": "#8A3324",
+  "icons": [
+    {
+      "src": "images/Dadaocheng-Web.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/Dadaocheng-Web.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
