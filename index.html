@@ -152,7 +152,7 @@
                     <i id="filter-toggle-icon" class="fa-solid fa-chevron-down ml-2 transition-transform duration-300"></i>
                 </button>
 
-                <!-- 搜尋框區塊 (已從 Header 移至此) -->
+                <!-- 搜尋框區塊 -->
                 <div class="relative w-full sm:w-64 lg:w-80">
                     <input type="text" id="search-input" placeholder="搜尋店家..." class="w-full pl-10 pr-4 py-2.5 rounded-full border-2 border-ink/20 dark:border-gray-600 bg-white/50 dark:bg-dark-card/50 text-ink dark:text-dark-ink text-sm focus:outline-none focus:border-ink dark:focus:border-dark-ink transition-colors shadow-sm" data-i18n-placeholder="search-placeholder">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-ink-light dark:text-gray-400 text-sm pointer-events-none"></i>
@@ -180,7 +180,7 @@
             <p class="col-span-full text-center text-ink-light dark:text-gray-400">資料載入中，請稍候...</p>
         </div>
 
-        <!-- 分頁 -->
+        <!-- 分頁區塊 (已被修改為下拉式風格) -->
         <div class="flex flex-col items-center gap-2 mt-8">
             <div id="pagination-numbers"></div>
             <div id="page-info"></div>
@@ -247,7 +247,8 @@
                 "tag-coffee": "咖啡", "tag-tea": "茶館", "tag-restaurant": "餐廳", "tag-craft": "文創選物",
                 "tag-pastry": "傳統糕餅", "tag-medicine": "中藥行", "tag-snack": "小吃", "tag-dessert": "冰品飲料",
                 "tag-bar": "酒吧", "tag-culture": "文化", "page-text": "總共第 {start} 到 {end} 筆，共 {total} 筆",
-                "search-placeholder": "搜尋店家", "filter-title": "篩選分類"
+                "search-placeholder": "搜尋店家", "filter-title": "篩選分類",
+                "prev-page": "上一頁", "next-page": "下一頁", "page-unit": "頁"
             },
             "en": {
                 "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help","nav-info": "Transport & Info",
@@ -259,7 +260,8 @@
                 "tag-coffee": "Coffee", "tag-tea": "Tea House", "tag-restaurant": "Restaurant", "tag-craft": "Crafts",
                 "tag-pastry": "Pastry", "tag-medicine": "Medicine", "tag-snack": "Snacks", "tag-dessert": "Ice & Drinks",
                 "tag-bar": "Bar", "tag-culture": "Culture", "page-text": "Showing {start} to {end} of {total} entries",
-                "search-placeholder": "Search shops", "filter-title": "Filter Categories"
+                "search-placeholder": "Search shops", "filter-title": "Filter Categories",
+                "prev-page": "Prev", "next-page": "Next", "page-unit": "Page "
             },
             "ja": {
                 "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート","nav-info": "交通・便利情報",
@@ -271,7 +273,8 @@
                 "tag-coffee": "カフェ", "tag-tea": "茶館", "tag-restaurant": "レストラン", "tag-craft": "クラフト",
                 "tag-pastry": "伝統菓子", "tag-medicine": "漢方薬局", "tag-snack": "軽食", "tag-dessert": "アイス・飲み物",
                 "tag-bar": "バー", "tag-culture": "文化", "page-text": "全 {total} 件中 {start} から {end} 件目を表示",
-                "search-placeholder": "店舗検索", "filter-title": "カテゴリー"
+                "search-placeholder": "店舗検索", "filter-title": "カテゴリー",
+                "prev-page": "前へ", "next-page": "次へ", "page-unit": "ページ"
             },
             "ko": {
                 "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원","nav-info": "교통 및 편의시설",
@@ -283,7 +286,8 @@
                 "tag-coffee": "카페", "tag-tea": "찻집", "tag-restaurant": "레스토랑", "tag-craft": "문화 창작",
                 "tag-pastry": "전통 과자", "tag-medicine": "한약방", "tag-snack": "스낵", "tag-dessert": "아이스/음료",
                 "tag-bar": "바", "tag-culture": "문화", "page-text": "총 {total}개 중 {start}에서 {end}까지 표시",
-                "search-placeholder": "매장 찾기", "filter-title": "카테고리"
+                "search-placeholder": "매장 찾기", "filter-title": "카테고리",
+                "prev-page": "이전", "next-page": "다음", "page-unit": "페이지"
             }
         };
 
@@ -500,35 +504,85 @@
             updatePagination(totalItems, totalPages);
         }
 
+        // 修改為下拉式選單風格的分頁元件
         function updatePagination(totalItems, totalPages) {
             const paginationNumbers = document.getElementById('pagination-numbers');
             const pageInfo = document.getElementById('page-info');
             paginationNumbers.innerHTML = '';
-            paginationNumbers.className = "flex gap-2 items-center justify-center";
+            paginationNumbers.className = "flex gap-3 items-center justify-center";
 
             if (totalItems === 0) {
                 pageInfo.innerText = i18n[currentLang]['page-text'].replace('{start}', 0).replace('{end}', 0).replace('{total}', 0);
                 return;
             }
 
-            const createBtn = (content, disabled, onClick, isActive = false) => {
-                const btn = document.createElement('button');
-                btn.className = `w-10 h-10 flex items-center justify-center border-2 rounded-sm font-bold transition-all duration-200 ${
-                    disabled ? 'border-ink-light/20 dark:border-gray-700 text-ink-light/30 dark:text-gray-600 cursor-not-allowed' :
-                    isActive ? 'border-ink dark:border-dark-ink bg-tag-bg dark:bg-dark-tag text-tag-text dark:text-accent shadow-[2px_2px_0px_0px_rgba(51,51,51,1)] dark:shadow-[2px_2px_0px_0px_rgba(239,235,227,1)] translate-y-[2px]' :
-                    'border-ink/20 dark:border-dark-ink/20 text-ink-light dark:text-gray-400 hover:border-ink dark:hover:border-dark-ink hover:text-ink dark:hover:text-dark-ink hover:shadow-[2px_2px_0px_0px_rgba(51,51,51,0.5)] dark:hover:shadow-[2px_2px_0px_0px_rgba(239,235,227,0.5)]'
-                }`;
-                btn.innerHTML = content;
-                btn.disabled = disabled;
-                if (!disabled) btn.onclick = onClick;
-                return btn;
+            const textPrev = i18n[currentLang]['prev-page'] || '上一頁';
+            const textNext = i18n[currentLang]['next-page'] || '下一頁';
+            const textPage = i18n[currentLang]['page-unit'] || '頁';
+
+            // 上一頁按鈕
+            const prevDisabled = currentPage === 1;
+            const prevBtn = document.createElement('button');
+            prevBtn.className = `px-4 py-2 rounded-md font-bold transition-all duration-200 ${
+                prevDisabled 
+                ? 'bg-gray-100 dark:bg-white/5 border border-transparent text-gray-400 dark:text-gray-600 cursor-not-allowed' 
+                : 'bg-white dark:bg-dark-card border border-ink/20 dark:border-dark-ink/20 text-ink dark:text-dark-ink hover:bg-black/5 dark:hover:bg-white/10 shadow-sm'
+            }`;
+            prevBtn.innerText = textPrev;
+            prevBtn.disabled = prevDisabled;
+            if (!prevDisabled) prevBtn.onclick = () => { 
+                currentPage--; 
+                renderCards(); 
+                window.scrollTo({ top: document.getElementById('filter-toggle-btn').offsetTop - 100, behavior: 'smooth' });
+            };
+            paginationNumbers.appendChild(prevBtn);
+
+            // 下拉選單 (第X頁)
+            const selectWrap = document.createElement('div');
+            selectWrap.className = 'relative';
+            
+            const selectEl = document.createElement('select');
+            selectEl.className = 'appearance-none pl-4 pr-8 py-2 rounded-md border border-ink/20 dark:border-dark-ink/20 bg-white dark:bg-dark-card text-ink dark:text-dark-ink font-bold focus:outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer shadow-sm';
+            
+            for (let i = 1; i <= totalPages; i++) {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.innerText = currentLang === 'en' ? `${textPage}${i}` : `${i} ${textPage}`;
+                if (i === currentPage) opt.selected = true;
+                selectEl.appendChild(opt);
+            }
+            
+            selectEl.onchange = (e) => {
+                currentPage = parseInt(e.target.value, 10);
+                renderCards();
+                window.scrollTo({ top: document.getElementById('filter-toggle-btn').offsetTop - 100, behavior: 'smooth' });
             };
 
-            paginationNumbers.appendChild(createBtn('<i class="fa-solid fa-chevron-left"></i>', currentPage === 1, () => { currentPage--; renderCards(); }));
-            for (let i = 1; i <= totalPages; i++) {
-                paginationNumbers.appendChild(createBtn(i, false, () => { currentPage = i; renderCards(); }, i === currentPage));
-            }
-            paginationNumbers.appendChild(createBtn('<i class="fa-solid fa-chevron-right"></i>', currentPage === totalPages, () => { currentPage++; renderCards(); }));
+            selectWrap.appendChild(selectEl);
+            
+            // 下拉選單的小箭頭圖示
+            const arrowIcon = document.createElement('i');
+            arrowIcon.className = 'fa-solid fa-caret-down absolute right-3 top-1/2 transform -translate-y-1/2 text-ink-light dark:text-gray-400 pointer-events-none';
+            selectWrap.appendChild(arrowIcon);
+
+            paginationNumbers.appendChild(selectWrap);
+
+            // 下一頁按鈕
+            const nextDisabled = currentPage === totalPages;
+            const nextBtn = document.createElement('button');
+            nextBtn.className = `px-4 py-2 rounded-md font-bold transition-all duration-200 ${
+                nextDisabled 
+                ? 'bg-gray-100 dark:bg-white/5 border border-transparent text-gray-400 dark:text-gray-600 cursor-not-allowed' 
+                : 'bg-white dark:bg-dark-card border border-ink/20 dark:border-dark-ink/20 text-ink dark:text-dark-ink hover:bg-black/5 dark:hover:bg-white/10 shadow-sm'
+            }`;
+            nextBtn.innerText = textNext;
+            nextBtn.disabled = nextDisabled;
+            if (!nextDisabled) nextBtn.onclick = () => { 
+                currentPage++; 
+                renderCards(); 
+                window.scrollTo({ top: document.getElementById('filter-toggle-btn').offsetTop - 100, behavior: 'smooth' });
+            };
+            paginationNumbers.appendChild(nextBtn);
 
             const startStr = (currentPage - 1) * cardsPerPage + 1;
             const endStr = Math.min(currentPage * cardsPerPage, totalItems);
