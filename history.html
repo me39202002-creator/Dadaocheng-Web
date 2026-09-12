@@ -20,25 +20,24 @@
     <!-- 引入 Tailwind CSS Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- 設定 Tailwind Config (深色模式與日系草稿風系統) -->
+    <!-- 設定 Tailwind Config -->
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#8A3324',     /* 深紅棕色 */
-                        paper: '#FAF6F0',       /* 畫紙米白底色 */
-                        ink: '#333333',         /* 墨水深灰 */
-                        'ink-light': '#666666', /* 淺墨灰 */
-                        accent: '#C05C4D',      /* 點綴紅 */
-                        'tag-bg': '#F8E8E6',    /* 標籤淺粉底 */
-                        'tag-text': '#A63F32',  /* 標籤深紅字 */
-                        /* 深色模式專屬色彩 */
-                        'dark-paper': '#1C1A1A', /* 深硯色 */
-                        'dark-card': '#2A2828',  /* 暗夜灰 */
-                        'dark-ink': '#EFEBE3',   /* 淺宣紙色 */
-                        'dark-tag': '#3A2E2D',   /* 深色標籤底 */
+                        primary: '#8A3324',
+                        paper: '#FAF6F0',
+                        ink: '#333333',
+                        'ink-light': '#666666',
+                        accent: '#C05C4D',
+                        'tag-bg': '#F8E8E6',
+                        'tag-text': '#A63F32',
+                        'dark-paper': '#1C1A1A',
+                        'dark-card': '#2A2828',
+                        'dark-ink': '#EFEBE3',
+                        'dark-tag': '#3A2E2D',
                     },
                     fontFamily: {
                         sans: ['"Noto Sans TC"', '"Microsoft JhengHei"', 'sans-serif'],
@@ -49,7 +48,6 @@
         }
     </script>
 
-    <!-- FOUC 閃爍防護腳本 -->
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
@@ -58,7 +56,6 @@
         }
     </script>
 
-    <!-- 自訂基礎 CSS -->
     <style type="text/tailwindcss">
         @layer base {
             body {
@@ -74,54 +71,58 @@
     <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      // 確保路徑與你的 GitHub Pages 儲存庫名稱一致
       navigator.serviceWorker.register('/Dadaocheng-Web/service-worker.js')
-        .then(registration => {
-          console.log('ServiceWorker 註冊成功，範圍為: ', registration.scope);
-        })
-        .catch(err => {
-          console.log('ServiceWorker 註冊失敗: ', err);
-        });
+        .then(registration => console.log('ServiceWorker 註冊成功，範圍為: ', registration.scope))
+        .catch(err => console.log('ServiceWorker 註冊失敗: ', err));
     });
   }
     </script>
 
     <!-- 頂部導覽列 -->
     <header class="sticky top-0 z-50 bg-paper/95 dark:bg-dark-paper/95 backdrop-blur-sm border-b-4 border-primary shadow-sm transition-colors duration-500">
-        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center md:gap-4 relative">
             
-            <div class="flex items-center gap-3">
-                <img src="images/Dadaocheng-Web.webp" alt="大稻埕人文導覽 Logo" width="50" height="50" class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200 dark:border-gray-700" loading="lazy">
-                <div class="flex flex-col leading-tight">
-                    <div class="font-serif font-bold text-lg text-ink dark:text-dark-ink transition-colors duration-500" data-i18n="site-title">大稻埕人文導覽</div>
-                    <div class="text-xs text-ink-light dark:text-gray-400 tracking-wider transition-colors duration-500">Dadaocheng Guide</div>
+            <div class="flex justify-between items-center w-full md:w-auto">
+                <div class="flex items-center gap-3">
+                    <img src="images/Dadaocheng-Web.webp" alt="大稻埕人文導覽 Logo" width="50" height="50" class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200 dark:border-gray-700" loading="lazy">
+                    <div class="flex flex-col leading-tight">
+                        <div class="font-serif font-bold text-lg text-ink dark:text-dark-ink transition-colors duration-500" data-i18n="site-title">大稻埕人文導覽</div>
+                        <div class="text-xs text-ink-light dark:text-gray-400 tracking-wider transition-colors duration-500">Dadaocheng Guide</div>
+                    </div>
                 </div>
+
+                <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-md bg-black/5 dark:bg-white/10 text-ink dark:text-dark-ink focus:outline-none hover:bg-black/10 dark:hover:bg-white/20 transition-colors">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
             </div>
 
-            <nav class="flex flex-wrap justify-center gap-2 text-sm font-medium">
-                <a href="index.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-shops">特色店家</a>
-                <!-- Active 樣式套用到歷史頁面 -->
-                <a href="history.html" class="px-4 py-2 rounded-md bg-tag-bg dark:bg-dark-tag text-tag-text dark:text-accent font-bold transition-colors shadow-sm" data-i18n="nav-history">大稻埕的歷史</a>
-                <a href="apps.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-apps">必備APP推薦</a>
-                <a href="emergency.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-emergency">緊急協助</a>
-                <a href="info.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-info">交通與便民</a>
-            </nav>
+            <div id="nav-menu" class="hidden md:flex flex-col md:flex-row flex-1 justify-between items-center gap-5 w-full mt-5 md:mt-0 pb-2 md:pb-0">
+                <nav class="flex flex-col md:flex-row flex-wrap justify-center items-center gap-2 md:gap-2 text-sm font-medium w-full md:w-auto md:mx-auto">
+                    <a href="index.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-shops">特色店家</a>
+                    <!-- Active 樣式套用到歷史頁面 -->
+                    <a href="history.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md bg-tag-bg dark:bg-dark-tag text-tag-text dark:text-accent font-bold transition-colors shadow-sm" data-i18n="nav-history">大稻埕的歷史</a>
+                    <a href="apps.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-apps">必備APP推薦</a>
+                    <a href="emergency.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-emergency">緊急協助</a>
+                    <a href="info.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-info">交通與便民</a>
+                </nav>
 
-            <div class="flex items-center gap-4 text-sm text-ink-light dark:text-gray-400">
-                <!-- 深淺色切換按鈕 -->
-                <button id="theme-toggle" aria-label="切換深淺色模式" class="relative w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none">
-                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-accent absolute transition-all duration-300 transform dark:-rotate-90 dark:opacity-0 dark:scale-50"></i>
-                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-dark-ink absolute transition-all duration-300 transform rotate-90 opacity-0 scale-50 dark:rotate-0 dark:opacity-100 dark:scale-100"></i>
-                </button>
+                <div class="flex justify-center items-center gap-6 md:gap-4 text-sm text-ink-light dark:text-gray-400 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-ink/10 dark:border-dark-ink/10">
+                    <!-- 彩色深淺色切換開關 -->
+                    <button id="theme-toggle" aria-label="切換深淺色模式" class="relative w-14 h-7 rounded-full bg-sky-400 dark:bg-indigo-800 transition-colors duration-500 focus:outline-none shadow-inner flex items-center">
+                        <i class="fa-solid fa-sun absolute left-1.5 text-yellow-300 text-xs z-0 transition-opacity duration-300 dark:opacity-30"></i>
+                        <i class="fa-solid fa-moon absolute right-1.5 text-yellow-200 text-xs z-0 transition-opacity duration-300 opacity-30 dark:opacity-100"></i>
+                        <div class="absolute left-1 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-500 dark:translate-x-7 z-10"></div>
+                    </button>
 
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-globe text-accent"></i>
-                    <select id="lang-select" class="bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 text-ink dark:text-dark-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-colors duration-500">
-                        <option value="zh">繁體中文</option>
-                        <option value="en">English</option>
-                        <option value="ja">日本語</option>
-                        <option value="ko">한국어</option>
-                    </select>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-globe text-accent"></i>
+                        <select id="lang-select" class="bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 text-ink dark:text-dark-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-colors duration-500">
+                            <option value="zh">繁體中文</option>
+                            <option value="en">English</option>
+                            <option value="ja">日本語</option>
+                            <option value="ko">한국어</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -150,7 +151,7 @@
                     <span class="bg-tag-bg dark:bg-dark-tag text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i class="fa-solid fa-leaf"></i></span>
                     <span data-i18n="hist-2-title">繁華：茶香飄譽國際的茶港</span>
                 </h3>
-                <p class="text-ink-light dark:text-gray-400 leading-relaxed relative z-10 text-base transition-colors duration-500" data-i18n="hist-2-desc">1860 年淡水正式開港，大稻埕憑藉著優越的河運條件，一躍成為台灣最重要的國際貿易中心。英國商人約翰·陶德（John Dodd）引進茶苗與機器，將台灣烏龍茶以「Formosa Oolong Tea」之名行銷全球。洋行、領事館紛紛進駐，為這裡帶來了西洋與閩南融合的獨特巴洛克式建築。</p>
+                <p class="text-ink-light dark:text-gray-400 leading-relaxed relative z-10 text-base transition-colors duration-500" data-i18n="hist-2-desc">1860 年淡水正式開港，大稻埕憑藉著優越的河運條件，一躍成為台灣最重要的國際貿易中心。英國商人約翰·陶德引進茶苗與機器，將台灣烏龍茶行銷全球。洋行、領事館紛紛進駐，為這裡帶來了西洋與閩南融合的獨特巴洛克式建築。</p>
             </div>
 
             <!-- 歷史階段 3 -->
@@ -160,7 +161,7 @@
                     <span class="bg-tag-bg dark:bg-dark-tag text-accent w-10 h-10 flex items-center justify-center rounded-sm border border-accent/20"><i class="fa-solid fa-book-open"></i></span>
                     <span data-i18n="hist-3-title">啟蒙：1920年代的文化思潮</span>
                 </h3>
-                <p class="text-ink-light dark:text-gray-400 leading-relaxed relative z-10 text-base transition-colors duration-500" data-i18n="hist-3-desc">到了日治時期，大稻埕不僅是南北貨、布料和中藥材的集散地，更是台灣新文化運動的發源地。蔣渭水等知識份子在此成立「台灣文化協會」，創辦報刊、舉行演講。這裡的戲院、咖啡廳林立，成為當時思想最前衛、文化最活耀的黃金年代。</p>
+                <p class="text-ink-light dark:text-gray-400 leading-relaxed relative z-10 text-base transition-colors duration-500" data-i18n="hist-3-desc">到了日治時期，大稻埕不僅是集散地，更是台灣新文化運動的發源地。蔣渭水等知識份子在此成立「台灣文化協會」，創辦報刊、舉行演講。這裡的戲院、咖啡廳林立，成為當時思想最前衛、文化最活耀的黃金年代。</p>
             </div>
 
             <!-- 歷史階段 4 -->
@@ -210,7 +211,7 @@
         </div>
     </footer>
 
-    <!-- 多語系與深淺色切換腳本 -->
+    <!-- 多語系與腳本 -->
     <script>
         const i18n = {
             "zh": {
@@ -276,6 +277,26 @@
             document.getElementById('lang-select').addEventListener('change', (e) => {
                 changeLanguage(e.target.value);
             });
+
+            // 漢堡選單切換邏輯
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const navMenu = document.getElementById('nav-menu');
+            const hamburgerIcon = hamburgerBtn ? hamburgerBtn.querySelector('i') : null;
+
+            if (hamburgerBtn && navMenu && hamburgerIcon) {
+                hamburgerBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('hidden');
+                    navMenu.classList.toggle('flex');
+                    
+                    if (navMenu.classList.contains('hidden')) {
+                        hamburgerIcon.classList.remove('fa-xmark');
+                        hamburgerIcon.classList.add('fa-bars');
+                    } else {
+                        hamburgerIcon.classList.remove('fa-bars');
+                        hamburgerIcon.classList.add('fa-xmark');
+                    }
+                });
+            }
 
             // 深淺色模式切換邏輯
             const themeToggleBtn = document.getElementById('theme-toggle');

@@ -81,39 +81,53 @@
 
     <!-- 頂部導覽列 -->
     <header class="sticky top-0 z-50 bg-paper/95 dark:bg-dark-paper/95 backdrop-blur-sm border-b-4 border-primary shadow-sm transition-colors duration-500">
-        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center md:gap-4 relative">
             
-            <div class="flex items-center gap-3">
-                <img src="images/Dadaocheng-Web.webp" alt="大稻埕人文導覽 Logo" width="50" height="50" class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200 dark:border-gray-700" loading="lazy">
-                <div class="flex flex-col leading-tight">
-                    <div class="font-serif font-bold text-lg text-ink dark:text-dark-ink transition-colors duration-500" data-i18n="site-title">大稻埕人文導覽</div>
-                    <div class="text-xs text-ink-light dark:text-gray-400 tracking-wider transition-colors duration-500">Dadaocheng Guide</div>
+            <!-- Logo 與漢堡按鈕 (手機版保持置頂顯示) -->
+            <div class="flex justify-between items-center w-full md:w-auto">
+                <div class="flex items-center gap-3">
+                    <img src="images/Dadaocheng-Web.webp" alt="大稻埕人文導覽 Logo" width="50" height="50" class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200 dark:border-gray-700" loading="lazy">
+                    <div class="flex flex-col leading-tight">
+                        <div class="font-serif font-bold text-lg text-ink dark:text-dark-ink transition-colors duration-500" data-i18n="site-title">大稻埕人文導覽</div>
+                        <div class="text-xs text-ink-light dark:text-gray-400 tracking-wider transition-colors duration-500">Dadaocheng Guide</div>
+                    </div>
                 </div>
+
+                <!-- 手機版漢堡按鈕 -->
+                <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-md bg-black/5 dark:bg-white/10 text-ink dark:text-dark-ink focus:outline-none hover:bg-black/10 dark:hover:bg-white/20 transition-colors">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
             </div>
 
-            <nav class="flex flex-wrap justify-center gap-2 text-sm font-medium">
-                <a href="index.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-shops">特色店家</a>
-                <a href="history.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-history">大稻埕的歷史</a>
-                <a href="apps.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-apps">必備APP推薦</a>
-                <a href="emergency.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-emergency">緊急協助</a>
-                <!-- Active 樣式套用到交通便民頁面 -->
-                <a href="info.html" class="px-4 py-2 rounded-md bg-tag-bg dark:bg-dark-tag text-tag-text dark:text-accent font-bold transition-colors shadow-sm" data-i18n="nav-info">交通與便民</a>
-            </nav>
+            <!-- 摺疊選單區塊 (手機版預設隱藏，電腦版展開) -->
+            <div id="nav-menu" class="hidden md:flex flex-col md:flex-row flex-1 justify-between items-center gap-5 w-full mt-5 md:mt-0 pb-2 md:pb-0">
+                
+                <nav class="flex flex-col md:flex-row flex-wrap justify-center items-center gap-2 md:gap-2 text-sm font-medium w-full md:w-auto md:mx-auto">
+                    <a href="index.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-shops">特色店家</a>
+                    <a href="history.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-history">大稻埕的歷史</a>
+                    <a href="apps.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-apps">必備APP推薦</a>
+                    <a href="emergency.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-emergency">緊急協助</a>
+                    <!-- Active 樣式套用到交通便民頁面 -->
+                    <a href="info.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md bg-tag-bg dark:bg-dark-tag text-tag-text dark:text-accent font-bold transition-colors shadow-sm" data-i18n="nav-info">交通與便民</a>
+                </nav>
 
-            <div class="flex items-center gap-4 text-sm text-ink-light dark:text-gray-400">
-                <button id="theme-toggle" aria-label="切換深淺色模式" class="relative w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none">
-                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-accent absolute transition-all duration-300 transform dark:-rotate-90 dark:opacity-0 dark:scale-50"></i>
-                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-dark-ink absolute transition-all duration-300 transform rotate-90 opacity-0 scale-50 dark:rotate-0 dark:opacity-100 dark:scale-100"></i>
-                </button>
+                <div class="flex justify-center items-center gap-6 md:gap-4 text-sm text-ink-light dark:text-gray-400 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-ink/10 dark:border-dark-ink/10">
+                    <!-- 彩色深淺色切換開關 -->
+                    <button id="theme-toggle" aria-label="切換深淺色模式" class="relative w-14 h-7 rounded-full bg-sky-400 dark:bg-indigo-800 transition-colors duration-500 focus:outline-none shadow-inner flex items-center">
+                        <i class="fa-solid fa-sun absolute left-1.5 text-yellow-300 text-xs z-0 transition-opacity duration-300 dark:opacity-30"></i>
+                        <i class="fa-solid fa-moon absolute right-1.5 text-yellow-200 text-xs z-0 transition-opacity duration-300 opacity-30 dark:opacity-100"></i>
+                        <div class="absolute left-1 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-500 dark:translate-x-7 z-10"></div>
+                    </button>
 
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-globe text-accent"></i>
-                    <select id="lang-select" class="bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 text-ink dark:text-dark-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-colors duration-500">
-                        <option value="zh">繁體中文</option>
-                        <option value="en">English</option>
-                        <option value="ja">日本語</option>
-                        <option value="ko">한국어</option>
-                    </select>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-globe text-accent"></i>
+                        <select id="lang-select" class="bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 text-ink dark:text-dark-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-colors duration-500">
+                            <option value="zh">繁體中文</option>
+                            <option value="en">English</option>
+                            <option value="ja">日本語</option>
+                            <option value="ko">한국어</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -554,7 +568,7 @@
                 "smoke-loc2-title": "금연 구역 밖 편의점 야외 공간", "smoke-loc2-desc": "금연 경계선 바깥쪽 도로변 편의점 앞 합법적 재떨이가 설치된 개방된 야외 공간을 이용하세요.", "smoke-loc2-tip": "※주의: 경계선의 아케이드 복도와 인도는 모두 금연입니다.",
 
                 "sec-toilet-title": "공중화장실 안내",
-                "toilet-sub": "다다오청 옛 거리와 부두 주변에서 다음과 같은 깨끗하고 편리한 공중화장실을 이용할 수 있습니다:",
+                "toilet-sub": "다다오청 옛 거리와 부두 주변에서 다음과 같은 깨끗하고 편리 공중화장실을 이용할 수 있습니다:",
                 "toilet-loc1-title": "다다오청 관광안내소", "toilet-loc1-desc": "깨끗하고 레트로한 분위기의 장애인 친화 화장실을 제공합니다. 운영 시간(09:00-18:00) 내 방문을 적극 권장합니다.", "toilet-loc1-addr": "타이베이시 다퉁구 디화제 1단 44호",
                 "toilet-loc2-title": "융러 시장 1층", "toilet-loc2-desc": "시장 1층에 공중화장실이 있어 하해성화묘와 주변 먹거리 골목을 둘러볼 때 매우 편리합니다.", "toilet-loc2-addr": "타이베이시 다퉁구 디화제 1단 21호",
                 "toilet-loc3-title": "다다오청 부두", "toilet-loc3-desc": "제5수문 밖 강변 광장과 컨테이너 마켓 주변에 공중화장실이 마련되어 있습니다.", "toilet-loc3-addr": "타이베이시 다퉁구 민생서로 끝 (제5수문 내)",
@@ -606,6 +620,26 @@
             document.getElementById('lang-select').addEventListener('change', (e) => {
                 changeLanguage(e.target.value);
             });
+
+            // 漢堡選單切換邏輯
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const navMenu = document.getElementById('nav-menu');
+            const hamburgerIcon = hamburgerBtn ? hamburgerBtn.querySelector('i') : null;
+
+            if (hamburgerBtn && navMenu && hamburgerIcon) {
+                hamburgerBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('hidden');
+                    navMenu.classList.toggle('flex');
+                    
+                    if (navMenu.classList.contains('hidden')) {
+                        hamburgerIcon.classList.remove('fa-xmark');
+                        hamburgerIcon.classList.add('fa-bars');
+                    } else {
+                        hamburgerIcon.classList.remove('fa-bars');
+                        hamburgerIcon.classList.add('fa-xmark');
+                    }
+                });
+            }
 
             const themeToggleBtn = document.getElementById('theme-toggle');
             themeToggleBtn.addEventListener('click', function() {

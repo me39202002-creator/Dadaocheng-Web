@@ -88,45 +88,52 @@
 
     <!-- 頂部導覽列 -->
     <header class="sticky top-0 z-50 bg-paper/95 dark:bg-dark-paper/95 backdrop-blur-sm border-b-4 border-primary shadow-sm transition-colors duration-500">
-        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col md:flex-row justify-between items-center md:gap-4 relative">
             
-            <div class="flex items-center gap-3">
-                <img src="images/Dadaocheng-Web.webp" alt="大稻埕人文導覽 Logo" width="50" height="50" class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200 dark:border-gray-700" loading="lazy">
-                <div class="flex flex-col leading-tight">
-                    <div class="font-serif font-bold text-lg text-ink dark:text-dark-ink transition-colors duration-500" data-i18n="site-title">大稻埕人文導覽</div>
-                    <div class="text-xs text-ink-light dark:text-gray-400 tracking-wider transition-colors duration-500">Dadaocheng Guide</div>
+            <!-- Logo 與漢堡按鈕 (手機版保持置頂顯示) -->
+            <div class="flex justify-between items-center w-full md:w-auto">
+                <div class="flex items-center gap-3">
+                    <img src="images/Dadaocheng-Web.webp" alt="大稻埕人文導覽 Logo" width="50" height="50" class="w-[50px] h-[50px] object-contain rounded-lg shadow-sm border border-gray-200 dark:border-gray-700" loading="lazy">
+                    <div class="flex flex-col leading-tight">
+                        <div class="font-serif font-bold text-lg text-ink dark:text-dark-ink transition-colors duration-500" data-i18n="site-title">大稻埕人文導覽</div>
+                        <div class="text-xs text-ink-light dark:text-gray-400 tracking-wider transition-colors duration-500">Dadaocheng Guide</div>
+                    </div>
                 </div>
-            </div>
 
-            <nav class="flex flex-wrap justify-center gap-2 text-sm font-medium">
-                <a href="index.html" class="px-4 py-2 rounded-md bg-tag-bg dark:bg-dark-tag text-tag-text dark:text-accent font-bold transition-colors shadow-sm" data-i18n="nav-shops">特色店家</a>
-                <a href="history.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-history">大稻埕的歷史</a>
-                <a href="apps.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-apps">必備APP推薦</a>
-                <a href="emergency.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-emergency">緊急協助</a>
-                <a href="info.html" class="px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-info">交通與便民</a>
-            </nav>
-
-            <!-- 搜尋框區塊 -->
-            <div class="relative w-full md:w-auto">
-                <input type="text" id="search-input" placeholder="搜尋店家..." class="w-full md:w-48 pl-9 pr-3 py-1.5 rounded-full border border-ink/20 dark:border-gray-600 bg-white/50 dark:bg-dark-card/50 text-ink dark:text-dark-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent/50 transition-colors shadow-sm" data-i18n-placeholder="search-placeholder">
-                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-ink-light dark:text-gray-400 text-sm pointer-events-none"></i>
-            </div>
-
-            <div class="flex items-center gap-4 text-sm text-ink-light dark:text-gray-400">
-                <!-- 深淺色切換按鈕 -->
-                <button id="theme-toggle" aria-label="切換深淺色模式" class="relative w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none">
-                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-accent absolute transition-all duration-300 transform dark:-rotate-90 dark:opacity-0 dark:scale-50"></i>
-                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-dark-ink absolute transition-all duration-300 transform rotate-90 opacity-0 scale-50 dark:rotate-0 dark:opacity-100 dark:scale-100"></i>
+                <!-- 手機版漢堡按鈕 -->
+                <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-md bg-black/5 dark:bg-white/10 text-ink dark:text-dark-ink focus:outline-none hover:bg-black/10 dark:hover:bg-white/20 transition-colors">
+                    <i class="fa-solid fa-bars text-xl"></i>
                 </button>
+            </div>
 
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-globe text-accent"></i>
-                    <select id="lang-select" class="bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 text-ink dark:text-dark-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-colors duration-500">
-                        <option value="zh">繁體中文</option>
-                        <option value="en">English</option>
-                        <option value="ja">日本語</option>
-                        <option value="ko">한국어</option>
-                    </select>
+            <!-- 摺疊選單區塊 (手機版預設隱藏，電腦版展開) -->
+            <div id="nav-menu" class="hidden md:flex flex-col md:flex-row flex-1 justify-between items-center gap-5 w-full mt-5 md:mt-0 pb-2 md:pb-0">
+                
+                <nav class="flex flex-col md:flex-row flex-wrap justify-center items-center gap-2 md:gap-2 text-sm font-medium w-full md:w-auto">
+                    <a href="index.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md bg-tag-bg dark:bg-dark-tag text-tag-text dark:text-accent font-bold transition-colors shadow-sm" data-i18n="nav-shops">特色店家</a>
+                    <a href="history.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-history">大稻埕的歷史</a>
+                    <a href="apps.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-apps">必備APP推薦</a>
+                    <a href="emergency.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-emergency">緊急協助</a>
+                    <a href="info.html" class="w-full md:w-auto text-center px-4 py-2 rounded-md text-ink-light dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5 hover:text-accent dark:hover:text-accent transition-colors" data-i18n="nav-info">交通與便民</a>
+                </nav>
+
+                <div class="flex justify-center items-center gap-6 md:gap-4 text-sm text-ink-light dark:text-gray-400 w-full md:w-auto pt-2 md:pt-0 border-t md:border-t-0 border-ink/10 dark:border-dark-ink/10">
+                    <!-- 彩色深淺色切換開關 -->
+                    <button id="theme-toggle" aria-label="切換深淺色模式" class="relative w-14 h-7 rounded-full bg-sky-400 dark:bg-indigo-800 transition-colors duration-500 focus:outline-none shadow-inner flex items-center">
+                        <i class="fa-solid fa-sun absolute left-1.5 text-yellow-300 text-xs z-0 transition-opacity duration-300 dark:opacity-30"></i>
+                        <i class="fa-solid fa-moon absolute right-1.5 text-yellow-200 text-xs z-0 transition-opacity duration-300 opacity-30 dark:opacity-100"></i>
+                        <div class="absolute left-1 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-500 dark:translate-x-7 z-10"></div>
+                    </button>
+
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-globe text-accent"></i>
+                        <select id="lang-select" class="bg-white dark:bg-dark-card border border-gray-300 dark:border-gray-600 text-ink dark:text-dark-ink rounded px-2 py-1 outline-none focus:ring-2 focus:ring-accent/50 cursor-pointer transition-colors duration-500">
+                            <option value="zh">繁體中文</option>
+                            <option value="en">English</option>
+                            <option value="ja">日本語</option>
+                            <option value="ko">한국어</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -134,19 +141,38 @@
 
     <!-- 主要內容區塊 -->
     <main class="flex-grow max-w-7xl mx-auto px-5 py-10 w-full">
-        <!-- 標籤分類 -->
-        <div class="flex flex-wrap gap-3 mb-10" id="filter-container">
-            <button class="filter-tag active px-5 py-2 rounded-full border-2 border-ink dark:border-dark-ink text-ink dark:text-dark-ink bg-tag-bg dark:bg-dark-tag font-bold transition-all duration-200" data-category="all" data-i18n="cat-all">全部</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="coffee" data-i18n="cat-coffee">咖啡</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="tea" data-i18n="cat-tea">茶館</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="restaurant" data-i18n="cat-rest">餐廳</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="craft" data-i18n="cat-craft">文創選物</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="snack" data-i18n="cat-snack">小吃</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="dessert" data-i18n="cat-dessert">冰品飲料</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="pastry" data-i18n="cat-pastry">傳統糕餅</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="medicine" data-i18n="cat-med">中藥行</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="bar" data-i18n="cat-bar">酒吧</button>
-            <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="culture" data-i18n="cat-culture">文化</button>
+        <!-- 頂部控制區塊 (篩選按鈕與搜尋框) -->
+        <div class="mb-10">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <!-- 展開收合開關按鈕 -->
+                <button id="filter-toggle-btn" class="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border-2 border-ink dark:border-dark-ink text-ink dark:text-dark-ink bg-white/50 dark:bg-dark-card/50 font-bold hover:bg-tag-bg dark:hover:bg-dark-tag transition-all duration-300 shadow-sm focus:outline-none">
+                    <i class="fa-solid fa-filter"></i>
+                    <span data-i18n="filter-title">篩選分類</span>
+                    <span id="current-filter-text" class="text-accent ml-1 text-sm font-medium">(全部)</span>
+                    <i id="filter-toggle-icon" class="fa-solid fa-chevron-down ml-2 transition-transform duration-300"></i>
+                </button>
+
+                <!-- 搜尋框區塊 (已從 Header 移至此) -->
+                <div class="relative w-full sm:w-64 lg:w-80">
+                    <input type="text" id="search-input" placeholder="搜尋店家..." class="w-full pl-10 pr-4 py-2.5 rounded-full border-2 border-ink/20 dark:border-gray-600 bg-white/50 dark:bg-dark-card/50 text-ink dark:text-dark-ink text-sm focus:outline-none focus:border-ink dark:focus:border-dark-ink transition-colors shadow-sm" data-i18n-placeholder="search-placeholder">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-ink-light dark:text-gray-400 text-sm pointer-events-none"></i>
+                </div>
+            </div>
+
+            <!-- 標籤容器 (預設隱藏) -->
+            <div id="filter-container" class="hidden mt-4 p-4 bg-white/30 dark:bg-dark-card/30 rounded-xl border border-ink/10 dark:border-dark-ink/10 shadow-inner transition-all flex-wrap gap-3">
+                <button class="filter-tag active px-5 py-2 rounded-full border-2 border-ink dark:border-dark-ink text-ink dark:text-dark-ink bg-tag-bg dark:bg-dark-tag font-bold transition-all duration-200" data-category="all" data-i18n="cat-all">全部</button>
+                <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="coffee" data-i18n="cat-coffee">咖啡</button>
+                <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="tea" data-i18n="cat-tea">茶館</button>
+                <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="restaurant" data-i18n="cat-rest">餐廳</button>
+                <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="craft" data-i18n="cat-craft">文創選物</button>
+                <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="snack" data-i18n="cat-snack">小吃</button>
+                <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="dessert" data-i18n="cat-dessert">冰品飲料</button>
+                <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="pastry" data-i18n="cat-pastry">傳統糕餅</button>
+                <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="medicine" data-i18n="cat-med">中藥行</button>
+                <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="bar" data-i18n="cat-bar">酒吧</button>
+                <button class="filter-tag px-5 py-2 rounded-full border-2 border-transparent text-ink-light dark:text-gray-400 hover:border-ink/50 dark:hover:border-dark-ink/50 transition-all duration-200 font-medium" data-category="culture" data-i18n="cat-culture">文化</button>
+            </div>
         </div>
 
         <!-- 卡片列表 (由 JS 動態生成) -->
@@ -212,7 +238,7 @@
 
        const i18n = {
             "zh": {
-                "site-title": "大稻埕人文導覽", "nav-shops": "特色店家", "nav-history": "大稻埕的歷史", "nav-apps": "必備APP推薦", "nav-emergency": "緊急協助",
+                "site-title": "大稻埕人文導覽", "nav-shops": "特色店家", "nav-history": "大稻埕的歷史", "nav-apps": "必備APP推薦", "nav-emergency": "緊急協助", "nav-info": "交通與便民",
                 "cat-all": "全部", "cat-coffee": "咖啡", "cat-tea": "茶館", "cat-rest": "餐廳", "cat-craft": "文創選物", 
                 "cat-pastry": "傳統糕餅", "cat-med": "中藥行", "cat-snack": "小吃", "cat-dessert": "冰品飲料", "cat-bar": "酒吧", "cat-culture": "文化",
                 "footer-desc1": "本指南由社群共編，持續更新中。", "footer-desc2": "所有店家資訊僅供參考，請以實際營業狀況為準。",
@@ -221,7 +247,7 @@
                 "tag-coffee": "咖啡", "tag-tea": "茶館", "tag-restaurant": "餐廳", "tag-craft": "文創選物",
                 "tag-pastry": "傳統糕餅", "tag-medicine": "中藥行", "tag-snack": "小吃", "tag-dessert": "冰品飲料",
                 "tag-bar": "酒吧", "tag-culture": "文化", "page-text": "總共第 {start} 到 {end} 筆，共 {total} 筆",
-                "search-placeholder": "搜尋店家"
+                "search-placeholder": "搜尋店家", "filter-title": "篩選分類"
             },
             "en": {
                 "site-title": "Dadaocheng Shops", "nav-shops": "Featured Shops", "nav-history": "History", "nav-apps": "Essential Apps", "nav-emergency": "Emergency Help","nav-info": "Transport & Info",
@@ -233,10 +259,10 @@
                 "tag-coffee": "Coffee", "tag-tea": "Tea House", "tag-restaurant": "Restaurant", "tag-craft": "Crafts",
                 "tag-pastry": "Pastry", "tag-medicine": "Medicine", "tag-snack": "Snacks", "tag-dessert": "Ice & Drinks",
                 "tag-bar": "Bar", "tag-culture": "Culture", "page-text": "Showing {start} to {end} of {total} entries",
-                "search-placeholder": "Search shops"
+                "search-placeholder": "Search shops", "filter-title": "Filter Categories"
             },
             "ja": {
-                "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート","nav-info": "Transport & Info","nav-info": "交通・便利情報",
+                "site-title": "大稲埕のおすすめ店", "nav-shops": "おすすめ店", "nav-history": "大稲埕の歴史", "nav-apps": "必須アプリ", "nav-emergency": "緊急サポート","nav-info": "交通・便利情報",
                 "cat-all": "すべて", "cat-coffee": "カフェ", "cat-tea": "茶館", "cat-rest": "レストラン", "cat-craft": "文化", 
                 "cat-pastry": "伝統菓子", "cat-med": "漢方薬局", "cat-snack": "軽食", "cat-dessert": "アイス・飲み物", "cat-bar": "バー", "cat-culture": "文化",
                 "footer-desc1": "このガイドはコミュニティによって共同編集・更新されています。", "footer-desc2": "店舗情報は参考用です。",
@@ -245,7 +271,7 @@
                 "tag-coffee": "カフェ", "tag-tea": "茶館", "tag-restaurant": "レストラン", "tag-craft": "クラフト",
                 "tag-pastry": "伝統菓子", "tag-medicine": "漢方薬局", "tag-snack": "軽食", "tag-dessert": "アイス・飲み物",
                 "tag-bar": "バー", "tag-culture": "文化", "page-text": "全 {total} 件中 {start} から {end} 件目を表示",
-                "search-placeholder": "店舗検索"
+                "search-placeholder": "店舗検索", "filter-title": "カテゴリー"
             },
             "ko": {
                 "site-title": "다다오청 추천 상점", "nav-shops": "추천 상점", "nav-history": "다다오청의 역사", "nav-apps": "필수 앱 추천", "nav-emergency": "긴급 지원","nav-info": "교통 및 편의시설",
@@ -257,9 +283,9 @@
                 "tag-coffee": "카페", "tag-tea": "찻집", "tag-restaurant": "레스토랑", "tag-craft": "문화 창작",
                 "tag-pastry": "전통 과자", "tag-medicine": "한약방", "tag-snack": "스낵", "tag-dessert": "아이스/음료",
                 "tag-bar": "바", "tag-culture": "문화", "page-text": "총 {total}개 중 {start}에서 {end}까지 표시",
-                "search-placeholder": "매장 찾기"
+                "search-placeholder": "매장 찾기", "filter-title": "카테고리"
             }
-        };;
+        };
 
         function changeLanguage(lang) {
             currentLang = lang;
@@ -289,6 +315,26 @@
                 changeLanguage(e.target.value);
             });
 
+            // 漢堡選單切換邏輯
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const navMenu = document.getElementById('nav-menu');
+            const hamburgerIcon = hamburgerBtn ? hamburgerBtn.querySelector('i') : null;
+
+            if (hamburgerBtn && navMenu && hamburgerIcon) {
+                hamburgerBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('hidden');
+                    navMenu.classList.toggle('flex');
+                    
+                    if (navMenu.classList.contains('hidden')) {
+                        hamburgerIcon.classList.remove('fa-xmark');
+                        hamburgerIcon.classList.add('fa-bars');
+                    } else {
+                        hamburgerIcon.classList.remove('fa-bars');
+                        hamburgerIcon.classList.add('fa-xmark');
+                    }
+                });
+            }
+
             // 深淺色模式切換邏輯
             const themeToggleBtn = document.getElementById('theme-toggle');
             themeToggleBtn.addEventListener('click', function() {
@@ -300,8 +346,23 @@
                 }
             });
 
-            // 事件委派：處理標籤點擊 (適配深色模式樣式)
+            // 展開/收合選單邏輯
+            const filterToggleBtn = document.getElementById('filter-toggle-btn');
             const filterContainer = document.getElementById('filter-container');
+            const filterToggleIcon = document.getElementById('filter-toggle-icon');
+            const currentFilterText = document.getElementById('current-filter-text');
+
+            if (filterToggleBtn && filterContainer) {
+                filterToggleBtn.addEventListener('click', () => {
+                    // 切換顯示狀態
+                    filterContainer.classList.toggle('hidden');
+                    filterContainer.classList.toggle('flex');
+                    // 旋轉箭頭圖示
+                    filterToggleIcon.classList.toggle('rotate-180');
+                });
+            }
+
+            // 事件委派：處理標籤點擊
             if (filterContainer) {
                 filterContainer.addEventListener('click', (e) => {
                     const clickedBtn = e.target.closest('.filter-tag');
@@ -315,6 +376,16 @@
 
                     clickedBtn.classList.remove('border-transparent', 'text-ink-light', 'dark:text-gray-400', 'font-medium');
                     clickedBtn.classList.add('border-ink', 'dark:border-dark-ink', 'text-ink', 'dark:text-dark-ink', 'bg-tag-bg', 'dark:bg-dark-tag', 'font-bold');
+
+                    // 更新按鈕旁邊的當前分類文字
+                    if(currentFilterText) {
+                        currentFilterText.innerText = `(${clickedBtn.innerText})`;
+                    }
+
+                    // 點擊分類後自動收合選單
+                    filterContainer.classList.add('hidden');
+                    filterContainer.classList.remove('flex');
+                    filterToggleIcon.classList.remove('rotate-180');
 
                     currentCategory = clickedBtn.getAttribute('data-category');
                     currentPage = 1; 
