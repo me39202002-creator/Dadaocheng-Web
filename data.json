@@ -2926,5 +2926,29 @@
     "Place ID": "ChIJWSs0mhWpQjQRwGKfUqvnpTE",
     "Rating": 4,
     "User Rating Count": 2805
+  },
+  {
+    "ID": 124,
+    "Category": "culture",
+    "Title (ZH)": "永樂市場",
+    "Title (EN)": "Yongle Market",
+    "Title (JA)": "永楽市場（ヨンラー・シージャン）",
+    "Title (KO)": "영락시장 (Yongle Market)",
+    "Address (ZH)": "台北市大同區迪化街一段21號",
+    "Address (EN)": "No. 21, Sec. 1, Dihua St., Datong Dist., Taipei City",
+    "Address (JA)": "台北市大同区迪化街一段21号",
+    "Address (KO)": "타이베이시 다퉁구 디화제 1단 21호",
+    "Hours (ZH)": "週一至週六 10:00–18:00（週日公休）",
+    "Hours (EN)": "Mon-Sat 10:00–18:00 (Closed Sun)",
+    "Hours (JA)": "月〜土 10:00–18:00（日曜定休）",
+    "Hours (KO)": "월~토 10:00–18:00 (일요일 휴무)",
+    "Description (ZH)": "大稻埕百年核心地標與全台最大布料市集。一樓匯聚油飯與生魚片等在地排隊小吃，二三樓為織品與專業裁縫聚落，生活文化底蘊深厚。",
+    "Description (EN)": "A historic Dadaocheng landmark and Taiwan's largest fabric market. The first floor offers famous local food stalls, while upper floors house textile and tailoring shops.",
+    "Description (JA)": "大稲埕の歴史的シンボルであり、台湾最大の布地市場。1階は油飯や刺身など行列ができる伝統グルメが揃い、2・3階は生地や仕立ての専門店が並びます。",
+    "Description (KO)": "다다오청의 100년 역사를 품은 대표 랜드마크이자 대만 최대의 원단 시장. 1층은 오일라이스와 생선회 등 인기 먹거리가 가득하며 2·3층은 원단 및 맞춤 수선 전문점들이 모여 있습니다.",
+    "UpdateTime": "2026-09-12T03:20:00.000Z",
+    "Place ID": "ChIJFVOnlROpQjQR_uVIl2iafuU",
+    "Rating": 4.3,
+    "User Rating Count": 15201
   }
 ]
